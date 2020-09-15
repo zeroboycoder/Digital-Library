@@ -28,14 +28,19 @@ const loadUserFail = (errMsg) => {
 export const onLoadUser = () => (dispatch, getState) => {
    dispatch(loadUserStart());
    const token = getState().auth.token;
+   console.log(token);
    axios
       .get("/api/user", {
          headers: {
             "elib-auth-token": token,
          },
       })
-      .then((response) => dispatch(loadUserSuccess(response.data.user)))
-      .catch((err) => dispatch(loadUserFail(err.response.data)));
+      .then((response) => {
+         dispatch(loadUserSuccess(response.data.user));
+      })
+      .catch((err) => {
+         dispatch(loadUserFail(err.response.data));
+      });
 };
 
 /* ============= */
