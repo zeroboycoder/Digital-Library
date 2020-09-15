@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 // Configure the Mongo DB
 const PORT = process.env.PORT || 5000;
 // const uri = config.get("MONGO_LOCAL_URI");
-const uri = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.us0iw.mongodb.net/e-library-for-tumlm>?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.us0iw.mongodb.net/e-library-for-tumlm?retryWrites=true&w=majority`;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose
    .connect(uri, options)
