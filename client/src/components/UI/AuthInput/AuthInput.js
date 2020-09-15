@@ -37,6 +37,7 @@ const AuthInput = (props) => {
          </div>
       );
    }
+   // For textarea
    if (props.elementtype === "textarea") {
       labelStyle.push("TextareaLabel");
       input = (
