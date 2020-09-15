@@ -8,7 +8,11 @@ const Input = (props) => {
    // Assign the invalid border color
    if (props.invalid && props.touched) {
       classes.push("border-danger text-danger");
-      errMsg = <small className="Input__ErrorMessage">{props.errMsg}</small>;
+      errMsg = (
+         <small className="Input__ErrorMessage" style={{ display: "block" }}>
+            {props.errMsg}
+         </small>
+      );
    }
 
    // Assign the css class based on element type
@@ -30,7 +34,9 @@ const Input = (props) => {
                   className={classes.join(" ")}
                   onChange={props.changed}
                />
-               <small className="mt-1">{props.guideLine}</small>
+               {props.guideLine && (
+                  <small className="mt-1">{props.guideLine}</small>
+               )}
                {errMsg}
                {props.previewImage &&
                   !props.invalid &&
@@ -39,7 +45,6 @@ const Input = (props) => {
                         className="Input__PreviewImage"
                         src={props.previewImage}
                         alt="Preview Book Cover"
-                        style={{ width: "120px", marginTop: "20px" }}
                      />
                   )}
             </div>
