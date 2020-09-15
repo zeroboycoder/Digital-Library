@@ -9,8 +9,8 @@
 }
 
 .Home__BookLists__Title {
-   font: 400 28px var(--font_family);
+   font: 500 28px var(--font_family);
    text-align: center;
-   margin: 0;
+   margin: 0 0 15px 0;
    color: var(--red);
 }

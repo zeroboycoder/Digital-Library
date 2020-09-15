@@ -1,6 +1,6 @@
 .BookList {
    width: 220px;
-   margin: 40px;
+   margin: 10px 40px 40px 40px;
    display: flex;
    flex-flow: column;
    padding: 15px;
