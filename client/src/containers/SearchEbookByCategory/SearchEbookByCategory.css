@@ -1,0 +1,12 @@
+.SearchEbookByCategory {
+   max-width: 100%;
+   margin: 70px 0;
+}
+
+.SearchEbookByCategory h1 {
+   text-transform: capitalize;
+   font: 500 32px var(--font_family);
+   color: var(--gray);
+   margin: 0;
+   padding: 15px 30px;
+}

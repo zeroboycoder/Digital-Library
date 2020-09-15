@@ -1,0 +1,29 @@
+{
+   "name": "e-library-project",
+   "version": "1.0.0",
+   "description": "",
+   "main": "server.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js",
+      "server": "nodemon server.js",
+      "client": "npm start --prefix client",
+      "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+   },
+   "engines": {
+      "node": "10.x"
+   },
+   "author": "ZeroBoy",
+   "license": "ISC",
+   "dependencies": {
+      "aws-sdk": "^2.728.0",
+      "bcryptjs": "^2.4.3",
+      "config": "^3.3.1",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.9.28",
+      "multer": "^1.4.2",
+      "multer-s3": "^2.9.0"
+   }
+}

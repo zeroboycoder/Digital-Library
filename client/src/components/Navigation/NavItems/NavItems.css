@@ -1,0 +1,61 @@
+.Nav {
+  margin: 0;
+  height: 56px;
+  list-style: none;
+  display: flex;
+}
+
+.Nav > li {
+  display: flex;
+}
+
+.Nav li {
+  display: relative;
+  margin: 0 20px;
+}
+
+.Nav__Dropdown:hover > .Nav__SubMenu {
+  display: block;
+}
+
+.Nav__SubMenu {
+  display: none;
+  background-color: var(--white);
+  position: absolute;
+  top: 48px;
+  list-style: none;
+  box-shadow: 0px 0px 5px var(--gray);
+  -webkit-animation: slideDown 0.2s ease-in;
+  animation: slideDown 0.2s ease-in;
+}
+
+.Nav__SubMenu li {
+  margin: 12px 20px;
+}
+
+/* For tablet */
+@media (max-width: 900px) {
+  .Nav {
+    display: none;
+  }
+}
+@-webkit-keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

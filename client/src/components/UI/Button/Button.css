@@ -1,0 +1,22 @@
+button.Button {
+   font: 400 20px var(--font_family);
+   outline: none;
+   color: var(--text-white);
+   background-color: #206a5d;
+   border: 1px solid #206a5d;
+   border-radius: 11px;
+   box-shadow: 2px 2px 8px #184d47;
+   transition: all 0.3s;
+}
+
+button.Button:hover {
+   box-shadow: 4px 4px 10px #154641 inset, 2px 2px 6px #184d47;
+}
+
+button.Button:disabled {
+   color: #aaa;
+   background-color: var(--secondary-color);
+   cursor: not-allowed;
+   border: 1px soldi var(--secondary);
+   box-shadow: 2px 2px 8px var(--secondary);
+}

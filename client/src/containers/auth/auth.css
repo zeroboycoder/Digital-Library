@@ -1,0 +1,126 @@
+.Auth {
+   max-width: 95%;
+   min-width: 90%;
+   margin: 80px auto 0 auto;
+}
+
+.Auth .row {
+   height: 510px;
+}
+
+.Auth .row .col {
+   align-self: center;
+}
+
+.AuthForm {
+   width: 360px;
+   margin: 0 auto;
+}
+
+.AuthForm h1 {
+   font: 500 36px var(--font_family);
+   text-align: center;
+   margin-bottom: 15px;
+}
+
+.AuthForm .Input {
+   margin: 15px 0;
+}
+
+.AuthForm input,
+.AuthForm label {
+   font: 400 16px var(--font_family);
+}
+
+.AuthForm label {
+   margin-bottom: 7px;
+}
+
+.authBtn {
+   margin: 25px 0;
+   width: 100%;
+   text-align: center;
+}
+
+.authBtn button {
+   font: 400 17px var(--font_family);
+   color: var(--black);
+   padding: 7px 20px;
+   border: 1px solid var(--gray);
+   border-radius: 20px;
+   box-shadow: 0px 2px 6px var(--black);
+   cursor: pointer;
+}
+
+.authBtn button:disabled {
+   cursor: not-allowed;
+   color: var(--pink-gray);
+   border: 1px solid var(--pink-gray);
+   box-shadow: 0px 1px 4px var(--black);
+}
+
+.SwapAuth {
+   width: 100%;
+   text-align: center;
+}
+
+.SwapAuth * {
+   font: 400 16px var(--font_family);
+}
+
+.SwapAuth .SwapAuthBtn {
+   cursor: pointer;
+   color: blue;
+}
+
+.SwapAuth .SwapAuthBtn:hover,
+.SwapAuth .SwapAuthBtn:active {
+   font-weight: 500;
+}
+
+/* Right Side */
+.Signup_right {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.Signup_right .signup_bg {
+   width: 90%;
+   height: 90%;
+   background-image: url(../../assets/signup_bg.svg);
+   background-size: cover;
+}
+
+.Signup_right .signin_bg {
+   width: 90%;
+   height: 85%;
+   background-image: url(../../assets/signin_bg.svg);
+   background-size: cover;
+}
+
+/* For small laptop */
+@media (max-width: 900px) {
+   .AuthForm {
+      width: 310px;
+      margin: 0 auto;
+   }
+   .Signup_right .signup_bg {
+      width: 100%;
+      height: 60%;
+   }
+   .Signup_right .signin_bg {
+      width: 100%;
+      height: 60%;
+   }
+}
+
+/* For small tablet */
+@media (max-width: 786px) {
+   .AuthForm {
+      width: 300px;
+      margin: 0 auto;
+   }
+}

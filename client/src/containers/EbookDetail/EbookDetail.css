@@ -1,0 +1,205 @@
+.EbookDetail {
+   max-width: 100%;
+   padding: 75px 0 40px 0;
+   margin: 0 auto;
+}
+
+.BookInfo {
+   margin: 30px auto 50px auto;
+   width: 1040px;
+   position: relative;
+}
+
+.BookInfo__BookCover img {
+   width: 100%;
+}
+
+.BookInfo__Info > h1 {
+   font: 500 36px var(--font_family);
+   margin: 0;
+}
+
+.BookInfo__Info > p {
+   font: 500 20px var(--font_family);
+   margin: 12px 0;
+}
+
+p.BookInfo__Info__ReleasedYear {
+   color: var(--pink-gray);
+}
+
+a.BookInfo__Info__DownloadBtn {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+}
+
+.BookInfo__Info__DownloadBtn button {
+   outline: none;
+   padding: 6px 35px;
+   font: 500 20px var(--font_family);
+   color: var(--black);
+   background-color: var(--LiGreen);
+   border: 1px solid var(--pink-gray);
+   border-radius: 20px;
+   box-shadow: 1px 2px 7px darkgreen;
+   transition: all 0.3s;
+}
+
+.BookInfo__Info__DownloadBtn button:hover,
+.BookInfo__Info__DownloadBtn button:active {
+   background-color: #39e773;
+   box-shadow: 2px 3px 9px darkgreen;
+}
+
+.EbookDetail__Suggestions {
+   width: 1040px;
+   margin: 0 auto;
+}
+
+.EbookDetail__Suggestions h1 {
+   margin: 0;
+   color: var(--black);
+   font: 500 28px var(--font_family);
+}
+
+.EbookDetail__Suggestions h1::after {
+   content: "";
+   display: block;
+   width: 160px;
+   height: 2px;
+   margin-top: 5px;
+   background-color: var(--black);
+}
+
+.EbookDetail__Suggestions__Books {
+   display: flex;
+   margin-top: 10px;
+}
+
+.EbookDetail__Suggestions__Books:first-of-type {
+   margin-left: -2%;
+}
+
+/* =============== */
+/* Comment Section */
+/* =============== */
+.EbookDetail__Comment {
+   width: 100%;
+   margin-top: 30px;
+}
+
+.EbookDetail__Comment__Title {
+   width: 1040px;
+   margin: 0 auto;
+}
+
+.EbookDetail__Comment__Title h1 {
+   color: var(--light-violet);
+   font: 400 30px var(--font_family);
+}
+
+.EbookDetail__Comment i {
+   font-size: 36px;
+   margin-right: 20px;
+}
+
+.EbookDetail__Comment__CommentBox,
+.EbookDetail__Comment__ShowComment {
+   width: 750px;
+   margin: 30px auto 0 auto;
+   display: flex;
+}
+
+.EbookDetail__Comment__CommentBox form {
+   width: 100%;
+}
+
+.EbookDetail__Comment__CommentBox form .form-group {
+   display: flex;
+   justify-content: space-between;
+}
+
+.EbookDetail__Comment__CommentBox__Text {
+   font: 400 22px var(--font_family);
+   color: var(--light-violet);
+}
+
+.EbookDetail__Comment__CommentBox input {
+   outline: none;
+   width: 75%;
+   padding: 7px 15px;
+   letter-spacing: 1px;
+   font: 400 17px var(--font_family);
+   border: 2px solid var(--pink-gray);
+   border-radius: 15px;
+   transition: all 0.3s;
+}
+
+.EbookDetail__Comment__CommentBox textarea {
+   outline: none;
+   width: 100%;
+   height: 100px;
+   padding: 7px 10px;
+   letter-spacing: 1px;
+   font: 400 17px var(--font_family);
+   border: none;
+   border-bottom: 2px solid var(--pink-gray);
+   transition: all 0.3s;
+}
+
+.EbookDetail__Comment__CommentBox input:hover,
+.EbookDetail__Comment__CommentBox input:focus,
+.EbookDetail__Comment__CommentBox textarea:hover,
+.EbookDetail__Comment__CommentBox textarea:focus {
+   border-color: var(--black);
+}
+
+.EbookDetail__Comment__CommentBox button {
+   float: right;
+   outline: none;
+   border: none;
+   cursor: pointer;
+   color: var(--success);
+   font: 500 17px var(--font_family);
+   background-color: var(--white);
+}
+
+.EbookDetail__Comment__CommentBox button:not(:disabled) {
+   animation: notDisable 0.3s linear;
+}
+
+.EbookDetail__Comment__CommentBox button:disabled {
+   color: var(--gray);
+   cursor: not-allowed;
+}
+
+/* Show Comment */
+.EbookDetail__Comment__ShowComment div p {
+   margin: 0 0 8px 0;
+   letter-spacing: 1px;
+}
+
+.EbookDetail__Comment__ShowComment__Email,
+.EbookDetail__Comment__ShowComment__Email span {
+   color: var(--pink-gray);
+   font: 400 16px var(--font_family);
+}
+
+.EbookDetail__Comment__ShowComment__Comment {
+   font: 400 17px var(--font_family);
+}
+
+/* For Tablet */
+@media (max-width: 786px) {
+   .EbookDetail__Heading {
+      font: 500 32px var(--font_family);
+   }
+}
+
+/* For Mobile */
+@media (max-width: 480px) {
+   .EbookDetail__Heading {
+      font-size: 28px;
+   }
+}

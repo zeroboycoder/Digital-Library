@@ -1,0 +1,78 @@
+.SlideDraw {
+   position: fixed;
+   top: 0;
+   z-index: 1000;
+   width: 280px;
+   height: 100vh;
+   padding: 20px 30px;
+   background-color: var(--background);
+   transition: all 0.3s;
+}
+
+.SlideDraw__Brand {
+   width: 90px;
+}
+
+.SlideDraw__Brand img {
+   width: 100%;
+}
+
+.SlideDraw__UserName {
+   color: var(--text-green);
+   font: 500 18px var(--font_family);
+   margin: 12px 0 10px 0;
+}
+
+.SlideDraw__Nav {
+   display: flex;
+   flex-flow: column;
+}
+
+.SlideDraw__Nav li {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.SlideDraw__Nav li a,
+.SlideDraw__Nav__WithUl {
+   font: 400 17px var(--font_family);
+   display: inline-block;
+   text-decoration: none;
+   color: var(--primary-color);
+   padding: 0;
+   line-height: 45px;
+   cursor: pointer;
+}
+
+.SlideDraw__Nav li.Danger__Link a {
+   color: var(--danger);
+}
+
+.SlideDraw__Nav li.Success__Link a {
+   color: var(--success);
+}
+
+.SlideDraw__Nav li a:hover,
+.SlideDraw__Nav li a:active,
+.SlideDraw__Nav li a.active,
+.SlideDraw__Nav li.Danger__Link a:hover,
+.SlideDraw__Nav li.Danger__Link a:active,
+.SlideDraw__Nav__WithUl span:hover,
+.SlideDraw__Nav__WithUl span:active {
+   color: var(--text-black);
+   background-color: var(--text-white);
+}
+
+.SlideDraw__Nav__WithUl {
+   width: -webkit-fit-content;
+   width: -moz-fit-content;
+   width: fit-content;
+}
+
+.SlideDraw__Nav__Submenu {
+   display: none;
+   position: relative;
+   left: 15px;
+   transition: all 1s;
+}

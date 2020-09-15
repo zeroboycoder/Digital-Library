@@ -1,0 +1,97 @@
+.Input {
+   width: 100%;
+   margin-bottom: 25px;
+   display: flex;
+}
+
+.Input__Label {
+   width: 20%;
+}
+
+.Input__InputBox {
+   width: 80%;
+   position: relative;
+}
+
+.Input__Label label {
+   color: var(--black);
+   font: 500 16px var(--font_family);
+   margin-bottom: 15px;
+   letter-spacing: 1px;
+   word-spacing: 2px;
+}
+
+.Input__InputBox input,
+.Input__InputBox textarea {
+   color: var(--black);
+   font: 500 16px var(--font_family);
+   letter-spacing: 1.5px;
+   word-spacing: 2px;
+   padding-left: 20px;
+   margin-bottom: 6px;
+   border: 1px solid #999;
+   border-radius: 20px;
+   box-shadow: 0px 1px 4px #00000080;
+   transition: all 0.3s;
+}
+
+.Input__InputBox input:hover,
+.Input__InputBox input:focus,
+.Input__InputBox textarea:hover,
+.Input__InputBox textarea:focus {
+   border: 1px solid var(--gray);
+   box-shadow: 1px 2px 6px #666;
+}
+
+.Input .fileInput {
+   width: -webkit-fit-content;
+   width: -moz-fit-content;
+   width: fit-content;
+   color: var(--black);
+   border: 1px solid transparent;
+   border-radius: 0;
+   box-shadow: none;
+   outline: none;
+}
+
+.Input .fileInput:hover,
+.Input .fileInput:focus {
+   border: 1px solid transparent;
+}
+
+.Input__InputBox textarea {
+   height: 180px;
+}
+
+.Input__ErrorMessage {
+   color: var(--danger);
+   font: 500 14px var(--font_family);
+   letter-spacing: 0.5px;
+}
+
+/* For Tablet */
+@media (max-width: 768px) {
+   .Input__Label {
+      margin-bottom: 10px;
+      font: 500 16px var(--font_family);
+   }
+
+   .Input input,
+   textarea {
+      font: 500 15px var(--font_family);
+   }
+
+   .Input input:focus {
+      border: 1px solid var(--primary-color);
+   }
+
+   .Input textarea {
+      border: 1px solid #867f7f;
+      font: 500 16px var(--font_family);
+   }
+
+   .Input textarea:focus {
+      border: 1px solid var(--primary-color);
+      font: 500 16px var(--font_family);
+   }
+}

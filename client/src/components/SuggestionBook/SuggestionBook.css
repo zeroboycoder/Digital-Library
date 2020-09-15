@@ -1,0 +1,36 @@
+.SuggestionBook {
+   width: 16%;
+   margin: 20px 2%;
+   padding: 15px;
+   border: 1px solid var(--pink-gray);
+   border-radius: 4px;
+   transition: all 0.3s;
+}
+
+.SuggestionBook:hover {
+   box-shadow: 2px 2px 6px var(--pink-gray);
+}
+
+.SuggestionBook__BookCover {
+   width: 100%;
+   margin: 0 auto;
+}
+
+.SuggestionBook__BookCover img {
+   width: 100%;
+}
+
+.SuggestionBook__Body p {
+   margin: 5px 0;
+}
+
+.SuggestionBook__Body__BookName {
+   font: 500 17px var(--font_family);
+   color: var(--black);
+   cursor: pointer;
+}
+
+.SuggestionBook__Body__Author {
+   font: 400 15px var(--font_family);
+   color: var(--gray);
+}

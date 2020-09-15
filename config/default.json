@@ -1,0 +1,4 @@
+{
+   "MONGO_LOCAL_URI": "mongodb://localhost:27017/e-library",
+   "JWTSECRET": "The Name of this app is E-Library for TUMLM"
+}

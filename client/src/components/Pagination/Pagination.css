@@ -1,0 +1,82 @@
+.Pagination_Container {
+   width: 1200px;
+   margin: 20px auto;
+}
+
+.Pagination {
+   width: fit-content;
+   margin-left: auto;
+   display: flex;
+}
+
+.Pagination__PaginationNumber {
+   display: flex;
+}
+
+.Pagination__PaginationNumber > div {
+   width: 35px;
+   height: 35px;
+   margin: 0 10px;
+   background-color: var(--white);
+   border: 1px solid var(--gray);
+   border-radius: 50%;
+   box-shadow: 1px 1px 6px var(--pink-gray);
+   transition: all 0.3s;
+}
+
+.Pagination__PaginationNumber div > a {
+   text-decoration: none;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font: 400 17px var(--font_family);
+   color: var(--gray);
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   transition: all 0.3s;
+}
+
+.Pagination__PaginationNumber > div:hover,
+.Pagination__PaginationNumber div a:hover,
+.Pagination__PaginationNumber div .Pagination__PaginationNumber__Active {
+   background-color: var(--pink-gray);
+   color: var(--white);
+   border: var(--pink-gray);
+   box-shadow: 2px 2px 6px var(--gray);
+}
+
+.Pagination .Pagination__PaginationBtn {
+   background-color: var(--white);
+   outline: none;
+   border: none;
+   transition: all 0.3s;
+}
+
+.Pagination__PaginationBtn i {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0 15px;
+   color: var(--gray);
+   font-size: 26px;
+   transition: all 0.3s;
+}
+
+.Pagination__PaginationBtn i:hover {
+   color: var(--black);
+}
+
+.Pagination .Pagination__PaginationBtn:disabled {
+   display: none;
+}
+
+@media (max-width: 786px) {
+   .Pagination__PaginationNumber > div {
+      margin: 0 5px;
+   }
+
+   .Pagination__PaginationBtn {
+      width: 50px;
+   }
+}

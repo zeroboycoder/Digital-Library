@@ -1,0 +1,16 @@
+.Home {
+   max-width: 100%;
+   margin: 57px auto 0 auto;
+}
+
+.ImageSlide {
+   width: 100%;
+   height: 350px;
+}
+
+.Home__BookLists__Title {
+   font: 400 28px var(--font_family);
+   text-align: center;
+   margin: 0;
+   color: var(--red);
+}

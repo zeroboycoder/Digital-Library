@@ -1,0 +1,72 @@
+.AuthInput {
+   margin: 30px 0 0 0;
+}
+
+.AuthInput__InputSection {
+   position: relative;
+   width: 100%;
+}
+
+.AuthInput__InputSection input {
+   position: relative;
+   z-index: 50;
+   outline: none;
+   width: 100%;
+   color: var(--black);
+   font: 500 16px var(--font_family);
+   padding: 10px 15px;
+   background-color: transparent;
+   border: 2px solid var(--pink-gray);
+   border-radius: 20px;
+}
+
+.AuthInput__InputSection textarea {
+   border-radius: 0px;
+   height: 100px;
+}
+
+.AuthInput__InputSection input:hover,
+.AuthInput__InputSection input:focus,
+.AuthInput__InputSection textarea:hover,
+.AuthInput__InputSection textarea:focus {
+   border: 2px solid var(--gray);
+}
+
+.AuthInput__InputSection input:focus + label,
+.AuthInput__InputSection textarea:focus + label {
+   z-index: 60;
+   top: 0;
+   left: 15px;
+   padding: 0 5px;
+   color: var(--black);
+   background-color: var(--white);
+   font: 500 13px var(--font_family);
+}
+
+.AuthInput__InputSection .LabelTop {
+   z-index: 60;
+   top: 0;
+   left: 15px;
+   padding: 0 5px;
+   color: var(--black);
+   background-color: var(--white);
+   font: 500 13px var(--font_family);
+}
+
+.AuthInput__InputSection label {
+   position: absolute;
+   z-index: 40;
+   left: 15px;
+   padding: 0 5px;
+   top: 50%;
+   transform: translate(0, -50%);
+   margin: 0;
+   color: var(--gray);
+   font: 400 15px var(--font_family);
+   cursor: text;
+   transition: all 0.2s;
+}
+
+label.TextareaLabel {
+   top: 25px;
+}

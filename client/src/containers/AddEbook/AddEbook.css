@@ -1,0 +1,67 @@
+.AddEbook {
+   font-size: 14px;
+   max-width: 1040px;
+   width: 100%;
+   margin: 100px auto 50px auto;
+}
+
+.AddEbook__Heading {
+   text-align: center;
+   font: 400 42px var(--font_family);
+   letter-spacing: 0.5px;
+   margin-bottom: 30px;
+}
+
+.AddEbook__Form {
+   padding: 40px;
+   border: 1px solid #999;
+   border-radius: 6px;
+   box-shadow: 1px 2px 7px #777;
+   background-image: url(../../assets/add_ebook_bg.svg);
+   background-size: 80%;
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.AddEbook__Btn {
+   text-align: right;
+}
+
+.SubmitBtn {
+   outline: none;
+   padding: 12px 35px;
+   letter-spacing: 0.5px;
+   font: 500 17px var(--font_family);
+   color: var(---black);
+   background-color: #5a64f1;
+   border: 1px solid #777;
+   border-radius: 25px;
+   cursor: pointer;
+   transition: all 0.3s;
+}
+
+.SubmitBtn:hover,
+.SubmitBtn:active {
+   background-color: #b6b6cf;
+}
+
+.SubmitBtn:disabled {
+   color: #999;
+   background-color: #e4e4e4;
+   border: 1px solid #ccc;
+   cursor: not-allowed;
+}
+
+/* For Tablet */
+@media (max-width: 900px) {
+   .AddEbook__Heading {
+      font-size: 36px;
+   }
+}
+
+/* For mobile */
+@media (max-width: 480px) {
+   .AddEbook__Heading {
+      font-size: 28px;
+   }
+}
