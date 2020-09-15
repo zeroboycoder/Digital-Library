@@ -118,7 +118,7 @@ class SignUp extends Component {
    };
 
    swapAuth = () => {
-      this.props.history.replace("/auth/signin");
+      this.props.history.push("/auth/signin");
    };
 
    render() {

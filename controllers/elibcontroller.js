@@ -57,7 +57,7 @@ exports.fetchEbooks = (req, res) => {
    const type = req.params.type;
    let tags = [];
    let totalEbooks;
-   const ebooksPerPage = 5;
+   const ebooksPerPage = 12;
    let page = +req.query._page || 1;
    /* Search Ebook by input name, /ebooks/search?_q='string' */
    const _q = req.query._q;
