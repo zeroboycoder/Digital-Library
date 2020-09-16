@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import BookList from "../../components/BookList/BookList";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import SearchEbooksByInputNameBox from "../../components/SearchEbookByInputName/SearchEbookByInputName";
 import { clickedLink } from "../../util/helper";
 import * as actions from "../../store/action/rootActions";
 
@@ -50,8 +51,12 @@ class SearchEbooksByInputName extends Component {
          ));
          searchedEbooks = (
             <div className="SearchEbookByCategory">
+               <div className="SearchEbookByInputNameBox">
+                  <SearchEbooksByInputNameBox history={this.props.history} />
+               </div>
+               <hr className="Tag__hr" />
                <h1>Search Result : {finalQueryValue} </h1>
-               {searchDataArr}
+               <div className="BookLists">{searchDataArr}</div>
             </div>
          );
       }
