@@ -6,7 +6,10 @@ import { clickedLink } from "../../util/helper";
 const SuggestionBook = (props) => {
    return (
       <div className="SuggestionBook">
-         <div className="SuggestionBook__BookCover">
+         <div
+            className="SuggestionBook__BookCover"
+            onClick={() => clickedLink(props._id, props)}
+         >
             <img src={props.bookCoverLocation} alt={props.bookName} />
          </div>
          <div className="SuggestionBook__Body">

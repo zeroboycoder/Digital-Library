@@ -14,6 +14,7 @@
 .SuggestionBook__BookCover {
    width: 100%;
    margin: 0 auto;
+   cursor: pointer;
 }
 
 .SuggestionBook__BookCover img {

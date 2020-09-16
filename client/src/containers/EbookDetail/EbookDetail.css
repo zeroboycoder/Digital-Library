@@ -28,10 +28,9 @@ p.BookInfo__Info__ReleasedYear {
    color: var(--pink-gray);
 }
 
-a.BookInfo__Info__DownloadBtn {
-   position: absolute;
-   right: 0;
-   bottom: 0;
+.BookInfo__Info__DownloadBtn {
+   width: 100%;
+   text-align: right;
 }
 
 .BookInfo__Info__DownloadBtn button {

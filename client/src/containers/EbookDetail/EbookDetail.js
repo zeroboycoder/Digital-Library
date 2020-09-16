@@ -6,7 +6,6 @@ import SearchEbookByInputName from "../../components/SearchEbookByInputName/Sear
 import SuggestionBook from "../../components/SuggestionBook/SuggestionBook";
 import CommentBox from "../../components/Comment/CommentBox/CommentBox";
 import { checkValidation } from "../../util/helper";
-import cover from "../../assets/ss.jpg";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 class EbookDetail extends Component {
@@ -82,6 +81,7 @@ class EbookDetail extends Component {
       let ebookDetail = null;
       // Whether Show Spinner or Result page by checking loading
       if (this.props.loading) {
+         console.log("Loading");
          ebookDetail = <Spinner />;
       } else {
          // if not loading
@@ -90,7 +90,10 @@ class EbookDetail extends Component {
             const bookInfo = (
                <div className="row BookInfo">
                   <div className="col col-md-4 BookInfo__BookCover">
-                     <img src={cover} alt="Book Cover" />
+                     <img
+                        src={this.props.detail_of_ebook.bookCoverLocation}
+                        alt="Book Cover"
+                     />
                   </div>
                   <div className="col col-md-8 BookInfo__Info">
                      <h1>{this.props.detail_of_ebook.bookName}</h1>
@@ -103,14 +106,15 @@ class EbookDetail extends Component {
                         Page Number: {this.props.detail_of_ebook.pages} Pages
                      </p>
                      <p>{this.props.detail_of_ebook.description}</p>
-                     <a
-                        href={this.props.detail_of_ebook.pdfLocation}
-                        className="BookInfo__Info__DownloadBtn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                     >
-                        <button>Download</button>
-                     </a>
+                     <div className="BookInfo__Info__DownloadBtn">
+                        <a
+                           href={this.props.detail_of_ebook.pdfLocation}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                        >
+                           <button>Download</button>
+                        </a>
+                     </div>
                   </div>
                </div>
             );
@@ -129,7 +133,10 @@ class EbookDetail extends Component {
             const showComment = this.props.comments.map((commentObj) => {
                const emailArr = commentObj.email.split("@");
                return (
-                  <div className="EbookDetail__Comment__ShowComment">
+                  <div
+                     className="EbookDetail__Comment__ShowComment"
+                     key={commentObj._id}
+                  >
                      <div>
                         <i className="fas fa-user-circle"></i>
                         {/* <i className="far fa-user-circle"></i> */}
