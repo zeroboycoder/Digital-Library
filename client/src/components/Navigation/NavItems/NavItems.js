@@ -59,6 +59,9 @@ class NavItems extends Component {
                   <li onClick={this.cancleAuthDropDrownFun}>
                      <NavItem link="/add-ebook">Add Ebook</NavItem>
                   </li>
+                  <li onClick={this.cancleAuthDropDrownFun}>
+                     <NavItem link="/setting">Setting</NavItem>
+                  </li>
                   <li onClick={this.logOutFun}>
                      <NavItem link="#">Logout</NavItem>
                   </li>

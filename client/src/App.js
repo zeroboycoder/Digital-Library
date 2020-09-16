@@ -10,6 +10,7 @@ import AddEbook from "./containers/AddEbook/AddEbook";
 import EbookDetail from "./containers/EbookDetail/EbookDetail";
 import SearchEbookByCategory from "./containers/SearchEbookByCategory/SearchEbookByCategory";
 import SearchEbooksByInputName from "./containers/SearchEbooksByInputName/SearchEbooksByInputName";
+import Setting from "./containers/Setting/Setting";
 import SignUp from "./containers/auth/signup/signup";
 import SignIn from "./containers/auth/signin/signin";
 
@@ -42,6 +43,7 @@ class App extends Component {
                   path="/categories/:searched_category/"
                   component={SearchEbookByCategory}
                />
+               <Route path="/setting" component={Setting} />
                <Route path="/" exact component={Home} />
             </Switch>
          </Layout>
