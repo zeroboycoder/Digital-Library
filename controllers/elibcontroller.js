@@ -131,7 +131,8 @@ exports.fetchEbooks = (req, res) => {
    if (_q) {
       // Search Ebook By Input Name
       const splitQuery = _q.split("-");
-      const query = splitQuery.join(" ");
+      const query = splitQuery.join(" ").toLowerCase();
+      console.log(query);
       let searchedResult = [];
       const pattern = new RegExp(query + "+");
       ebookDatas
