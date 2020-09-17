@@ -73,7 +73,7 @@ export const onSignUp = (data, props) => (dispatch) => {
       .post("/api/auth/signup", data)
       .then((response) => {
          dispatch(signUpSuccess(response.data.token, response.data.user));
-         // props.history.replace("/");
+         props.history.push("/");
       })
       .catch((err) => {
          console.log(err);

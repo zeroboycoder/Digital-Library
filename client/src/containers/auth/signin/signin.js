@@ -76,7 +76,6 @@ class SignUp extends Component {
          data[key] = this.state.signInForm[key].value;
       }
       this.props.onSignIn(data, this.props);
-      this.props.history.replace("/");
    };
 
    swapAuth = () => {
