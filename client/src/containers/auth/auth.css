@@ -88,15 +88,15 @@
 }
 
 .Signup_right .signup_bg {
-   width: 90%;
-   height: 90%;
+   width: 80%;
+   height: 75%;
    background-image: url(../../assets/signup_bg.svg);
    background-size: cover;
 }
 
 .Signup_right .signin_bg {
-   width: 90%;
-   height: 85%;
+   width: 80%;
+   height: 75%;
    background-image: url(../../assets/signin_bg.svg);
    background-size: cover;
 }
