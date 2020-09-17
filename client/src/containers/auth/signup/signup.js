@@ -43,6 +43,7 @@ class SignUp extends Component {
                isRequired: true,
                minLength: 6,
             },
+            reviewPwIcon: <i className="far fa-eye"></i>,
             label: "Password",
             value: "",
             isValid: false,
@@ -57,6 +58,7 @@ class SignUp extends Component {
                isRequired: true,
                isMatch: true,
             },
+            reviewPwIcon: <i className="far fa-eye"></i>,
             label: "Confirm Password",
             value: "",
             isValid: false,
@@ -99,6 +101,20 @@ class SignUp extends Component {
       this.setState({ signUpForm: updateSignupForm });
    };
 
+   reviewPassword = (key) => {
+      const updatesignUpForm = { ...this.state.signUpForm };
+      if (updatesignUpForm[key].elementconfig.type === "password") {
+         updatesignUpForm[key].elementconfig.type = "text";
+         updatesignUpForm[key].reviewPwIcon = (
+            <i className="far fa-eye-slash"></i>
+         );
+      } else {
+         updatesignUpForm[key].elementconfig.type = "password";
+         updatesignUpForm[key].reviewPwIcon = <i className="far fa-eye"></i>;
+      }
+      this.setState({ signUpForm: updatesignUpForm });
+   };
+
    canClick = () => {
       let canClick = true;
       for (let key in this.state.signUpForm) {
@@ -129,10 +145,12 @@ class SignUp extends Component {
                elementtype={this.state.signUpForm[key].elementtype}
                elementconfig={this.state.signUpForm[key].elementconfig}
                label={this.state.signUpForm[key].label}
+               reviewPwIcon={this.state.signUpForm[key].reviewPwIcon}
                value={this.state.signUpForm[key].value}
                touched={this.state.signUpForm[key].isTouch}
                invalid={!this.state.signUpForm[key].isValid}
                errMsg={this.state.signUpForm[key].errMsg}
+               reviewPassword={() => this.reviewPassword(key)}
                changed={(e) => this.inputChangeHandler(e, key)}
             />
          );

@@ -19,6 +19,7 @@ const AuthInput = (props) => {
 
    // If element type will input
    if (props.elementtype === "input") {
+      console.log(props.reviewPwIcon);
       input = (
          <div className="AuthInput">
             <div className="AuthInput__InputSection">
@@ -32,6 +33,14 @@ const AuthInput = (props) => {
                {props.label && (
                   <label className={labelStyle.join(" ")}>{props.label}</label>
                )}
+               {props.reviewPwIcon ? (
+                  <div
+                     className="AuthInput__ReviewPw"
+                     onClick={props.reviewPassword}
+                  >
+                     {props.reviewPwIcon}
+                  </div>
+               ) : null}
             </div>
             <div>{errMsg}</div>
          </div>

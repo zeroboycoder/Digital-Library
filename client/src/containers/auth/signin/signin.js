@@ -29,6 +29,7 @@ class SignUp extends Component {
             validation: {
                isRequired: true,
             },
+            reviewPwIcon: <i className="far fa-eye"></i>,
             label: "Password",
             value: "",
             isValid: false,
@@ -58,6 +59,20 @@ class SignUp extends Component {
          value,
          updatesignInForm[key].validation
       );
+      this.setState({ signInForm: updatesignInForm });
+   };
+
+   reviewPassword = (key) => {
+      const updatesignInForm = { ...this.state.signInForm };
+      if (updatesignInForm[key].elementconfig.type === "password") {
+         updatesignInForm[key].elementconfig.type = "text";
+         updatesignInForm[key].reviewPwIcon = (
+            <i className="far fa-eye-slash"></i>
+         );
+      } else {
+         updatesignInForm[key].elementconfig.type = "password";
+         updatesignInForm[key].reviewPwIcon = <i className="far fa-eye"></i>;
+      }
       this.setState({ signInForm: updatesignInForm });
    };
 
@@ -91,10 +106,12 @@ class SignUp extends Component {
                elementtype={this.state.signInForm[key].elementtype}
                elementconfig={this.state.signInForm[key].elementconfig}
                label={this.state.signInForm[key].label}
+               reviewPwIcon={this.state.signInForm[key].reviewPwIcon}
                value={this.state.signInForm[key].value}
                touched={this.state.signInForm[key].isTouch}
                invalid={!this.state.signInForm[key].isValid}
                errMsg={this.state.signInForm[key].errMsg}
+               reviewPassword={() => this.reviewPassword(key)}
                changed={(e) => this.inputChangeHandler(e, key)}
             />
          );
