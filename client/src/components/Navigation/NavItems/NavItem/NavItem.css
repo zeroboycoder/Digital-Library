@@ -1,21 +1,23 @@
 .NavItem {
-  align-self: center;
-  text-decoration: none;
-  outline: none;
-  color: var(--black);
-  padding: 3px 0;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
+   align-self: center;
+   text-decoration: none;
+   outline: none;
+   font: 700 20px "Times New Roman", Times, serif;
+   letter-spacing: 0.3px;
+   color: var(--black);
+   padding: 3px 0;
+   border-bottom: 1px solid transparent;
+   transition: all 0.3s ease;
 }
 
 a.NavItem:hover {
-  color: var(--black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--gray);
+   color: var(--black);
+   text-decoration: none;
+   border-bottom: 1px solid var(--gray);
 }
 
 @media (max-width: 1040px) {
-  .NavItem {
-    padding: 12px 10px;
-  }
+   .NavItem {
+      padding: 12px 10px;
+   }
 }

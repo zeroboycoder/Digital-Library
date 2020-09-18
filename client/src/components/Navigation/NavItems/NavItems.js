@@ -44,6 +44,10 @@ class NavItems extends Component {
    };
 
    render() {
+      let uname;
+      if (this.props.username) {
+         uname = this.props.username.split(" ")[0];
+      }
       let authNav = (
          <React.Fragment>
             <li
@@ -51,7 +55,7 @@ class NavItems extends Component {
                onMouseOver={this.showAuthDropDownFun}
                onMouseLeave={this.cancleAuthDropDrownFun}
             >
-               <NavItem link="#">{this.props.username}</NavItem>
+               <NavItem link="#">{uname}</NavItem>
                <ul
                   className="Nav__SubMenu"
                   style={this.state.showAuthDropDrown}

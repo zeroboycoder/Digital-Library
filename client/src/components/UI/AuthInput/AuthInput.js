@@ -19,7 +19,6 @@ const AuthInput = (props) => {
 
    // If element type will input
    if (props.elementtype === "input") {
-      console.log(props.reviewPwIcon);
       input = (
          <div className="AuthInput">
             <div className="AuthInput__InputSection">
