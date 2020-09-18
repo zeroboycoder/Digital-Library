@@ -43,6 +43,7 @@
 }
 
 .authBtn button {
+   outline: none;
    font: 400 17px var(--font_family);
    color: var(--black);
    padding: 7px 20px;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../auth.css";
 import AuthInput from "../../../components/UI/AuthInput/AuthInput";
+import Spinner from "../../../components/UI/Spinner/Spinner";
 import * as actions from "../../../store/action/rootActions";
 
 class SignUp extends Component {
@@ -116,46 +117,61 @@ class SignUp extends Component {
             />
          );
       }
-      return (
-         <div className="Auth">
-            <div className="row">
-               <div className="col col-12 col-md-6">
-                  <div className="AuthForm">
-                     <h1>Login</h1>
-                     <form onSubmit={(e) => this.submitHandler(e)}>
-                        {input}
-                        <div className="authBtn">
-                           <button
-                              padding="9px 20px"
-                              disabled={!this.canClick()}
-                           >
-                              Sign In
-                           </button>
-                        </div>
-                     </form>
-                     <div className="SwapAuth">
-                        <span>
-                           Are you new here?{" "}
-                           <span
-                              onClick={this.swapAuth}
-                              className="SwapAuthBtn"
-                           >
-                              Sign up
+
+      let auth;
+      // If auth loading
+      if (this.props.loading) {
+         auth = <Spinner />;
+      } else {
+         // Else
+         auth = (
+            <div className="Auth">
+               <div className="row">
+                  <div className="col col-12 col-md-6">
+                     <div className="AuthForm">
+                        <h1>Login</h1>
+                        <form onSubmit={(e) => this.submitHandler(e)}>
+                           {input}
+                           <div className="authBtn">
+                              <button
+                                 padding="9px 20px"
+                                 disabled={!this.canClick()}
+                              >
+                                 Sign In
+                              </button>
+                           </div>
+                        </form>
+                        <div className="SwapAuth">
+                           <span>
+                              Are you new here?{" "}
+                              <span
+                                 onClick={this.swapAuth}
+                                 className="SwapAuthBtn"
+                              >
+                                 Sign up
+                              </span>
                            </span>
-                        </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="col-12 col-md-6 d-none d-md-block ">
+                     <div className="Signup_right">
+                        <div className="signin_bg"></div>
                      </div>
                   </div>
                </div>
-               <div className="col-12 col-md-6 d-none d-md-block ">
-                  <div className="Signup_right">
-                     <div className="signin_bg"></div>
-                  </div>
-               </div>
             </div>
-         </div>
-      );
+         );
+      }
+      return auth;
    }
 }
+
+const stateToProps = (state) => {
+   return {
+      loading: state.auth.authLoading,
+   };
+};
 
 const dispatchtoProps = (dispatch) => {
    return {
@@ -163,4 +179,4 @@ const dispatchtoProps = (dispatch) => {
    };
 };
 
-export default connect(null, dispatchtoProps)(SignUp);
+export default connect(stateToProps, dispatchtoProps)(SignUp);
