@@ -105,7 +105,9 @@ class EbookDetail extends Component {
                      <p>
                         Page Number: {this.props.detail_of_ebook.pages} Pages
                      </p>
-                     <p>{this.props.detail_of_ebook.description}</p>
+                     <p className="BookInfo__Info__Desc">
+                        {this.props.detail_of_ebook.description}
+                     </p>
                      <div className="BookInfo__Info__DownloadBtn">
                         <a
                            href={this.props.detail_of_ebook.pdfLocation}
@@ -139,7 +141,6 @@ class EbookDetail extends Component {
                   >
                      <div>
                         <i className="fas fa-user-circle"></i>
-                        {/* <i className="far fa-user-circle"></i> */}
                      </div>
                      <div>
                         <p className="EbookDetail__Comment__ShowComment__Email">
