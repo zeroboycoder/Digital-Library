@@ -44,9 +44,9 @@ export const checkValidation = (value, rules) => {
 // Check can click
 // return boolean
 export const canClickBtn = (form) => {
-   let canClick = false;
+   let canClick = true;
    for (let key in form) {
-      canClick = form[key].isValid;
+      canClick = form[key].isValid && canClick;
    }
    return canClick;
 };

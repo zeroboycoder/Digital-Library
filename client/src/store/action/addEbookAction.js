@@ -20,14 +20,13 @@ const addEbookFail = (errMsg) => {
    };
 };
 
-export const onAddEbook = (data) => (dispatch) => {
+export const onAddEbook = (data, props) => (dispatch) => {
    dispatch(addEbookStart());
    axios
       .post("/api/ebooks/add", data)
       .then((response) => {
-         console.log("Added Ebook");
-         console.log(response.data);
          dispatch(addEbookSuccess());
+         props.history.push("/");
       })
       .catch((err) => {
          console.log(err);

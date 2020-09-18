@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./AddEbook.css";
 import Input from "../../components/UI/Input/Input";
-import { checkValidation } from "../../util/helper";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import { checkValidation, canClickBtn } from "../../util/helper";
 import * as actions from "../../store/action/rootActions";
 
 class AddEbook extends Component {
@@ -20,7 +21,7 @@ class AddEbook extends Component {
             label: "Book Name",
             value: "",
             isValid: false,
-            errMsg: "Book Name is required. Are you f**king idiot?",
+            errMsg: "Pleade enter book name which you want to upload.",
          },
          author: {
             elementtype: "input",
@@ -34,23 +35,24 @@ class AddEbook extends Component {
             label: "Author",
             value: "",
             isValid: false,
-            errMsg: "Author is required. Do you even know who wrote this book",
+            errMsg: "Please enter author of book who you want to upload.",
          },
          tags: {
             elementtype: "input",
             elementconfig: {
                type: "text",
-               placeholder: "Tags (minimun : 3 tags)",
+               placeholder: "Tags",
             },
             validation: {
                isRequired: true,
                numberOfArrayValue: 3,
             },
             label: "Tags",
-            guideLine: "Minimun 3 tags. Use space between tags",
+            guideLine:
+               "You meed to attach minimun 3 tags. Use space between tags.",
             value: "",
             isValid: false,
-            errMsg: "Must have minimum 3 tags. Are you blind??",
+            errMsg: "Please attach minimun 3 tags.",
          },
          releasedYear: {
             elementtype: "input",
@@ -65,7 +67,7 @@ class AddEbook extends Component {
             label: "Released Year",
             value: "",
             isValid: false,
-            errMsg: "Released Year is allowed only number",
+            errMsg: "Only number are allowed.",
          },
          pages: {
             elementtype: "input",
@@ -77,10 +79,10 @@ class AddEbook extends Component {
                isRequired: true,
                isNumber: true,
             },
-            label: "Number of page",
+            label: "Number of Page",
             value: "",
             isValid: false,
-            errMsg: "Page number is allowed only number",
+            errMsg: "Only numbers are allowed.",
          },
          bookCover: {
             elementtype: "input",
@@ -92,7 +94,7 @@ class AddEbook extends Component {
             },
             label: "Book Cover",
             isValid: false,
-            errMsg: "It's not Book cover. Do you know file type of Book cover?",
+            errMsg: "Only image are allowed such as png, jpg, jpeg.",
          },
          ebook: {
             elementtype: "input",
@@ -104,7 +106,7 @@ class AddEbook extends Component {
             },
             label: "PDF",
             isValid: false,
-            errMsg: "It's not PDF. You so nuuub.",
+            errMsg: "Only pdf files are allowed.",
          },
          description: {
             elementtype: "textarea",
@@ -117,7 +119,7 @@ class AddEbook extends Component {
             label: "Description",
             value: null,
             isValid: false,
-            errMsg: "Description is required. Huuu.... you get many errors.",
+            errMsg: "Please write any descriptions you want.",
          },
       },
       selectedImage: null,
@@ -201,17 +203,7 @@ class AddEbook extends Component {
       form.append("description", this.state.uploadedForm.description.value);
       form.append("files", this.state.selectedImage);
       form.append("files", this.state.selectedPdf);
-      this.props.onAddEbook(form);
-      this.props.history.push("/");
-   };
-
-   // If all input is valie, you can click upload button
-   canClickBtn = () => {
-      let canClick = false;
-      for (let key in this.state.uploadedForm) {
-         canClick = this.state.uploadedForm[key].isValid;
-      }
-      return canClick;
+      this.props.onAddEbook(form, this.props);
    };
 
    render() {
@@ -247,26 +239,39 @@ class AddEbook extends Component {
                <button
                   type="submit"
                   className="SubmitBtn"
-                  disabled={!this.canClickBtn()}
+                  disabled={!canClickBtn(this.state.uploadedForm)}
                >
                   Upload
                </button>
             </div>
          </form>
       );
-      return (
-         <div className="AddEbook">
-            <h1 className="AddEbook__Heading">Which Book U Wanna Share</h1>
-            <div className="AddEbook__Form">{form}</div>
-         </div>
-      );
+
+      let addEbook;
+      if (this.props.loading) {
+         addEbook = <Spinner />;
+      } else {
+         addEbook = (
+            <div className="AddEbook">
+               <h1 className="AddEbook__Heading">Which Book U Wanna Share</h1>
+               <div className="AddEbook__Form">{form}</div>
+            </div>
+         );
+      }
+      return addEbook;
    }
 }
 
-const dispatchToProps = (dispatch) => {
+const stateToProps = (state) => {
    return {
-      onAddEbook: (data) => dispatch(actions.onAddEbook(data)),
+      loading: state.ebook.loading,
    };
 };
 
-export default connect(null, dispatchToProps)(AddEbook);
+const dispatchToProps = (dispatch) => {
+   return {
+      onAddEbook: (data, props) => dispatch(actions.onAddEbook(data, props)),
+   };
+};
+
+export default connect(stateToProps, dispatchToProps)(AddEbook);

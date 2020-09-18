@@ -17,7 +17,11 @@
    border: 1px solid #999;
    border-radius: 6px;
    box-shadow: 1px 2px 7px #777;
-   background-image: url(../../assets/add_ebook_bg.svg);
+   background-image: linear-gradient(
+         rgba(255, 255, 255, 0.4),
+         rgba(255, 255, 255, 0.4)
+      ),
+      url(../../assets/add_ebook_bg.svg);
    background-size: 80%;
    background-position: center;
    background-repeat: no-repeat;
@@ -42,7 +46,7 @@
 
 .SubmitBtn:hover,
 .SubmitBtn:active {
-   background-color: #b6b6cf;
+   background-color: #787fe7;
 }
 
 .SubmitBtn:disabled {
