@@ -1,5 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import * as actions from "./rootActions";
 import axios from "axios";
 
 /* ============= */
@@ -28,19 +27,20 @@ const loadUserFail = (errMsg) => {
 export const onLoadUser = () => (dispatch, getState) => {
    dispatch(loadUserStart());
    const token = getState().auth.token;
-   console.log(token);
-   axios
-      .get("/api/user", {
-         headers: {
-            "elib-auth-token": token,
-         },
-      })
-      .then((response) => {
-         dispatch(loadUserSuccess(response.data.user));
-      })
-      .catch((err) => {
-         dispatch(loadUserFail(err.response.data));
-      });
+   if (token) {
+      axios
+         .get("/api/user", {
+            headers: {
+               "elib-auth-token": token,
+            },
+         })
+         .then((response) => {
+            dispatch(loadUserSuccess(response.data.user));
+         })
+         .catch((err) => {
+            dispatch(loadUserFail(err.response.data));
+         });
+   }
 };
 
 /* ============= */
@@ -110,7 +110,6 @@ export const onSignIn = (data, props) => (dispatch) => {
    axios
       .post("/api/auth/signin", data)
       .then((response) => {
-         console.log(response.data);
          dispatch(signInSuccess(response.data.token, response.data.user));
          props.history.push("/");
       })
@@ -132,7 +131,6 @@ const logOutSuccess = () => {
 export const onLogOut = (props) => (dispatch) => {
    try {
       dispatch(logOutSuccess());
-      dispatch(actions.onFetchEbook());
       props.history.push("/");
    } catch (error) {
       console.log(error);

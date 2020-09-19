@@ -40,7 +40,6 @@ class SearchEbookByCategory extends Component {
          this.props.onSerachEbooksByCategory(newSearchName, newType, newQuery);
          return true;
       } else {
-         console.log("Component Didn't Update");
          return false;
       }
    }

@@ -126,17 +126,19 @@ exports.fetchEbooks = (req, res) => {
       // Search Ebook By Input Name
       const splitQuery = _q.split("-");
       const query = splitQuery.join(" ").toLowerCase();
-      console.log(query);
       let searchedResult = [];
       const pattern = new RegExp(query + "+");
       ebookDatas
          .find()
-         .sort({ _id: -1 })
          .then((ebooks) => {
             ebooks.map((ebook) => {
-               pattern.test(ebook.bookName.toLowerCase())
-                  ? searchedResult.push(ebook)
-                  : null;
+               if (pattern.test(ebook.bookName.toLowerCase())) {
+                  searchedResult.push(ebook);
+               } else {
+                  ebook.tags.includes(query)
+                     ? searchedResult.push(ebook)
+                     : null;
+               }
             });
             return res.status(200).json({ ebook_datas: searchedResult });
          })

@@ -116,7 +116,7 @@ const ebookReducer = (state = initState, action) => {
             comments: action.cmt,
             loading: false,
          };
-      case actionTypes.ADD_EBOOK_FAIL:
+      case actionTypes.ADD_COMMENT_FAIL:
          return {
             ...state,
             loading: false,

@@ -33,11 +33,8 @@ const serachEbooksByCategoryFail = (errMsg) => {
 };
 
 export const onSerachEbooksByCategory = (searchedName, type, query) => {
-   let pageNum = "";
-   let searchType = "";
+   let pageNum;
    query ? (pageNum = query) : (pageNum = "");
-   type ? (searchType = type) : (searchType = "");
-   console.log(`SearchedName : ${searchedName}`);
    return (dispatch) => {
       dispatch(serachEbooksByCategoryStart());
       axios
