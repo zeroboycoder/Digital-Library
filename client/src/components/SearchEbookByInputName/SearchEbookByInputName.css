@@ -22,6 +22,7 @@
 }
 
 .SearchEbookByInputName button {
+   outline: none;
    background-color: var(--white);
    color: var(--black);
    padding: 2px 20px;
