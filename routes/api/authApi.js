@@ -10,4 +10,8 @@ route.post("/signup", authController.signUpUser);
 /* /api/auth/signin */
 route.post("/signin", authController.signInUser);
 
+// Edit Credentials
+/* /api/auth/edit */
+route.post("/edit", authController.editCredentials);
+
 module.exports = route;

@@ -83,3 +83,33 @@ exports.signInUser = (req, res) => {
          throw err;
       });
 };
+
+// Edit Credentails
+exports.editCredentials = (req, res, next) => {
+   const { userId, username, email, password } = req.body;
+   authModel.findById(userId).then((user) => {
+      if (password) {
+         return bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+               return res.status(500).json({ errMsg: "Something went wrong" });
+            }
+            bcrypt.hash(password, salt, (err, hashPassword) => {
+               user.password = hashPassword;
+               user.save();
+               return res
+                  .status(200)
+                  .json({ msg: "Password changed successfully" });
+            });
+         });
+      }
+      username ? (user.username = username) : null;
+      email ? (user.email = email) : null;
+      user.save();
+      return res.status(200).json({
+         user: {
+            username: user.username,
+            email: user.email,
+         },
+      });
+   });
+};
