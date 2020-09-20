@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./Setting.css";
 import settingBg from "../../assets/setting_bg.svg";
 import * as actions from "../../store/action/rootActions";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Setting extends Component {
    state = {
@@ -36,13 +37,27 @@ class Setting extends Component {
       this.setState({ [label]: false });
    };
 
-   saveInput = (label, value, chgValue) => {
+   saveInput = (label, value, chgLabel) => {
       // Argument as object
       this.props.onEditAuth({
          userId: this.props.userId,
          [label]: value,
       });
-      this.setState({ [chgValue]: false });
+      this.setState({ [chgLabel]: false });
+   };
+
+   canClick = (label) => {
+      let click = false;
+      if (label !== "password") {
+         click = this.state[label].trim() !== "";
+      }
+      if (label === "password") {
+         click =
+            this.state.password.trim() !== "" &&
+            this.state.c_password.trim() !== "" &&
+            this.state.password === this.state.c_password;
+      }
+      return click;
    };
 
    render() {
@@ -56,10 +71,10 @@ class Setting extends Component {
                onChange={(e) => this.inputChangeHandler(e, "username")}
             />
             <div className="Setting__UserInfor__ChgInput__Btns">
-               <span onClick={() => this.cancelInput("chgUsername")}>
+               <button onClick={() => this.cancelInput("chgUsername")}>
                   Cancel
-               </span>
-               <span
+               </button>
+               <button
                   onClick={() =>
                      this.saveInput(
                         "username",
@@ -67,9 +82,10 @@ class Setting extends Component {
                         "chgUsername"
                      )
                   }
+                  disabled={!this.canClick("username")}
                >
                   Save
-               </span>
+               </button>
             </div>
          </div>
       ) : (
@@ -95,14 +111,17 @@ class Setting extends Component {
                onChange={(e) => this.inputChangeHandler(e, "email")}
             />
             <div className="Setting__UserInfor__ChgInput__Btns">
-               <span onClick={() => this.cancelInput("chgEmail")}>Cancel</span>
-               <span
+               <button onClick={() => this.cancelInput("chgEmail")}>
+                  Cancel
+               </button>
+               <button
                   onClick={() =>
                      this.saveInput("email", this.state.email, "chgEmail")
                   }
+                  disabled={!this.canClick("email")}
                >
                   Save
-               </span>
+               </button>
             </div>
          </div>
       ) : (
@@ -124,7 +143,7 @@ class Setting extends Component {
             <div className="Setting__UserInfo__ChgInput">
                <p className="Setting__UserInfo__Label">Password:</p>
                <input
-                  type="text"
+                  type="password"
                   value={this.state.password}
                   onChange={(e) => this.inputChangeHandler(e, "password")}
                />
@@ -134,19 +153,22 @@ class Setting extends Component {
                   Confirm Password:
                </p>
                <input
-                  type="text"
+                  type="password"
                   value={this.state.c_password}
                   onChange={(e) => this.inputChangeHandler(e, "c_password")}
                />
                <div className="Setting__UserInfor__ChgInput__Btns">
-                  <span onClick={() => this.cancelInput("chgPw")}>Cancel</span>
-                  <span
+                  <button onClick={() => this.cancelInput("chgPw")}>
+                     Cancel
+                  </button>
+                  <button
                      onClick={() =>
                         this.saveInput("password", this.state.password, "chgPw")
                      }
+                     disabled={!this.canClick("password")}
                   >
                      Save
-                  </span>
+                  </button>
                </div>
             </div>
          </div>
@@ -163,25 +185,32 @@ class Setting extends Component {
          </div>
       );
 
-      return (
-         <div className="row Setting">
-            {/* Left Columm */}
-            <div className="col col-md-6">
-               <h1>Setting</h1>
-               <div className="Setting__Bg">
-                  <img src={settingBg} alt="Setting Background" />
+      let setting;
+      if (this.props.loading) {
+         setting = <Spinner />;
+      } else {
+         setting = (
+            <div className="row Setting">
+               {/* Left Columm */}
+               <div className="col col-md-6">
+                  <h1>Setting</h1>
+                  <div className="Setting__Bg">
+                     <img src={settingBg} alt="Setting Background" />
+                  </div>
+               </div>
+               {/* Right Columm */}
+               <div className="col col-md-6">
+                  <div className="Setting__UserInfo">
+                     <div className="Setting__UserInfo__Group">{username}</div>
+                     <div className="Setting__UserInfo__Group">{email}</div>
+                     <div className="Setting__UserInfo__Group">{password}</div>
+                  </div>
                </div>
             </div>
-            {/* Right Columm */}
-            <div className="col col-md-6">
-               <div className="Setting__UserInfo">
-                  <div className="Setting__UserInfo__Group">{username}</div>
-                  <div className="Setting__UserInfo__Group">{email}</div>
-                  <div className="Setting__UserInfo__Group">{password}</div>
-               </div>
-            </div>
-         </div>
-      );
+         );
+      }
+
+      return setting;
    }
 }
 
@@ -190,6 +219,7 @@ const stateToProps = (state) => {
       userId: state.auth.userId,
       username: state.auth.username,
       email: state.auth.email,
+      loading: state.auth.authLoading,
    };
 };
 

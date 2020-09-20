@@ -80,23 +80,34 @@ p.Setting__UserInfo__Label__CPw {
    font: 500 17px var(--font_family);
 }
 
-.Setting__UserInfor__ChgInput__Btns span:first-of-type {
+.Setting__UserInfor__ChgInput__Btns button {
+   outline: none;
+   border: none;
+   background-color: var(--white);
+}
+
+.Setting__UserInfor__ChgInput__Btns button:first-of-type {
    color: var(--danger);
    margin-right: 20px;
    cursor: pointer;
 }
 
-.Setting__UserInfor__ChgInput__Btns span:first-of-type:hover,
-.Setting__UserInfor__ChgInput__Btns span:first-of-type:active {
+.Setting__UserInfor__ChgInput__Btns button:first-of-type:hover,
+.Setting__UserInfor__ChgInput__Btns button:first-of-type:active {
    color: #fa0000;
 }
 
-.Setting__UserInfor__ChgInput__Btns span:last-child {
+.Setting__UserInfor__ChgInput__Btns button:last-child {
    color: var(--success);
    cursor: pointer;
 }
 
-.Setting__UserInfor__ChgInput__Btns span:last-of-type:hover,
-.Setting__UserInfor__ChgInput__Btns span:last-of-type:active {
+.Setting__UserInfor__ChgInput__Btns button:last-of-type:hover,
+.Setting__UserInfor__ChgInput__Btns button:last-of-type:active {
    color: #00cc00;
+}
+
+.Setting__UserInfor__ChgInput__Btns button:last-child:disabled {
+   cursor: not-allowed;
+   color: var(--pink-gray);
 }
