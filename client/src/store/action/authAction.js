@@ -110,6 +110,7 @@ export const onSignIn = (data, props) => (dispatch) => {
    axios
       .post("/api/auth/signin", data)
       .then((response) => {
+         console.log(response.data.user);
          dispatch(signInSuccess(response.data.token, response.data.user));
          props.history.push("/");
       })

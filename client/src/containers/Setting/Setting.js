@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./Setting.css";
 import settingBg from "../../assets/setting_bg.svg";
+import * as actions from "../../store/action/rootActions";
 
 class Setting extends Component {
    state = {
@@ -26,8 +27,22 @@ class Setting extends Component {
       }
    };
 
+   inputChangeHandler = (event, label) => {
+      const value = event.target.value;
+      this.setState({ [label]: value });
+   };
+
    cancelInput = (label) => {
       this.setState({ [label]: false });
+   };
+
+   saveInput = (label, value, chgValue) => {
+      // Argument as object
+      this.props.onEditAuth({
+         userId: this.props.userId,
+         [label]: value,
+      });
+      this.setState({ [chgValue]: false });
    };
 
    render() {
@@ -35,12 +50,26 @@ class Setting extends Component {
       const username = this.state.chgUsername ? (
          <div className="Setting__UserInfo__ChgInput">
             <p className="Setting__UserInfo__Label">Username:</p>
-            <input type="text" value={this.props.username} />
+            <input
+               type="text"
+               value={this.state.username}
+               onChange={(e) => this.inputChangeHandler(e, "username")}
+            />
             <div className="Setting__UserInfor__ChgInput__Btns">
                <span onClick={() => this.cancelInput("chgUsername")}>
                   Cancel
                </span>
-               <span>Save</span>
+               <span
+                  onClick={() =>
+                     this.saveInput(
+                        "username",
+                        this.state.username,
+                        "chgUsername"
+                     )
+                  }
+               >
+                  Save
+               </span>
             </div>
          </div>
       ) : (
@@ -49,7 +78,7 @@ class Setting extends Component {
             <div className="Setting__UserInfo__Data">
                <p>{this.props.username}</p>
                <i
-                  class="fas fa-pen"
+                  className="fas fa-pen"
                   onClick={() => this.showInput("username")}
                ></i>
             </div>
@@ -60,10 +89,20 @@ class Setting extends Component {
       const email = this.state.chgEmail ? (
          <div className="Setting__UserInfo__ChgInput">
             <p className="Setting__UserInfo__Label">Email:</p>
-            <input type="text" value={this.props.email} />
+            <input
+               type="text"
+               value={this.state.email}
+               onChange={(e) => this.inputChangeHandler(e, "email")}
+            />
             <div className="Setting__UserInfor__ChgInput__Btns">
                <span onClick={() => this.cancelInput("chgEmail")}>Cancel</span>
-               <span>Save</span>
+               <span
+                  onClick={() =>
+                     this.saveInput("email", this.state.email, "chgEmail")
+                  }
+               >
+                  Save
+               </span>
             </div>
          </div>
       ) : (
@@ -72,7 +111,7 @@ class Setting extends Component {
             <div className="Setting__UserInfo__Data">
                <p>{this.props.email}</p>
                <i
-                  class="fas fa-pen"
+                  className="fas fa-pen"
                   onClick={() => this.showInput("email")}
                ></i>
             </div>
@@ -84,16 +123,30 @@ class Setting extends Component {
          <div>
             <div className="Setting__UserInfo__ChgInput">
                <p className="Setting__UserInfo__Label">Password:</p>
-               <input type="text" value={this.state.password} />
+               <input
+                  type="text"
+                  value={this.state.password}
+                  onChange={(e) => this.inputChangeHandler(e, "password")}
+               />
             </div>
             <div className="Setting__UserInfo__ChgInput">
                <p className="Setting__UserInfo__Label__CPw">
                   Confirm Password:
                </p>
-               <input type="text" value={this.state.c_password} />
+               <input
+                  type="text"
+                  value={this.state.c_password}
+                  onChange={(e) => this.inputChangeHandler(e, "c_password")}
+               />
                <div className="Setting__UserInfor__ChgInput__Btns">
                   <span onClick={() => this.cancelInput("chgPw")}>Cancel</span>
-                  <span>Save</span>
+                  <span
+                     onClick={() =>
+                        this.saveInput("password", this.state.password, "chgPw")
+                     }
+                  >
+                     Save
+                  </span>
                </div>
             </div>
          </div>
@@ -103,7 +156,7 @@ class Setting extends Component {
             <div className="Setting__UserInfo__Data">
                <p>*******</p>
                <i
-                  class="fas fa-pen"
+                  className="fas fa-pen"
                   onClick={() => this.showInput("password")}
                ></i>
             </div>
@@ -134,9 +187,16 @@ class Setting extends Component {
 
 const stateToProps = (state) => {
    return {
+      userId: state.auth.userId,
       username: state.auth.username,
       email: state.auth.email,
    };
 };
 
-export default connect(stateToProps)(Setting);
+const dispatchToProps = (dispatch) => {
+   return {
+      onEditAuth: (data) => dispatch(actions.onEditAuth(data)),
+   };
+};
+
+export default connect(stateToProps, dispatchToProps)(Setting);

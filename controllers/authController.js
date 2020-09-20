@@ -30,6 +30,7 @@ exports.signUpUser = (req, res) => {
                         return res.status(200).json({
                            token,
                            user: {
+                              userId: newUser._id,
                               username: newUser.username,
                               email: newUser.email,
                            },
@@ -68,6 +69,7 @@ exports.signInUser = (req, res) => {
                      return res.status(200).json({
                         token,
                         user: {
+                           userId: user._id,
                            username: user.username,
                            email: user.email,
                         },
@@ -104,12 +106,14 @@ exports.editCredentials = (req, res, next) => {
       }
       username ? (user.username = username) : null;
       email ? (user.email = email) : null;
-      user.save();
-      return res.status(200).json({
-         user: {
-            username: user.username,
-            email: user.email,
-         },
+      user.save().then((newUser) => {
+         return res.status(200).json({
+            user: {
+               userId: newUser._id,
+               username: newUser.username,
+               email: newUser.email,
+            },
+         });
       });
    });
 };

@@ -48,5 +48,10 @@ export const SIGN_IN_START = "SIGN_IN_START";
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
 export const SIGN_IN_FAIL = "SIGN_IN_FAIL";
 
+// For Edit Authentication
+export const EDIT_AUTH_START = "EDIT_AUTH_START";
+export const EDIT_AUTH_SUCCESS = "EDIT_AUTH_SUCCESS";
+export const EDIT_AUTH_FAIL = "EDIT_AUTH_FAIL";
+
 // For Log out
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
