@@ -48,12 +48,10 @@ class Setting extends Component {
             <p className="Setting__UserInfo__Label">Username:</p>
             <div className="Setting__UserInfo__Data">
                <p>{this.props.username}</p>
-               <button>
-                  <i
-                     class="fas fa-pen"
-                     onClick={() => this.showInput("username")}
-                  ></i>
-               </button>
+               <i
+                  class="fas fa-pen"
+                  onClick={() => this.showInput("username")}
+               ></i>
             </div>
          </div>
       );
@@ -73,12 +71,10 @@ class Setting extends Component {
             <p className="Setting__UserInfo__Label">Email:</p>
             <div className="Setting__UserInfo__Data">
                <p>{this.props.email}</p>
-               <button>
-                  <i
-                     class="fas fa-pen"
-                     onClick={() => this.showInput("email")}
-                  ></i>
-               </button>
+               <i
+                  class="fas fa-pen"
+                  onClick={() => this.showInput("email")}
+               ></i>
             </div>
          </div>
       );
@@ -106,12 +102,10 @@ class Setting extends Component {
             <p className="Setting__UserInfo__Label">Password:</p>
             <div className="Setting__UserInfo__Data">
                <p>*******</p>
-               <button>
-                  <i
-                     class="fas fa-pen"
-                     onClick={() => this.showInput("password")}
-                  ></i>
-               </button>
+               <i
+                  class="fas fa-pen"
+                  onClick={() => this.showInput("password")}
+               ></i>
             </div>
          </div>
       );

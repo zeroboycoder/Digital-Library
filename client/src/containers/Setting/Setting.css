@@ -48,12 +48,11 @@ p.Setting__UserInfo__Label__CPw {
 .Setting__UserInfo__Data {
    display: flex;
    justify-content: space-between;
+   align-items: center;
 }
 
-.Setting__UserInfo__Data button {
-   outline: none;
-   border: none;
-   background-color: var(--white);
+.Setting__UserInfo__Data i {
+   cursor: pointer;
 }
 
 /* Change UserInfo */
