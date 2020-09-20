@@ -1,3 +1,103 @@
 .Setting {
-   margin: 70px auto;
+   margin: 110px auto 20px auto;
+   width: 95%;
+}
+
+/* Left */
+.Setting h1 {
+   margin-bottom: 50px;
+   text-align: center;
+   font: 500 34px var(--font_family);
+}
+
+.Setting__Bg {
+   width: 80%;
+   margin: 0 auto;
+}
+
+.Setting__Bg img {
+   width: 100%;
+}
+
+/* Right */
+.Setting__UserInfo {
+   width: 80%;
+   margin: 30px auto 0 auto;
+}
+
+.Setting__UserInfo__Group {
+   margin-bottom: 40px;
+}
+
+.Setting__UserInfo__Group p {
+   font: 500 22px var(--font_family);
+   margin: 10px 0;
+   letter-spacing: 0.5px;
+}
+
+.Setting__UserInfo__Label {
+   color: #4e1b9b;
+   display: block;
+}
+
+p.Setting__UserInfo__Label__CPw {
+   color: #4e1b9b;
+   margin-top: 40px;
+}
+
+.Setting__UserInfo__Data {
+   display: flex;
+   justify-content: space-between;
+}
+
+.Setting__UserInfo__Data button {
+   outline: none;
+   border: none;
+   background-color: var(--white);
+}
+
+/* Change UserInfo */
+.Setting__UserInfo__ChgInput input {
+   outline: none;
+   border: none;
+   width: 90%;
+   padding: 5px 10px 5px 0;
+   font: 500 18px var(--font_family);
+   letter-spacing: 0.5px;
+   border-bottom: 1px solid var(--pink-gray);
+   transition: all 0.3s;
+}
+
+.Setting__UserInfo__ChgInput input:hover,
+.Setting__UserInfo__ChgInput input:active,
+.Setting__UserInfo__ChgInput input:focus {
+   border-bottom-color: var(--black);
+}
+
+.Setting__UserInfor__ChgInput__Btns {
+   margin-top: 10px;
+   width: 90%;
+   text-align: right;
+   font: 500 17px var(--font_family);
+}
+
+.Setting__UserInfor__ChgInput__Btns span:first-of-type {
+   color: var(--danger);
+   margin-right: 20px;
+   cursor: pointer;
+}
+
+.Setting__UserInfor__ChgInput__Btns span:first-of-type:hover,
+.Setting__UserInfor__ChgInput__Btns span:first-of-type:active {
+   color: #fa0000;
+}
+
+.Setting__UserInfor__ChgInput__Btns span:last-child {
+   color: var(--success);
+   cursor: pointer;
+}
+
+.Setting__UserInfor__ChgInput__Btns span:last-of-type:hover,
+.Setting__UserInfor__ChgInput__Btns span:last-of-type:active {
+   color: #00cc00;
 }
