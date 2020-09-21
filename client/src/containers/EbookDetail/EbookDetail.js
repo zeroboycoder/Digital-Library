@@ -162,10 +162,12 @@ class EbookDetail extends Component {
                   </div>
                   <hr className="Tag__hr" />
                   {bookInfo}
-                  <div className="EbookDetail__Suggestions">
-                     <h1>Suggestions</h1>
-                     <div className="EbookDetail__Suggestions__Books">
-                        {suggestions}
+                  <div className="EbookDetail__Suggestion__Section">
+                     <div className="EbookDetail__Suggestions">
+                        <h1>Suggestions</h1>
+                        <div className="EbookDetail__Suggestions__Books">
+                           {suggestions}
+                        </div>
                      </div>
                   </div>
                   <div className="EbookDetail__Comment">

@@ -2,13 +2,15 @@
    width: 16%;
    margin: 20px 2%;
    padding: 15px;
+   background-color: var(--white);
    border: 1px solid var(--pink-gray);
    border-radius: 4px;
+   box-shadow: 1px 2px 4px var(--gray);
    transition: all 0.3s;
 }
 
 .SuggestionBook:hover {
-   box-shadow: 2px 2px 6px var(--pink-gray);
+   box-shadow: 2px 2px 10px var(--gray);
 }
 
 .SuggestionBook__BookCover {
