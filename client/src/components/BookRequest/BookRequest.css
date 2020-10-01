@@ -1,0 +1,40 @@
+.BookRequest__Input {
+   width: 90%;
+   border: none;
+   outline: none;
+   padding: 4px 2px;
+   font: 400 17px var(--font_family);
+   background-color: var(--black);
+   color: var(--white);
+   border-bottom: 1px solid var(--white);
+}
+
+.BookRequest label {
+   margin: 0 0 3px 1px;
+   font: 400 16px var(--font_family);
+}
+
+.BookRequest__Button {
+   width: 90%;
+   text-align: right;
+}
+
+.BookRequest__Button button,
+.BookRequest__Button button:focus {
+   outline: none;
+   padding: 5px 15px;
+   margin-top: 10px;
+   color: #fe7600;
+   background-color: var(--white);
+   font: 400 17px var(--font_family);
+   border: 1px solid var(--pink-gray);
+   border-radius: 15px;
+   transition: all 0.3s;
+}
+
+.BookRequest__Button button:hover,
+.BookRequest__Button button:active {
+   color: var(--white);
+   background-color: #fe7600;
+   border-color: #fe7600;
+}

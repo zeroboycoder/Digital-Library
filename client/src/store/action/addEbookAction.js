@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import * as action from "./rootActions";
 
 const addEbookStart = () => {
    return {
@@ -20,13 +21,13 @@ const addEbookFail = (errMsg) => {
    };
 };
 
-export const onAddEbook = (data, props) => (dispatch) => {
+export const onAddEbook = (data) => (dispatch) => {
    dispatch(addEbookStart());
    axios
       .post("/api/ebooks/add", data)
       .then((response) => {
          dispatch(addEbookSuccess());
-         props.history.push("/");
+         dispatch(action.onFlash("Ebook uploaded successfully"));
       })
       .catch((err) => {
          console.log(err);

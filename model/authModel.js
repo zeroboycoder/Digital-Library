@@ -9,6 +9,10 @@ const authSchema = new mongoose.Schema({
       type: String,
       required: true,
    },
+   major: {
+      type: String,
+      required: true,
+   },
    password: {
       type: String,
       required: true,

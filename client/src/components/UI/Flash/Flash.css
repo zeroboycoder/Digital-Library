@@ -1,0 +1,30 @@
+.Flash {
+   position: absolute;
+   top: 70px;
+   left: 50%;
+   transform: translate(-50%, 0);
+   width: 60%;
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 5px;
+}
+
+.Flash.error {
+   color: #ff0033;
+   border: 1px solid #e9899c;
+   background-color: #f8d6dd;
+}
+
+.Flash.success {
+   color: #067406;
+   border: 1px solid #a6d6a6;
+   background-color: #b7f0b7;
+}
+
+.Flash p {
+   margin: 0;
+   font: 400 17px var(--font_family);
+   letter-spacing: 0.5px;
+}

@@ -1,0 +1,40 @@
+.FeedBack {
+   color: var(--black);
+   font: 400 17px var(--font-family);
+}
+
+.FeedBack p {
+   margin-bottom: 7px;
+}
+
+.FeedBack textarea {
+   width: 400px;
+   height: 160px;
+   outline: none;
+   padding: 10px;
+   border: 1px solid var(--pink-gray);
+   border-radius: 5px;
+   transition: all 0.3s;
+}
+
+.FeedBack textarea:hover {
+   border: 1px solid var(--gray);
+}
+
+.FeedBack__BtnGroup {
+   text-align: right;
+}
+
+.FeedBack__BtnGroup button,
+.FeedBack__BtnGroup button:active,
+.FeedBack__BtnGroup button:focus {
+   outline: none;
+   border: none;
+   color: var(--danger);
+   background-color: var(--white);
+   margin: 10px 0 0 15px;
+}
+
+.FeedBack__BtnGroup button:first-of-type {
+   color: var(--success);
+}

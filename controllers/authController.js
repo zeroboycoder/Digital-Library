@@ -54,6 +54,9 @@ exports.signInUser = (req, res) => {
    authModel
       .findOne({ email: email })
       .then((user) => {
+         if (!user) {
+            return res.status(401).json({ errMsg: "Email isn't existed" });
+         }
          bcrypt
             .compare(password, user.password)
             .then((isMatch) => {
@@ -82,7 +85,8 @@ exports.signInUser = (req, res) => {
             });
       })
       .catch((err) => {
-         throw err;
+         console.log(err);
+         return res.status(401).json({ errMsg: err });
       });
 };
 

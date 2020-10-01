@@ -55,3 +55,7 @@ export const EDIT_AUTH_FAIL = "EDIT_AUTH_FAIL";
 
 // For Log out
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
+// For Flash
+export const FLASH_START = "FLASH_START";
+export const FLASH_END = "FLASH_END";

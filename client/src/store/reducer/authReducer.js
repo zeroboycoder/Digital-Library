@@ -64,7 +64,6 @@ const reducer = (state = initState, action) => {
       case actionTypes.LOAD_USER_FAIL: {
          return {
             ...state,
-            authErrMsg: action.authErrMsg,
             authLoading: false,
          };
       }

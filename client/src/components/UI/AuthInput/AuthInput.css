@@ -83,3 +83,26 @@ label.TextareaLabel {
 .AuthInput__ReviewPw i {
    color: var(--black);
 }
+
+/* For select input */
+label.AuthInput__Select__Label {
+   position: unset;
+   display: block;
+}
+
+.AuthInput__Select {
+   outline: none;
+   width: 100%;
+   padding: 10px 15px;
+   font: 500 16px var(--font_family);
+   background-color: var(--white);
+   border: 1px solid var(--gray);
+   border-radius: 20px;
+}
+
+.AuthInput__Select option {
+   font: 500 16px var(--font_family);
+   padding: 3px 0;
+   margin: 5px;
+   line-height: 1.3;
+}

@@ -45,7 +45,28 @@ const AuthInput = (props) => {
          </div>
       );
    }
-   // For textarea
+   // If element type will select
+   if (props.elementtype === "select") {
+      const option = props.options.map((option) => (
+         <option value={option.vaule} key={option.value}>
+            {option.name}
+         </option>
+      ));
+      input = (
+         <div className="AuthInput">
+            <div className="AuthInput__InputSection">
+               {props.label && (
+                  <label className="AuthInput__Select__Label">
+                     {props.label}
+                  </label>
+               )}
+               <select className="AuthInput__Select">{option}</select>
+            </div>
+            <div>{errMsg}</div>
+         </div>
+      );
+   }
+   // If element type will textarea
    if (props.elementtype === "textarea") {
       labelStyle.push("TextareaLabel");
       input = (

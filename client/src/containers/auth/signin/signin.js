@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../auth.css";
 import AuthInput from "../../../components/UI/AuthInput/AuthInput";
+import Flash from "../../../components/UI/Flash/Flash";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import * as actions from "../../../store/action/rootActions";
 
@@ -36,7 +37,17 @@ class SignUp extends Component {
             isValid: false,
          },
       },
+      errMsg: "",
    };
+
+   componentDidUpdate(preState, preProps) {
+      if (this.state !== preState) {
+         console.log("[signin.js] componentDidUpdate");
+         return true;
+      } else {
+         return false;
+      }
+   }
 
    checkValidation = (value, rules) => {
       let valid = false;
@@ -118,6 +129,12 @@ class SignUp extends Component {
          );
       }
 
+      // Flash Message
+      let flashMessage;
+      if (this.props.flashMsg && !this.props.loading) {
+         flashMessage = <Flash message={this.props.flashMsg} type="error" />;
+      }
+
       let auth;
       // If auth loading
       if (this.props.loading) {
@@ -163,19 +180,27 @@ class SignUp extends Component {
             </div>
          );
       }
-      return auth;
+      return (
+         <React.Fragment>
+            {flashMessage}
+            {auth}
+         </React.Fragment>
+      );
    }
 }
 
 const stateToProps = (state) => {
    return {
       loading: state.auth.authLoading,
+      authErrMsg: state.auth.authErrMsg,
+      flashMsg: state.flash.flashMsg,
    };
 };
 
 const dispatchtoProps = (dispatch) => {
    return {
       onSignIn: (data, props) => dispatch(actions.onSignIn(data, props)),
+      onFlash: (msg) => dispatch(actions.onFlash(msg)),
    };
 };
 

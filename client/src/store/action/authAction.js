@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import * as action from "./rootActions";
 import axios from "axios";
 
 /* ============= */
@@ -110,13 +111,13 @@ export const onSignIn = (data, props) => (dispatch) => {
    axios
       .post("/api/auth/signin", data)
       .then((response) => {
-         console.log(response.data.user);
          dispatch(signInSuccess(response.data.token, response.data.user));
          props.history.push("/");
+         dispatch(action.onFlash("Login successfully"));
       })
       .catch((err) => {
-         console.log(err.response.data);
-         dispatch(signInFail(err.response.data));
+         dispatch(signInFail(err.response.data.errMsg));
+         dispatch(action.onFlash(err.response.data.errMsg));
       });
 };
 

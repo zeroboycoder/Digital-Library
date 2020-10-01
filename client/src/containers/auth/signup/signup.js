@@ -35,6 +35,24 @@ class SignUp extends Component {
             isValid: false,
             errMsg: "Email isn't vaild!",
          },
+         major: {
+            elementtype: "select",
+            options: [
+               { name: "Web Admin", value: "web-admin" },
+               { name: "Civil Engineering", value: "civil" },
+               { name: "Electronic Engineering", value: "ec" },
+               { name: "Electrical Power Engineering", value: "ep" },
+               { name: "Mechnical Engineering", value: "mech" },
+               { name: "Information Technology Engineering", value: "it" },
+            ],
+            validation: {
+               isRequired: true,
+            },
+            label: "Role/Major",
+            value: "",
+            isValid: false,
+            errMsg: "Select the major",
+         },
          password: {
             elementtype: "input",
             elementconfig: {
@@ -145,6 +163,7 @@ class SignUp extends Component {
                key={key}
                elementtype={this.state.signUpForm[key].elementtype}
                elementconfig={this.state.signUpForm[key].elementconfig}
+               options={this.state.signUpForm[key].options}
                label={this.state.signUpForm[key].label}
                reviewPwIcon={this.state.signUpForm[key].reviewPwIcon}
                value={this.state.signUpForm[key].value}

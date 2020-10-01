@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Aux from "./Aux";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SlideDraw from "../components/Navigation/SlideDraw/SlideDraw";
+import Footer from "../containers/Footer/Footer";
 
 const Layout = (props) => {
    const [isShow, setIsShow] = useState();
@@ -20,6 +21,7 @@ const Layout = (props) => {
          <SlideDraw showed={isShow} clicked={closeSlideDraw} />
          {/* App */}
          {props.children}
+         <Footer />
       </Aux>
    );
 };

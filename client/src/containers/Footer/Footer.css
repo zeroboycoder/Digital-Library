@@ -1,0 +1,88 @@
+.Footer {
+   width: 100%;
+   background-color: var(--black);
+   color: var(--white);
+   font: 400 17px var(--font_family);
+   letter-spacing: 0.5px;
+}
+
+.Footer .Footer__Row {
+   width: 1200px;
+   margin: 0 auto;
+}
+
+.First_Column__Title,
+.Third_Column__Title {
+   font: 500 28px var(--font_family);
+   margin: 0 0 20px 0;
+}
+
+/* First Column */
+.Footer__Row .First_Column {
+   padding: 35px 20px;
+}
+
+.Contact_Group {
+   margin: 20px 0;
+   display: flex;
+}
+
+.Contact_Group:first-of-type {
+   margin-top: 0;
+}
+
+.Contact_Group * {
+   align-self: center;
+}
+
+.Contact_Group i {
+   font-size: 22px;
+   margin-right: 20px;
+}
+
+.Contact_Group a:link,
+.Contact_Group a:visited,
+.Contact_Group span {
+   text-decoration: none;
+   color: white;
+   transition: all 0.3s;
+}
+
+.Contact_Group a:hover,
+.Contact_Group a:active {
+   color: #fe7600;
+}
+
+/* Second Column */
+.Footer__Row .Second_Column {
+   padding: 35px 20px;
+   display: flex;
+   flex-flow: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+.Footer__Row .Second_Column > div {
+   margin-bottom: 30px;
+}
+
+.Second_Group p {
+   margin: 0;
+}
+
+.Feedback {
+   cursor: pointer;
+   font: 500 20px var(--font_family);
+}
+
+.Feedback:hover,
+.Feedback:active {
+   color: #fe7600;
+   transition: all 0.3s;
+}
+
+/* Third Column */
+.Footer__Row .Third_Column {
+   padding: 35px 20px;
+}
