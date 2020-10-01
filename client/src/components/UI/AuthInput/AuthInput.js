@@ -45,10 +45,10 @@ const AuthInput = (props) => {
          </div>
       );
    }
-   // If element type will select
+   // If element type will select (option)
    if (props.elementtype === "select") {
       const option = props.options.map((option) => (
-         <option value={option.vaule} key={option.value}>
+         <option value={option.value} key={option.value}>
             {option.name}
          </option>
       ));
@@ -60,7 +60,13 @@ const AuthInput = (props) => {
                      {props.label}
                   </label>
                )}
-               <select className="AuthInput__Select">{option}</select>
+               <select
+                  className="AuthInput__Select"
+                  onChange={props.changed}
+                  required
+               >
+                  {option}
+               </select>
             </div>
             <div>{errMsg}</div>
          </div>

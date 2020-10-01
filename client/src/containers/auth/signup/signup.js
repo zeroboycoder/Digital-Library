@@ -38,6 +38,7 @@ class SignUp extends Component {
          major: {
             elementtype: "select",
             options: [
+               { name: "Select a role or major", value: "" },
                { name: "Web Admin", value: "web-admin" },
                { name: "Civil Engineering", value: "civil" },
                { name: "Electronic Engineering", value: "ec" },
@@ -51,7 +52,7 @@ class SignUp extends Component {
             label: "Role/Major",
             value: "",
             isValid: false,
-            errMsg: "Select the major",
+            errMsg: "Please select the major or role",
          },
          password: {
             elementtype: "input",
@@ -148,7 +149,8 @@ class SignUp extends Component {
       for (let key in this.state.signUpForm) {
          data[key] = this.state.signUpForm[key].value;
       }
-      this.props.onSignUp(data, this.props);
+      console.log(data);
+      // this.props.onSignUp(data, this.props);
    };
 
    swapAuth = () => {
