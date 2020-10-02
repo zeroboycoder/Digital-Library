@@ -150,7 +150,7 @@ class SignUp extends Component {
          data[key] = this.state.signUpForm[key].value;
       }
       console.log(data);
-      // this.props.onSignUp(data, this.props);
+      this.props.onSignUp(data, this.props);
    };
 
    swapAuth = () => {

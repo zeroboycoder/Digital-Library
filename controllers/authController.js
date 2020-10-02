@@ -6,7 +6,7 @@ const authModel = require("../model/authModel");
 
 // Sign Up User
 exports.signUpUser = (req, res) => {
-   const { username, email, password } = req.body;
+   const { username, email, password, major } = req.body;
    authModel.findOne({ email: email }).then((user) => {
       if (user) {
          console.log(user);
@@ -18,6 +18,7 @@ exports.signUpUser = (req, res) => {
             new authModel({
                username: username,
                email: email,
+               major: major,
                password: hashPassword,
             })
                .save()

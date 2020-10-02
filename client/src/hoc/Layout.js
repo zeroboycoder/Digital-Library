@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import Aux from "./Aux";
 import Toolbar from "../components/Navigation/Toolbar/Toolbar";
 import SlideDraw from "../components/Navigation/SlideDraw/SlideDraw";
@@ -21,9 +22,9 @@ const Layout = (props) => {
          <SlideDraw showed={isShow} clicked={closeSlideDraw} />
          {/* App */}
          {props.children}
-         <Footer />
+         <Footer location={props.location} />
       </Aux>
    );
 };
 
-export default Layout;
+export default withRouter(Layout);

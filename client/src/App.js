@@ -18,7 +18,7 @@ class App extends Component {
    state = {};
    static getDerivedStateFromProps(props) {
       if (props.token) {
-         // props.onLoadUser();
+         props.onLoadUser();
       }
       return true;
    }

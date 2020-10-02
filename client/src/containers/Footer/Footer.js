@@ -11,6 +11,13 @@ class Footer extends Component {
       isShow: false,
    };
 
+   // For FeedBack
+   showFeedbackModal = () => {
+      const value = this.state.isShow;
+      this.setState({ isShow: !value });
+   };
+
+   // For Book requres
    inputHandler = (event) => {
       const value = event.target.value;
       this.setState({ bookName: value });
@@ -26,12 +33,13 @@ class Footer extends Component {
       console.log(this.state.bookName, this.state.major);
    };
 
-   showFeedbackModal = () => {
-      const value = this.state.isShow;
-      this.setState({ isShow: !value });
-   };
-
    render() {
+      let isAuthPage = false;
+      const pathname = this.props.location.pathname;
+      if (pathname === "/auth/signin" || pathname === "/auth/signup") {
+         isAuthPage = true;
+      }
+      console.log(isAuthPage);
       // First Column
       const firstRow = (
          <div className="col col-md-4 First_Column">
@@ -88,7 +96,7 @@ class Footer extends Component {
          </div>
       );
       let footer = "";
-      if (!this.props.loading && !this.props.authLoading) {
+      if (!this.props.loading && !this.props.authLoading && !isAuthPage) {
          footer = (
             <div className="Footer">
                <Feedback

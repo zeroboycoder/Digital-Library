@@ -39,7 +39,7 @@ export const onLoadUser = () => (dispatch, getState) => {
             dispatch(loadUserSuccess(response.data.user));
          })
          .catch((err) => {
-            dispatch(loadUserFail(err.response.data));
+            dispatch(loadUserFail(err));
          });
    }
 };
