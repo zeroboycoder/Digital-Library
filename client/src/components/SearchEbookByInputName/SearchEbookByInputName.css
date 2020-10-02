@@ -38,15 +38,3 @@
 .SearchEbookByInputName button:not(:disabled) {
    animation: notDisable 0.3s linear;
 }
-
-@keyframes notDisable {
-   0% {
-      transform: scale(1);
-   }
-   50% {
-      transform: scale(1.1);
-   }
-   100% {
-      transform: scale(1);
-   }
-}

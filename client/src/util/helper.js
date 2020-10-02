@@ -1,3 +1,5 @@
+import React from "react";
+
 // Go to Book Detail
 export const clickedLink = (book_id, props) => {
    props.history.push(`/ebooks/${book_id}`);
@@ -8,21 +10,59 @@ export const clickTag = (name, categoryName, props) => {
    props.history.push(`/categories/${categoryName}/${name}`);
 };
 
+// Review the password
+// return update form
+export const reviewPassword = (key, form) => {
+   const updateForm = { ...form };
+   if (updateForm[key].elementconfig.type === "password") {
+      updateForm[key].elementconfig.type = "text";
+      updateForm[key].reviewPwIcon = <i className="far fa-eye-slash"></i>;
+   } else {
+      updateForm[key].elementconfig.type = "password";
+      updateForm[key].reviewPwIcon = <i className="far fa-eye"></i>;
+   }
+   return updateForm;
+};
+
+// Check can click
+// return boolean
+export const canClickBtn = (form) => {
+   let canClick = true;
+   for (let key in form) {
+      canClick = form[key].isValid && canClick;
+   }
+   return canClick;
+};
+
 // Check form validation
 // return boolean
-export const checkValidation = (value, rules) => {
+export const checkValidation = (value, rules, state) => {
    let validResult = false;
    if (value) {
       // if rule has isRequired
       if (rules.isRequired) {
          validResult = value.trim() !== "";
       }
+      // if rule has isEmail
+      if (rules.isEmail) {
+         const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+         validResult = pattern.test(value);
+      }
+      // if rule has minLength
+      if (rules.minLength) {
+         validResult = value.length >= rules.minLength;
+      }
+      // if rule has isMatch
+      if (rules.isMatch) {
+         const password = state.signUpForm.password.value;
+         validResult = password === value;
+      }
       // if rule has isNumber
       if (rules.isNumber) {
          const pattern = /^\d+$/;
          validResult = pattern.test(value);
       }
-      // if rule has number of array value
+      // if rule has number of array value (in tags)
       if (rules.numberOfArrayValue) {
          const numberOfValue = value.trim().split(" ").length;
          validResult = numberOfValue >= rules.numberOfArrayValue;
@@ -39,14 +79,4 @@ export const checkValidation = (value, rules) => {
       }
    }
    return validResult;
-};
-
-// Check can click
-// return boolean
-export const canClickBtn = (form) => {
-   let canClick = true;
-   for (let key in form) {
-      canClick = form[key].isValid && canClick;
-   }
-   return canClick;
 };

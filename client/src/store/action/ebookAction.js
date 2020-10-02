@@ -26,7 +26,7 @@ const fetchEbookFail = (errMsg) => {
 };
 
 export const onFetchEbook = (query) => (dispatch) => {
-   dispatch(fetchEbookStart);
+   dispatch(fetchEbookStart());
    axios
       .get(`/api/ebooks/fetch${query}`)
       .then((response) => {

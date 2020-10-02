@@ -121,6 +121,18 @@ const ebookReducer = (state = initState, action) => {
             ...state,
             loading: false,
          };
+      /* For Book Request */
+      case actionTypes.BOOK_REQUEST_START:
+         return {
+            ...state,
+            loading: true,
+         };
+      case actionTypes.BOOK_REQUEST_SUCCESS:
+      case actionTypes.BOOK_REQUEST_FAIL:
+         return {
+            ...state,
+            loading: false,
+         };
       default:
          return state;
    }

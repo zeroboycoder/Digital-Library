@@ -38,3 +38,13 @@
    background-color: #fe7600;
    border-color: #fe7600;
 }
+
+.BookRequest__Button button:not(:disabled) {
+   animation: notDisable 0.3s;
+}
+
+.BookRequest__Button button:disabled {
+   color: var(--pink-gray);
+   cursor: not-allowed;
+   background-color: #eee;
+}

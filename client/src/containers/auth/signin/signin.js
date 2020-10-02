@@ -5,6 +5,11 @@ import AuthInput from "../../../components/UI/AuthInput/AuthInput";
 import Flash from "../../../components/UI/Flash/Flash";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import * as actions from "../../../store/action/rootActions";
+import {
+   checkValidation,
+   canClickBtn,
+   reviewPassword,
+} from "../../../util/helper";
 
 class SignUp extends Component {
    state = {
@@ -49,25 +54,12 @@ class SignUp extends Component {
       }
    }
 
-   checkValidation = (value, rules) => {
-      let valid = false;
-      if (rules.isRequired) {
-         valid = value.trim() !== "";
-      }
-
-      if (rules.isEmail) {
-         const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-         valid = pattern.test(value);
-      }
-      return valid;
-   };
-
    inputChangeHandler = (event, key) => {
       const value = event.target.value;
       const updatesignInForm = { ...this.state.signInForm };
       updatesignInForm[key].value = value;
       updatesignInForm[key].isTouch = true;
-      updatesignInForm[key].isValid = this.checkValidation(
+      updatesignInForm[key].isValid = checkValidation(
          value,
          updatesignInForm[key].validation
       );
@@ -75,25 +67,8 @@ class SignUp extends Component {
    };
 
    reviewPassword = (key) => {
-      const updatesignInForm = { ...this.state.signInForm };
-      if (updatesignInForm[key].elementconfig.type === "password") {
-         updatesignInForm[key].elementconfig.type = "text";
-         updatesignInForm[key].reviewPwIcon = (
-            <i className="far fa-eye-slash"></i>
-         );
-      } else {
-         updatesignInForm[key].elementconfig.type = "password";
-         updatesignInForm[key].reviewPwIcon = <i className="far fa-eye"></i>;
-      }
-      this.setState({ signInForm: updatesignInForm });
-   };
-
-   canClick = () => {
-      let canClick = true;
-      for (let key in this.state.signInForm) {
-         canClick = this.state.signInForm[key].isValid && canClick;
-      }
-      return canClick;
+      const updateForm = reviewPassword(key, this.state.signInForm);
+      this.setState({ signInForm: updateForm });
    };
 
    submitHandler = (event) => {
@@ -152,7 +127,7 @@ class SignUp extends Component {
                            <div className="authBtn">
                               <button
                                  padding="9px 20px"
-                                 disabled={!this.canClick()}
+                                 disabled={!canClickBtn(this.state.signInForm)}
                               >
                                  Sign In
                               </button>

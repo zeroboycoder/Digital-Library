@@ -28,7 +28,9 @@ const BookRequest = (props) => {
                </select>
             </div>
             <div className="BookRequest__Button">
-               <button type="submit">Request</button>
+               <button type="submit" disabled={!props.canClick}>
+                  Request
+               </button>
             </div>
          </form>
       </div>

@@ -4,6 +4,11 @@ import "../auth.css";
 import AuthInput from "../../../components/UI/AuthInput/AuthInput";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import * as actions from "../../../store/action/rootActions";
+import {
+   checkValidation,
+   canClickBtn,
+   reviewPassword,
+} from "../../../util/helper";
 
 class SignUp extends Component {
    state = {
@@ -87,60 +92,22 @@ class SignUp extends Component {
       },
    };
 
-   checkValidation = (value, rules) => {
-      let valid = false;
-      if (rules.isRequired) {
-         valid = value.trim() !== "";
-      }
-
-      if (rules.isEmail) {
-         const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-         valid = pattern.test(value);
-      }
-
-      if (rules.minLength) {
-         valid = value.length >= rules.minLength;
-      }
-
-      if (rules.isMatch) {
-         const password = this.state.signUpForm.password.value;
-         valid = password === value;
-      }
-      return valid;
-   };
-
    inputChangeHandler = (event, key) => {
       const value = event.target.value;
       const updateSignupForm = { ...this.state.signUpForm };
       updateSignupForm[key].value = value;
       updateSignupForm[key].isTouch = true;
-      updateSignupForm[key].isValid = this.checkValidation(
+      updateSignupForm[key].isValid = checkValidation(
          value,
-         updateSignupForm[key].validation
+         updateSignupForm[key].validation,
+         this.state
       );
       this.setState({ signUpForm: updateSignupForm });
    };
 
    reviewPassword = (key) => {
-      const updatesignUpForm = { ...this.state.signUpForm };
-      if (updatesignUpForm[key].elementconfig.type === "password") {
-         updatesignUpForm[key].elementconfig.type = "text";
-         updatesignUpForm[key].reviewPwIcon = (
-            <i className="far fa-eye-slash"></i>
-         );
-      } else {
-         updatesignUpForm[key].elementconfig.type = "password";
-         updatesignUpForm[key].reviewPwIcon = <i className="far fa-eye"></i>;
-      }
-      this.setState({ signUpForm: updatesignUpForm });
-   };
-
-   canClick = () => {
-      let canClick = true;
-      for (let key in this.state.signUpForm) {
-         canClick = this.state.signUpForm[key].isValid && canClick;
-      }
-      return canClick;
+      const updateForm = reviewPassword(key, this.state.signUpForm);
+      this.setState({ signUpForm: updateForm });
    };
 
    submitHandler = (event) => {
@@ -193,7 +160,9 @@ class SignUp extends Component {
                         <form onSubmit={(e) => this.submitHandler(e)}>
                            {input}
                            <div className="authBtn">
-                              <button disabled={!this.canClick()}>
+                              <button
+                                 disabled={!canClickBtn(this.state.signUpForm)}
+                              >
                                  Sign up
                               </button>
                            </div>

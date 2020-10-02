@@ -59,3 +59,9 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 // For Flash
 export const FLASH_START = "FLASH_START";
 export const FLASH_END = "FLASH_END";
+
+// For Footer Actions
+// Book Request
+export const BOOK_REQUEST_START = "BOOK_REQUEST_START";
+export const BOOK_REQUEST_SUCCESS = "BOOK_REQUEST_SUCCESS";
+export const BOOK_REQUEST_FAIL = "BOOK_REQUEST_FAIL";

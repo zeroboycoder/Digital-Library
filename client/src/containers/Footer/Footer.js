@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import "./Footer.css";
 import BookRequest from "../../components/BookRequest/BookRequest";
 import Feedback from "../../components/Feedback/Feedback";
+import * as actions from "../../store/action/rootActions";
 
 class Footer extends Component {
    state = {
       bookName: "",
-      major: "civil",
+      major: "",
       isShow: false,
    };
 
@@ -17,20 +18,35 @@ class Footer extends Component {
       this.setState({ isShow: !value });
    };
 
-   // For Book requres
+   // For Book request
    inputHandler = (event) => {
       const value = event.target.value;
       this.setState({ bookName: value });
    };
 
+   // For major request
    selectHandler = (event) => {
       const value = event.target.value;
       this.setState({ major: value });
    };
 
+   // Form Handler
    formHandler = (event) => {
       event.preventDefault();
-      console.log(this.state.bookName, this.state.major);
+      const data = {
+         bookName: this.state.bookName,
+         major: this.state.major,
+      };
+      this.props.onBookRequest(data);
+   };
+
+   // Check disable btn or not
+   canClick = () => {
+      let canClick;
+      this.state.bookName.trim() !== "" && this.state.major.trim() !== ""
+         ? (canClick = true)
+         : (canClick = false);
+      return canClick;
    };
 
    render() {
@@ -39,7 +55,6 @@ class Footer extends Component {
       if (pathname === "/auth/signin" || pathname === "/auth/signup") {
          isAuthPage = true;
       }
-      console.log(isAuthPage);
       // First Column
       const firstRow = (
          <div className="col col-md-4 First_Column">
@@ -56,7 +71,7 @@ class Footer extends Component {
             </div>
             <div className="Contact_Group">
                <i className="fas fa-phone-alt"></i>
-               <span>09691873398</span>
+               <span>09123456789</span>
             </div>
             <div className="Contact_Group">
                <i className="fas fa-map-marker-alt"></i>
@@ -92,9 +107,11 @@ class Footer extends Component {
                inputChanged={(e) => this.inputHandler(e)}
                selectChanged={(e) => this.selectHandler(e)}
                formSubmit={(e) => this.formHandler(e)}
+               canClick={this.canClick()}
             />
          </div>
       );
+
       let footer = "";
       if (!this.props.loading && !this.props.authLoading && !isAuthPage) {
          footer = (
@@ -122,4 +139,10 @@ const stateToProps = (state) => {
    };
 };
 
-export default connect(stateToProps)(Footer);
+const dispatchToProps = (dispatch) => {
+   return {
+      onBookRequest: (data) => dispatch(actions.onBookRequest(data)),
+   };
+};
+
+export default connect(stateToProps, dispatchToProps)(Footer);
