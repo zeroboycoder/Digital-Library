@@ -1,6 +1,6 @@
 import React from "react";
 import "./Feedback.css";
-import Modal from "./Modal/Modal";
+import Modal from "../UI/Modal/Modal";
 import Backdrop from "../UI/Backdrop/Backdrop";
 
 const Feedback = (props) => {
