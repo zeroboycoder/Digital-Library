@@ -27,17 +27,16 @@ export const onBookRequest = (data) => (dispatch) => {
       .post("/api/ebooks/request", data)
       .then((response) => {
          dispatch(bookRequestSuccess());
-         dispatch(actions.onFlash("Book request sent"));
+         dispatch(actions.onFlash("Thank you for you request."));
       })
       .catch((err) => {
          dispatch(bookRequestFail());
-         dispatch(err.response.data);
       });
 };
 
 // Website Feedback
 export const onFeedback = (data) => (dispatch) => {
    axios.post("/api/feedback", data).then((response) => {
-      dispatch(actions.onFlash("Thank for your feedback"));
+      dispatch(actions.onFlash("Thanks for your feedback"));
    });
 };

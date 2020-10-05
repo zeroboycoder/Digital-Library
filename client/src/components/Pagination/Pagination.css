@@ -1,5 +1,6 @@
 .Pagination_Container {
-   width: 1200px;
+   max-width: 1200px;
+   width: 95%;
    margin: 20px auto;
 }
 
