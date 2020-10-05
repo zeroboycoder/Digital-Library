@@ -34,3 +34,10 @@ export const onBookRequest = (data) => (dispatch) => {
          dispatch(err.response.data);
       });
 };
+
+// Website Feedback
+export const onFeedback = (data) => (dispatch) => {
+   axios.post("/api/feedback", data).then((response) => {
+      dispatch(actions.onFlash("Thank for your feedback"));
+   });
+};

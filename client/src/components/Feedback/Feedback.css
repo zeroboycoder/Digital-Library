@@ -1,10 +1,11 @@
 .FeedBack {
    color: var(--black);
-   font: 400 17px var(--font-family);
+   font: 400 17px var(--font_family);
 }
 
 .FeedBack p {
    margin-bottom: 7px;
+   font: 400 17px var(--font_family);
 }
 
 .FeedBack textarea {

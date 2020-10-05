@@ -9,6 +9,7 @@ class Footer extends Component {
    state = {
       bookName: "",
       major: "",
+      feedback: "",
       isShow: false,
    };
 
@@ -16,6 +17,18 @@ class Footer extends Component {
    showFeedbackModal = () => {
       const value = this.state.isShow;
       this.setState({ isShow: !value });
+   };
+
+   feedbackChangeHandler = (event) => {
+      const value = event.target.value;
+      this.setState({ feedback: value });
+   };
+
+   submitFeedback = (event) => {
+      event.preventDefault();
+      const data = { feedbackMsg: this.state.feedback };
+      this.props.onFeedback(data);
+      this.setState({ feedback: "", isShow: false });
    };
 
    // For Book request
@@ -119,6 +132,8 @@ class Footer extends Component {
                <Feedback
                   showed={this.state.isShow}
                   cancalFeedback={this.showFeedbackModal}
+                  feedbackChange={(e) => this.feedbackChangeHandler(e)}
+                  submitFeedback={(e) => this.submitFeedback(e)}
                />
                <div className="row Footer__Row">
                   {firstRow}
@@ -141,6 +156,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
    return {
+      onFeedback: (data) => dispatch(actions.onFeedback(data)),
       onBookRequest: (data) => dispatch(actions.onBookRequest(data)),
    };
 };

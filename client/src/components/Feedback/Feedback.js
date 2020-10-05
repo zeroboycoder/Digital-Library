@@ -10,10 +10,13 @@ const Feedback = (props) => {
          <Modal showed={props.showed}>
             <div className="FeedBack">
                <p>Feedback : </p>
-               <textarea placeholder="Feedback"></textarea>
+               <textarea
+                  placeholder="Feedback"
+                  onChange={props.feedbackChange}
+               ></textarea>
                <div className="FeedBack__BtnGroup">
                   <button onClick={props.cancalFeedback}>Cancle</button>
-                  <button>Submit</button>
+                  <button onClick={props.submitFeedback}>Submit</button>
                </div>
             </div>
          </Modal>

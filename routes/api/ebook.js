@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const E_Lib_Controller = require("../../controllers/elibcontroller");
-const bookRequestController = require("../../controllers/bookRequestController");
+const requestController = require("../../controllers/requestController");
 
 // Fetch ebooks api (Programmatically)
 route.get("/api/ebooks/fetch", E_Lib_Controller.fetchEbooks);
@@ -21,6 +21,9 @@ route.get("/ebooks/:book_id", E_Lib_Controller.getDetailOfEbook);
 route.post("/api/ebooks/add", E_Lib_Controller.addEbooks);
 
 // Book Request
-route.post("/api/ebooks/request", bookRequestController.bookRequest);
+route.post("/api/ebooks/request", requestController.bookRequest);
+
+// Website Feedback
+route.post("/api/feedback", requestController.feedback);
 
 module.exports = route;

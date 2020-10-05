@@ -71,6 +71,15 @@
    margin: 0;
 }
 
+.Second_Group:first-of-type {
+   padding-bottom: 7px;
+   border-bottom: 1px solid #fe7600;
+}
+
+.Second_Group:last-of-type {
+   color: var(--pink-gray);
+}
+
 .Feedback {
    cursor: pointer;
    font: 500 20px var(--font_family);

@@ -8,4 +8,4 @@ export { onAddComment } from "./commentAction";
 export { onLoadUser, onSignUp, onSignIn, onLogOut } from "./authAction";
 export { onEditAuth } from "./editAuthAction";
 export { onFlash } from "./flashAction";
-export { onBookRequest } from "./FooterAction";
+export { onFeedback, onBookRequest } from "./FooterAction";
