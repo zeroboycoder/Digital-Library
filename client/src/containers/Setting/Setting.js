@@ -186,7 +186,7 @@ class Setting extends Component {
       );
 
       let setting;
-      if (this.props.loading) {
+      if (this.props.authLoading || this.props.loading) {
          setting = <Spinner />;
       } else {
          setting = (
@@ -219,7 +219,8 @@ const stateToProps = (state) => {
       userId: state.auth.userId,
       username: state.auth.username,
       email: state.auth.email,
-      loading: state.auth.authLoading,
+      authLoading: state.auth.authLoading,
+      loading: state.ebook.loading,
    };
 };
 
