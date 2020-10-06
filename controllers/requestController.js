@@ -1,8 +1,9 @@
 const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
+const authModel = require("../model/authModel");
 const authMdodel = require("../model/authModel");
 
-const mail = async (recipientMail, content) => {
+const mail = async (address, subject, content) => {
    const options = {
       auth: {
          api_user: "pyaesonekhant@tumawlamyine.edu.mm",
@@ -13,9 +14,9 @@ const mail = async (recipientMail, content) => {
    const mailer = nodemailer.createTransport(sgTransport(options));
 
    const email = {
-      to: recipientMail,
+      to: address,
       from: "pyaesonekhant@tumawlamyine.edu.mm",
-      subject: "Request Book",
+      subject: subject,
       html: content,
    };
 
@@ -34,9 +35,10 @@ exports.bookRequest = (req, res) => {
          }
          // If found user
          // then send email the bookname to that user(major admin)
-         const email = user.email;
+         const address = user.email;
+         const subject = "Request book";
          const content = `Can you upload this book : <b>"${bookName}"</b>.`;
-         mail(email, content)
+         mail(address, subject, content)
             .then(() => res.status(200).json({ msg: "success" }))
             .catch((err) =>
                res.status(400).json({ errMsg: "Can't send email" })
@@ -50,9 +52,12 @@ exports.bookRequest = (req, res) => {
 // Website Feedback
 exports.feedback = (req, res) => {
    const { feedbackMsg } = req.body;
-   const email = "pyaesonekhant@tumlm.edu.mm";
-   const content = `Hey guy, User send this feedback. <br /> <strong>"${feedbackMsg}"</strong>`;
-   mail(email, content)
-      .then(() => res.status(200).json({ msg: "success" }))
-      .catch((err) => res.status(400).json({ errMsg: "Can't send email" }));
+   authModel.findOne({ major: "web-admin" }).then((user) => {
+      const address = user.email;
+      const subject = "Website feedback";
+      const content = `Hey guy, User send this feedback. <br /> <strong>"${feedbackMsg}"</strong>`;
+      mail(address, subject, content)
+         .then(() => res.status(200).json({ msg: "success" }))
+         .catch((err) => res.status(400).json({ errMsg: "Can't send email" }));
+   });
 };
