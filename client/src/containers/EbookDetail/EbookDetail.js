@@ -7,7 +7,6 @@ import SuggestionBook from "../../components/SuggestionBook/SuggestionBook";
 import CommentBox from "../../components/Comment/CommentBox/CommentBox";
 import { checkValidation } from "../../util/helper";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import cover from '../../assets/ss.png'
 
 class EbookDetail extends Component {
    state = {
@@ -91,9 +90,8 @@ class EbookDetail extends Component {
             const bookInfo = (
                <div className="row BookInfo">
                   <div className="col col-md-4 BookInfo__BookCover">
-                     {/* src={this.props.detail_of_ebook.bookCoverLocation} */}
                      <img
-                     src={cover}
+                        src={this.props.detail_of_ebook.bookCoverLocation}
                         alt="Book Cover"
                      />
                   </div>

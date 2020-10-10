@@ -2,7 +2,6 @@ import React from "react";
 import "./SuggestionBook.css";
 import { withRouter } from "react-router-dom";
 import { clickedLink } from "../../util/helper";
-import cover from "../../assets/ss.png";
 
 const SuggestionBook = (props) => {
    return (
@@ -11,8 +10,7 @@ const SuggestionBook = (props) => {
             className="SuggestionBook__BookCover"
             onClick={() => clickedLink(props._id, props)}
          >
-            {/* src={props.bookCoverLocation} */}
-            <img src={cover} alt={props.bookName} />
+            <img src={props.bookCoverLocation} alt={props.bookName} />
          </div>
          <div className="SuggestionBook__Body">
             <p

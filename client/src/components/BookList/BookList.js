@@ -1,6 +1,5 @@
 import React from "react";
 import "./BookList.css";
-import cover from "../../assets/ss.png";
 
 const BookList = (props) => {
    let description = props.description;
@@ -10,8 +9,11 @@ const BookList = (props) => {
    return (
       <div className="BookList">
          <div className="BookList__BookImage">
-            {/* src={props.bookCoverLocation} */}
-            <img src={cover} alt={props.bookName} onClick={props.clicked} />
+            <img
+               src={props.bookCoverLocation}
+               alt={props.bookName}
+               onClick={props.clicked}
+            />
          </div>
          <div className="BookList__Body">
             <h2 className="BookList__Body__BookTitle" onClick={props.clicked}>

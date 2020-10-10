@@ -187,41 +187,41 @@ exports.addEbooks = (req, res) => {
          console.log("_error : ", err);
          return res.status(err.statusCode).json({ errMsg: err.message });
       }
-      const reqTags = req.body.tags.split(" ");
-      const tags = reqTags.map((tag) => tag.toLowerCase());
-      const bookName = req.body.bookName;
-      const author = req.body.author;
-      const releasedYear = req.body.releasedYear;
-      const pages = req.body.pages;
-      const fileSize = (req.files[1].size / 1000000).toFixed(1);
-      const description = req.body.description;
-      const filesArr = req.files;
-      let fileLocation = [];
-      for (let i = 0; i < filesArr.length; i++) {
-         fileLocation.push(filesArr[i].location);
-      }
-      const dataSummary = {
-         bookName,
-         author,
-         tags,
-         releasedYear,
-         pages,
-         fileSize,
-         description,
-         bookCoverLocation: fileLocation[0],
-         pdfLocation: fileLocation[1],
-      };
-      new ebookDatas(dataSummary)
-         .save()
-         .then((ebookData) => {
-            return res.status(200).json({ data: ebookData });
-         })
-         .catch((err) => {
-            console.log("err");
-            return res
-               .status(500)
-               .json({ msg: "Can't add data to DB", errMsg: err });
-         });
+         const reqTags = req.body.tags.split(" ");
+         const tags = reqTags.map((tag) => tag.toLowerCase());
+         const bookName = req.body.bookName;
+         const author = req.body.author;
+         const releasedYear = req.body.releasedYear;
+         const pages = req.body.pages;
+         const fileSize = (req.files[1].size / 1000000).toFixed(1);
+         const description = req.body.description;
+         const filesArr = req.files;
+         let fileLocation = [];
+         for (let i = 0; i < filesArr.length; i++) {
+            fileLocation.push(filesArr[i].location);
+         }
+         const dataSummary = {
+            bookName,
+            author,
+            tags,
+            releasedYear,
+            pages,
+            fileSize,
+            description,
+            bookCoverLocation: fileLocation[0],
+            pdfLocation: fileLocation[1],
+         };
+         new ebookDatas(dataSummary)
+            .save()
+            .then((ebookData) => {
+               return res.status(200).json({ data: ebookData });
+            })
+            .catch((err) => {
+               console.log("err");
+               return res
+                  .status(500)
+                  .json({ msg: "Can't add data to DB", errMsg: err });
+            });
    });
 };
 
