@@ -76,7 +76,7 @@ class NavItems extends Component {
       if (!this.props.username) {
          authNav = (
             <li>
-               <NavItem link="/auth/signup">Register</NavItem>
+               <NavItem link="/auth/signin">Sign In</NavItem>
             </li>
          );
       }

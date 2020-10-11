@@ -133,6 +133,9 @@ class SignUp extends Component {
                               </button>
                            </div>
                         </form>
+                        <div className="Auth__Warning">
+                           <p>* This is only for admins.</p>
+                        </div>
                         <div className="SwapAuth">
                            <span>
                               Are you new here?{" "}

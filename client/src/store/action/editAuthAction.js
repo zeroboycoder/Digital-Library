@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import * as actions from "./rootActions";
 
 const editAuthStart = () => {
    return {
@@ -21,10 +22,14 @@ const editAuthFail = (err) => {
    };
 };
 
-export const onEditAuth = (data) => (dispatch) => {
+export const onEditAuth = (data, label) => (dispatch) => {
+   const labelName = label[0].toUpperCase() + label.slice(1);
    dispatch(editAuthStart());
    axios
       .post("/api/auth/edit", data)
-      .then((response) => dispatch(editAuthSuccess(response.data.user)))
+      .then((response) => {
+         dispatch(editAuthSuccess(response.data.user));
+         dispatch(actions.onFlash(`${labelName} changed successfully`));
+      })
       .catch((err) => dispatch(editAuthFail(err)));
 };

@@ -11,7 +11,6 @@ import EbookDetail from "./containers/EbookDetail/EbookDetail";
 import SearchEbookByCategory from "./containers/SearchEbookByCategory/SearchEbookByCategory";
 import SearchEbooksByInputName from "./containers/SearchEbooksByInputName/SearchEbooksByInputName";
 import Setting from "./containers/Setting/Setting";
-import SignUp from "./containers/auth/signup/signup";
 import SignIn from "./containers/auth/signin/signin";
 
 class App extends Component {
@@ -26,7 +25,6 @@ class App extends Component {
       return (
          <Layout>
             <Switch>
-               <Route path="/auth/signup" component={SignUp} />
                <Route path="/auth/signin" component={SignIn} />
 
                <Route path="/add-ebook" component={AddEbook} />
@@ -45,6 +43,8 @@ class App extends Component {
                />
                <Route path="/setting" component={Setting} />
                <Route path="/" exact component={Home} />
+               {/* Page Not Found
+               <Route component={SignIn} /> */}
             </Switch>
          </Layout>
       );

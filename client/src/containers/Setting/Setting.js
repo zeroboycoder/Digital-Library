@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import "./Setting.css";
 import settingBg from "../../assets/setting_bg.svg";
 import * as actions from "../../store/action/rootActions";
+import Flash from "../../components/UI/Flash/Flash";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Setting extends Component {
@@ -39,10 +40,11 @@ class Setting extends Component {
 
    saveInput = (label, value, chgLabel) => {
       // Argument as object
-      this.props.onEditAuth({
+      const data = {
          userId: this.props.userId,
          [label]: value,
-      });
+      };
+      this.props.onEditAuth(data, label);
       this.setState({ [chgLabel]: false });
    };
 
@@ -61,6 +63,12 @@ class Setting extends Component {
    };
 
    render() {
+      // Flash Message
+      let flashMessage;
+      if (this.props.flashMsg && !this.props.loading) {
+         flashMessage = <Flash message={this.props.flashMsg} type="success" />;
+      }
+
       // Show Username or Input box
       const username = this.state.chgUsername ? (
          <div className="Setting__UserInfo__ChgInput">
@@ -210,7 +218,12 @@ class Setting extends Component {
          );
       }
 
-      return setting;
+      return (
+         <React.Fragment>
+            {flashMessage}
+            {setting}
+         </React.Fragment>
+      );
    }
 }
 
@@ -221,12 +234,13 @@ const stateToProps = (state) => {
       email: state.auth.email,
       authLoading: state.auth.authLoading,
       loading: state.ebook.loading,
+      flashMsg: state.flash.flashMsg,
    };
 };
 
 const dispatchToProps = (dispatch) => {
    return {
-      onEditAuth: (data) => dispatch(actions.onEditAuth(data)),
+      onEditAuth: (data, label) => dispatch(actions.onEditAuth(data, label)),
    };
 };
 
