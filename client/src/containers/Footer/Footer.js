@@ -128,7 +128,7 @@ class Footer extends Component {
       let footer = "";
       if (!this.props.loading && !this.props.authLoading && !isAuthPage) {
          footer = (
-            <div className="Footer">
+            <div className="Footer" id="contact">
                <Feedback
                   showed={this.state.isShow}
                   cancalFeedback={this.showFeedbackModal}

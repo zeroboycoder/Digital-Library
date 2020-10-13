@@ -117,7 +117,7 @@ class NavItems extends Component {
                </ul>
             </li>
             <li>
-               <NavItem link="/contact">Contact Us</NavItem>
+               <NavItem hash="#contact">Contact Us</NavItem>
             </li>
             {authNav}
          </ul>
