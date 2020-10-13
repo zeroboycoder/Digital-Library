@@ -19,8 +19,8 @@ class SearchEbookByCategory extends Component {
       const searchedName = this.props.match.params.searched_category;
       const type = this.props.match.params.type || null;
       const query = this.props.history.location.search || null;
-      this.setState({ searchedName: searchedName, type: type, query: query });
       this.props.onSerachEbooksByCategory(searchedName, type, query);
+      this.setState({ searchedName: searchedName, type: type, query: query });
    }
 
    componentDidUpdate() {
@@ -100,8 +100,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
    return {
-      onSerachEbooksByCategory: (searchedName, query) =>
-         dispatch(actions.onSerachEbooksByCategory(searchedName, query)),
+      onSerachEbooksByCategory: (searchedName, type, query) =>
+         dispatch(actions.onSerachEbooksByCategory(searchedName, type, query)),
    };
 };
 

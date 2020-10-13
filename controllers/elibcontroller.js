@@ -93,11 +93,16 @@ exports.fetchEbooks = (req, res) => {
    if (searchedParams) {
       ebookDatas
          .find({ tags: { $in: [searchedParams] } })
-         .sort({ _id: -1 })
-         .skip((page - 1) * ebooksPerPage)
-         .limit(ebooksPerPage)
+         .countDocuments()
+         .then((count) => {
+            totalEbooks = count;
+            return ebookDatas
+               .find({ tags: { $in: [searchedParams] } })
+               .sort({ _id: -1 })
+               .skip((page - 1) * ebooksPerPage)
+               .limit(ebooksPerPage);
+         })
          .then((ebooks) => {
-            totalEbooks = ebooks.length;
             // Retrieve specific tags from database
             let tags = [];
             ebookDatas.find({ tags: { $in: [categoryName] } }).then((books) => {
@@ -150,15 +155,20 @@ exports.fetchEbooks = (req, res) => {
             res.status(400).json({ errMsg: err });
          });
    }
+   // Get All Ebooks
    if (!searchedParams && !_q) {
-      // Get All Ebooks
       ebookDatas
          .find()
-         .sort({ _id: -1 })
-         .skip((page - 1) * ebooksPerPage)
-         .limit(ebooksPerPage)
+         .countDocuments()
+         .then((count) => {
+            totalEbooks = count;
+            return ebookDatas
+               .find()
+               .sort({ _id: -1 })
+               .skip((page - 1) * ebooksPerPage)
+               .limit(ebooksPerPage);
+         })
          .then((ebooks) => {
-            totalEbooks = ebooks.length;
             const pagination = {
                hasNextPage: totalEbooks > ebooksPerPage * page,
                hasPreviousPage: page >= 2,
