@@ -205,6 +205,11 @@ class AddEbook extends Component {
       form.append("files", this.state.selectedImage);
       form.append("files", this.state.selectedPdf);
       this.props.onAddEbook(form, this.props);
+      const updateForm = { ...this.state.uploadedForm };
+      for (const key in updateForm) {
+         updateForm[key].value = "";
+      }
+      this.setState({ uploadedForm: updateForm, previewImage: "" });
    };
 
    render() {

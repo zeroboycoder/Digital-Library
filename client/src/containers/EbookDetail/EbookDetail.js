@@ -92,7 +92,7 @@ class EbookDetail extends Component {
                   <div className="col col-md-4 BookInfo__BookCover">
                      <img
                         src={this.props.detail_of_ebook.bookCoverLocation}
-                        alt="Book Cover"
+                        alt={this.props.detail_of_ebook.bookName}
                      />
                   </div>
                   <div className="col col-md-8 BookInfo__Info">

@@ -20,9 +20,11 @@ const storage = multers3({
       cb(null, file.mimetype);
    },
    key: (req, file, cb) => {
-      const fileArr = file.originalname.split("."); // ["example", "pdf"]
+      const fileArr = file.originalname.split(
+         ".pdf" || ".png" || ".jpg" || ".jpeg"
+      ); // ["example", "pdf"]
       const fileName = fileArr[0]; // filename "example"
-      const ext = fileArr[1]; // extension "pdf"
+      const ext = file.mimetype.split("/")[1]; // extension "pdf"
 
       const dateArr = new Date().toLocaleDateString().split("/"); // [1,1,2021]
       const date = dateArr.join("."); // "1.1.2021"
@@ -71,6 +73,7 @@ exports.fetchEbooks = (req, res) => {
          break;
       case "electrical-power":
          categoryName = "ep";
+         break;
       case "mechnical":
          categoryName = "mech";
          break;
@@ -122,14 +125,15 @@ exports.fetchEbooks = (req, res) => {
          })
          .catch((err) => res.status(400).json({ errMsg: err }));
    }
+   // Search Ebook By Input Name
    if (_q) {
-      // Search Ebook By Input Name
       const splitQuery = _q.split("-");
       const query = splitQuery.join(" ").toLowerCase();
       let searchedResult = [];
       const pattern = new RegExp(query + "+");
       ebookDatas
          .find()
+         .sort({ _id: -1 })
          .then((ebooks) => {
             ebooks.map((ebook) => {
                if (pattern.test(ebook.bookName.toLowerCase())) {
@@ -187,41 +191,41 @@ exports.addEbooks = (req, res) => {
          console.log("_error : ", err);
          return res.status(err.statusCode).json({ errMsg: err.message });
       }
-         const reqTags = req.body.tags.split(" ");
-         const tags = reqTags.map((tag) => tag.toLowerCase());
-         const bookName = req.body.bookName;
-         const author = req.body.author;
-         const releasedYear = req.body.releasedYear;
-         const pages = req.body.pages;
-         const fileSize = (req.files[1].size / 1000000).toFixed(1);
-         const description = req.body.description;
-         const filesArr = req.files;
-         let fileLocation = [];
-         for (let i = 0; i < filesArr.length; i++) {
-            fileLocation.push(filesArr[i].location);
-         }
-         const dataSummary = {
-            bookName,
-            author,
-            tags,
-            releasedYear,
-            pages,
-            fileSize,
-            description,
-            bookCoverLocation: fileLocation[0],
-            pdfLocation: fileLocation[1],
-         };
-         new ebookDatas(dataSummary)
-            .save()
-            .then((ebookData) => {
-               return res.status(200).json({ data: ebookData });
-            })
-            .catch((err) => {
-               console.log("err");
-               return res
-                  .status(500)
-                  .json({ msg: "Can't add data to DB", errMsg: err });
-            });
+      const reqTags = req.body.tags.split(" ");
+      const tags = reqTags.map((tag) => tag.toLowerCase());
+      const bookName = req.body.bookName;
+      const author = req.body.author;
+      const releasedYear = req.body.releasedYear;
+      const pages = req.body.pages;
+      const fileSize = (req.files[1].size / 1000000).toFixed(1);
+      const description = req.body.description;
+      const filesArr = req.files;
+      let fileLocation = [];
+      for (let i = 0; i < filesArr.length; i++) {
+         fileLocation.push(filesArr[i].location);
+      }
+      const dataSummary = {
+         bookName,
+         author,
+         tags,
+         releasedYear,
+         pages,
+         fileSize,
+         description,
+         bookCoverLocation: fileLocation[0],
+         pdfLocation: fileLocation[1],
+      };
+      new ebookDatas(dataSummary)
+         .save()
+         .then((ebookData) => {
+            return res.status(200).json({ data: ebookData });
+         })
+         .catch((err) => {
+            console.log("err");
+            return res
+               .status(500)
+               .json({ msg: "Can't add data to DB", errMsg: err });
+         });
    });
 };
 
