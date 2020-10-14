@@ -204,7 +204,11 @@ class AddEbook extends Component {
       form.append("description", this.state.uploadedForm.description.value);
       form.append("files", this.state.selectedImage);
       form.append("files", this.state.selectedPdf);
-      this.props.onAddEbook(form, this.props);
+      this.props.onAddEbook(
+         form,
+         this.state.uploadedForm.bookName.value,
+         this.props
+      );
       const updateForm = { ...this.state.uploadedForm };
       for (const key in updateForm) {
          updateForm[key].value = "";
@@ -216,7 +220,9 @@ class AddEbook extends Component {
       // Flash Message
       let flashMessage;
       if (this.props.flashMsg && !this.props.loading) {
-         flashMessage = <Flash message={this.props.flashMsg} type="success" />;
+         flashMessage = (
+            <Flash message={this.props.flashMsg} type={this.props.flashType} />
+         );
       }
 
       let inputs = [];
@@ -283,12 +289,14 @@ const stateToProps = (state) => {
    return {
       loading: state.ebook.loading,
       flashMsg: state.flash.flashMsg,
+      flashType: state.flash.flashType,
    };
 };
 
 const dispatchToProps = (dispatch) => {
    return {
-      onAddEbook: (data, props) => dispatch(actions.onAddEbook(data, props)),
+      onAddEbook: (data, bookName) =>
+         dispatch(actions.onAddEbook(data, bookName)),
    };
 };
 

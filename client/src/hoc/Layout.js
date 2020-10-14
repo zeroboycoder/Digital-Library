@@ -16,6 +16,7 @@ const Layout = (props) => {
       setIsShow(false);
    };
 
+   console.log(props);
    return (
       <Aux>
          <Toolbar clicked={openSlideDraw} />

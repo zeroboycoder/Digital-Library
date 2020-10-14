@@ -12,6 +12,7 @@ import SearchEbookByCategory from "./containers/SearchEbookByCategory/SearchEboo
 import SearchEbooksByInputName from "./containers/SearchEbooksByInputName/SearchEbooksByInputName";
 import Setting from "./containers/Setting/Setting";
 import SignIn from "./containers/auth/signin/signin";
+import PageNotFound from "./containers/PageNotFound/PageNotFound";
 
 class App extends Component {
    state = {};
@@ -26,7 +27,6 @@ class App extends Component {
          <Layout>
             <Switch>
                <Route path="/auth/signin" component={SignIn} />
-
                <Route path="/add-ebook" component={AddEbook} />
                <Route
                   path="/ebooks/searched"
@@ -43,8 +43,8 @@ class App extends Component {
                />
                <Route path="/setting" component={Setting} />
                <Route path="/" exact component={Home} />
-               {/* Page Not Found
-               <Route component={SignIn} /> */}
+               Page Not Found
+               <Route component={PageNotFound} />
             </Switch>
          </Layout>
       );

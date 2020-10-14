@@ -133,6 +133,13 @@ const ebookReducer = (state = initState, action) => {
             ...state,
             loading: false,
          };
+         /* Page Not Found */
+         case actionTypes.PAGE_NOT_FOUND:{
+            return {
+               ...state,
+               loading : true
+            }
+         }
       default:
          return state;
    }

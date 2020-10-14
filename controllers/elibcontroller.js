@@ -193,6 +193,16 @@ exports.fetchEbooks = (req, res) => {
 // Add Ebooks
 // ============
 exports.addEbooks = (req, res) => {
+   // Check Uploaded book is existing or not by bookname
+   const bookName = req.body.bookName;
+   ebookDatas.findOne({ bookName }).then((book) => {
+      // If book found, return err msg
+      if (book) {
+         return res.status(400).json({ errMsg: "This book is existing" });
+      }
+   });
+   // If incoming book is not existing
+   // Add ebook
    uploadFile(req, res, (err) => {
       if (err) {
          if (err.code === "NetworkingError") {
@@ -201,9 +211,9 @@ exports.addEbooks = (req, res) => {
          console.log("_error : ", err);
          return res.status(err.statusCode).json({ errMsg: err.message });
       }
+      const bookName = req.body.bookName;
       const reqTags = req.body.tags.split(" ");
       const tags = reqTags.map((tag) => tag.toLowerCase());
-      const bookName = req.body.bookName;
       const author = req.body.author;
       const releasedYear = req.body.releasedYear;
       const pages = req.body.pages;

@@ -21,16 +21,16 @@ const addEbookFail = (errMsg) => {
    };
 };
 
-export const onAddEbook = (data) => (dispatch) => {
+export const onAddEbook = (data, bookName) => (dispatch) => {
    dispatch(addEbookStart());
    axios
       .post("/api/ebooks/add", data)
       .then((response) => {
          dispatch(addEbookSuccess());
-         dispatch(action.onFlash("Ebook uploaded successfully"));
+         dispatch(action.onFlash("Ebook uploaded successfully", "success"));
       })
       .catch((err) => {
-         console.log(err);
-         dispatch(addEbookFail(err));
+         dispatch(action.onFlash(err.response.data.errMsg, "error"));
+         dispatch(addEbookFail(err.response.data.errMsg));
       });
 };

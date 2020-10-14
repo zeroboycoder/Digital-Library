@@ -2,6 +2,7 @@ import * as actionTypes from "../action/actionTypes";
 
 const initState = {
    flashMsg: "",
+   flashType: "",
 };
 
 const reducer = (state = initState, action) => {
@@ -9,6 +10,7 @@ const reducer = (state = initState, action) => {
       case actionTypes.FLASH_START:
          return {
             flashMsg: action.flashMsg,
+            flashType: action.flashType,
          };
       case actionTypes.FLASH_END:
          return {

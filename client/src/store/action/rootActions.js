@@ -9,3 +9,4 @@ export { onLoadUser, onSignUp, onSignIn, onLogOut } from "./authAction";
 export { onEditAuth } from "./editAuthAction";
 export { onFlash } from "./flashAction";
 export { onFeedback, onBookRequest } from "./FooterAction";
+export { onPageNotFound } from "./pageNotFound";

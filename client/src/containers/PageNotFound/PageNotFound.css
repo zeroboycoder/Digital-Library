@@ -1,0 +1,50 @@
+.PageNotFound {
+   color: var(--white);
+   background: linear-gradient(
+      to right,
+      #6018a8,
+      #8134ce,
+      #be9ce1
+   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.PageNotFound__Body {
+   max-width: 1040px;
+   width: 90%;
+   height: 100vh;
+   margin: 0 auto;
+   justify-content: center;
+   align-items: center;
+}
+
+.PageNotFound__Left,
+.PageNotFound__Right {
+   padding: 0;
+}
+
+.PageNotFound__Left * {
+   margin: 25px 0;
+   letter-spacing: 0.5px;
+   word-spacing: 2px;
+}
+
+.PageNotFound__Left h1 {
+   font: 400 60px var(--font_family);
+}
+
+.PageNotFound__Left h2 {
+   font: 400 36px var(--font_family);
+}
+
+.PageNotFound__Left p {
+   font: 400 20px var(--font_family);
+   line-height: 26px;
+}
+
+.PageNotFound__Right h1 {
+   margin: 0;
+   text-align: center;
+   color: #6a3ab2;
+   font: 400 190px var(--font_family);
+   text-shadow: 2px 2px 6px #000000fa;
+}

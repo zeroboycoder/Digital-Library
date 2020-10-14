@@ -1,9 +1,10 @@
 import * as actionTypes from "./actionTypes";
 
-const flashStart = (flashMsg) => {
+const flashStart = (flashMsg, flashType) => {
    return {
       type: actionTypes.FLASH_START,
-      flashMsg: flashMsg,
+      flashMsg,
+      flashType,
    };
 };
 
@@ -13,8 +14,8 @@ const flashEnd = () => {
    };
 };
 
-export const onFlash = (flashMsg) => (dispatch) => {
-   dispatch(flashStart(flashMsg));
+export const onFlash = (flashMsg, flashType) => (dispatch) => {
+   dispatch(flashStart(flashMsg, flashType));
    setTimeout(() => {
       dispatch(flashEnd());
    }, 5000);
