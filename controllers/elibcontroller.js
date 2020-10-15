@@ -254,8 +254,10 @@ exports.addEbooks = (req, res) => {
 // ============
 exports.deleteEbook = (req, res) => {
    const bookId = req.params.bookId;
-   console.log(bookId);
-   return res.status(200).json({ message: "success" });
+   ebookDatas
+      .deleteOne({ _id: bookId })
+      .then((success) => res.status(200).json({ message: "success" }))
+      .catch((err) => res.status(400).json({ errMsg: err }));
 };
 
 // ===================
