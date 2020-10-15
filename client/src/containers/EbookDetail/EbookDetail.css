@@ -35,27 +35,42 @@ p.BookInfo__Info__Desc {
    margin-bottom: 50px;
 }
 
-.BookInfo__Info__DownloadBtn {
+.BookInfo__Info__Btn {
    position: absolute;
    right: 0;
    bottom: 0;
 }
 
-.BookInfo__Info__DownloadBtn button {
+.BookInfo__Info__Btn i {
+   font-size: 20px;
+   margin-right: 8px;
+}
+
+.BookInfo__Info__Btn button {
    outline: none;
-   padding: 6px 35px;
+   padding: 6px 30px;
+   margin-left: 20px;
    font: 500 20px var(--font_family);
-   color: var(--black);
-   background-color: var(--LiGreen);
-   border: 1px solid var(--pink-gray);
+   border: none;
    border-radius: 20px;
-   box-shadow: 1px 2px 7px darkgreen;
    transition: all 0.3s;
 }
 
-.BookInfo__Info__DownloadBtn button:hover,
-.BookInfo__Info__DownloadBtn button:active {
-   background-color: #39e773;
+.BookInfo__Info__Btn__Delete {
+   color: white;
+   background-color: var(--danger);
+   box-shadow: 1px 2px 7px darkred;
+}
+
+.BookInfo__Info__Btn__Download {
+   color: var(--black);
+   background-color: var(--LiGreen);
+   box-shadow: 1px 2px 7px darkgreen;
+}
+
+.BookInfo__Info__Btn__Download:hover,
+.BookInfo__Info__Btn__Download:active {
+   background-color: #16da57;
    box-shadow: 2px 3px 9px darkgreen;
 }
 /* ================== */

@@ -108,13 +108,20 @@ class EbookDetail extends Component {
                      <p className="BookInfo__Info__Desc">
                         {this.props.detail_of_ebook.description}
                      </p>
-                     <div className="BookInfo__Info__DownloadBtn">
+                     <div className="BookInfo__Info__Btn">
+                        {this.props.token && (
+                           <button className="BookInfo__Info__Btn__Delete">
+                              <i class="fas fa-trash"></i>Delete
+                           </button>
+                        )}
                         <a
                            href={this.props.detail_of_ebook.pdfLocation}
                            target="_blank"
                            rel="noopener noreferrer"
                         >
-                           <button>Download</button>
+                           <button className="BookInfo__Info__Btn__Download">
+                              <i class="fas fa-download"></i>Download
+                           </button>
                         </a>
                      </div>
                   </div>

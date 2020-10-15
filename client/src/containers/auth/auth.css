@@ -62,7 +62,7 @@
 
 .Auth__Warning p {
    margin: 15px 0 0 0;
-   font: 400 15px var(--font_family);
+   font: 500 15px var(--font_family);
    color: var(--danger);
 }
 
