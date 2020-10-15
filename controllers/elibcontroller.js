@@ -249,6 +249,15 @@ exports.addEbooks = (req, res) => {
    });
 };
 
+// ============
+// Delete Ebook
+// ============
+exports.deleteEbook = (req, res) => {
+   const bookId = req.params.bookId;
+   console.log(bookId);
+   return res.status(200).json({ message: "success" });
+};
+
 // ===================
 // Get Detail Of Ebook
 // ===================

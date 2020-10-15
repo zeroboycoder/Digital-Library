@@ -113,11 +113,11 @@ export const onSignIn = (data, props) => (dispatch) => {
       .then((response) => {
          dispatch(signInSuccess(response.data.token, response.data.user));
          props.history.push("/");
-         dispatch(action.onFlash("Login successfully"));
+         dispatch(action.onFlash("Login successfully", "success"));
       })
       .catch((err) => {
          dispatch(signInFail(err.response.data.errMsg));
-         dispatch(action.onFlash(err.response.data.errMsg));
+         dispatch(action.onFlash(err.response.data.errMsg, "fail"));
       });
 };
 
@@ -134,6 +134,7 @@ export const onLogOut = (props) => (dispatch) => {
    try {
       dispatch(logOutSuccess());
       props.history.push("/");
+      dispatch(action.onFlash("Logout successfully", "success"));
    } catch (error) {
       console.log(error);
    }

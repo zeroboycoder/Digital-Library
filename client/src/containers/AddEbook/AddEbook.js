@@ -4,7 +4,6 @@ import "./AddEbook.css";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { checkValidation, canClickBtn } from "../../util/helper";
-import Flash from "../../components/UI/Flash/Flash";
 import * as actions from "../../store/action/rootActions";
 
 class AddEbook extends Component {
@@ -217,14 +216,6 @@ class AddEbook extends Component {
    };
 
    render() {
-      // Flash Message
-      let flashMessage;
-      if (this.props.flashMsg && !this.props.loading) {
-         flashMessage = (
-            <Flash message={this.props.flashMsg} type={this.props.flashType} />
-         );
-      }
-
       let inputs = [];
       for (let key in this.state.uploadedForm) {
          inputs.push(
@@ -276,20 +267,13 @@ class AddEbook extends Component {
             </div>
          );
       }
-      return (
-         <React.Fragment>
-            {flashMessage}
-            {addEbook}
-         </React.Fragment>
-      );
+      return addEbook;
    }
 }
 
 const stateToProps = (state) => {
    return {
       loading: state.ebook.loading,
-      flashMsg: state.flash.flashMsg,
-      flashType: state.flash.flashType,
    };
 };
 

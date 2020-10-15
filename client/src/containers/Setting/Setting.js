@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./Setting.css";
 import settingBg from "../../assets/setting_bg.svg";
 import * as actions from "../../store/action/rootActions";
-import Flash from "../../components/UI/Flash/Flash";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Setting extends Component {
@@ -63,12 +62,6 @@ class Setting extends Component {
    };
 
    render() {
-      // Flash Message
-      let flashMessage;
-      if (this.props.flashMsg && !this.props.loading) {
-         flashMessage = <Flash message={this.props.flashMsg} type="success" />;
-      }
-
       // Show Username or Input box
       const username = this.state.chgUsername ? (
          <div className="Setting__UserInfo__ChgInput">
@@ -218,12 +211,7 @@ class Setting extends Component {
          );
       }
 
-      return (
-         <React.Fragment>
-            {flashMessage}
-            {setting}
-         </React.Fragment>
-      );
+      return setting;
    }
 }
 
@@ -234,7 +222,6 @@ const stateToProps = (state) => {
       email: state.auth.email,
       authLoading: state.auth.authLoading,
       loading: state.ebook.loading,
-      flashMsg: state.flash.flashMsg,
    };
 };
 

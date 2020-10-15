@@ -27,7 +27,7 @@ export const onBookRequest = (data) => (dispatch) => {
       .post("/api/ebooks/request", data)
       .then((response) => {
          dispatch(bookRequestSuccess());
-         dispatch(actions.onFlash("Thank you for you request."));
+         dispatch(actions.onFlash("Thank you for you request.", "success"));
       })
       .catch((err) => {
          dispatch(bookRequestFail());
@@ -37,6 +37,6 @@ export const onBookRequest = (data) => (dispatch) => {
 // Website Feedback
 export const onFeedback = (data) => (dispatch) => {
    axios.post("/api/feedback", data).then((response) => {
-      dispatch(actions.onFlash("Thanks for your feedback"));
+      dispatch(actions.onFlash("Thanks for your feedback","success"));
    });
 };

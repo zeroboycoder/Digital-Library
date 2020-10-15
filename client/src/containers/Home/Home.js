@@ -6,7 +6,6 @@ import * as actions from "../../store/action/rootActions";
 import { clickedLink } from "../../util/helper";
 import Carosal from "../../components/Carosal/Carosal";
 import SearchEbookByInputName from "../../components/SearchEbookByInputName/SearchEbookByInputName";
-import Flash from "../../components/UI/Flash/Flash";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Pagination from "../../components/Pagination/Pagination";
 
@@ -33,12 +32,6 @@ class Home extends Component {
    render() {
       let Home;
       let bookLists = [];
-
-      // Flash Message
-      let flashMessage;
-      if (this.props.flashMsg && !this.props.loading) {
-         flashMessage = <Flash message={this.props.flashMsg} type="success" />;
-      }
 
       // Add Ebook Data to BookList By looping
       if (this.props.ebook_datas) {
@@ -73,12 +66,7 @@ class Home extends Component {
             </div>
          );
       }
-      return (
-         <React.Fragment>
-            {flashMessage}
-            {Home}
-         </React.Fragment>
-      );
+      return Home;
    }
 }
 
@@ -86,7 +74,6 @@ const stateToProps = (state) => {
    return {
       ebook_datas: state.ebook.ebook_datas,
       loading: state.ebook.loading,
-      flashMsg: state.flash.flashMsg,
    };
 };
 

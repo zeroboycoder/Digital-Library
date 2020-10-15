@@ -12,7 +12,7 @@
    border-radius: 5px;
 }
 
-.Flash.error {
+.Flash.fail {
    color: #ff0033;
    border: 1px solid #e9899c;
    background-color: #f8d6dd;

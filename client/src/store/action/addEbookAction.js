@@ -30,7 +30,7 @@ export const onAddEbook = (data, bookName) => (dispatch) => {
          dispatch(action.onFlash("Ebook uploaded successfully", "success"));
       })
       .catch((err) => {
-         dispatch(action.onFlash(err.response.data.errMsg, "error"));
+         dispatch(action.onFlash(err.response.data.errMsg, "fail"));
          dispatch(addEbookFail(err.response.data.errMsg));
       });
 };

@@ -17,8 +17,11 @@ route.get("/api/ebooks/searched", E_Lib_Controller.fetchEbooks);
 // Get Ebook detail page
 route.get("/ebooks/:book_id", E_Lib_Controller.getDetailOfEbook);
 
-// Add ebooks api (Programmatically)
+// Add Ebooks api (Programmatically)
 route.post("/api/ebooks/add", E_Lib_Controller.addEbooks);
+
+// Delete Ebooks
+route.delete("/api/ebooks/delete/:bookId", E_Lib_Controller.deleteEbook);
 
 // Book Request
 route.post("/api/ebooks/request", requestController.bookRequest);

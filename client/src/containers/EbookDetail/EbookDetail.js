@@ -110,8 +110,16 @@ class EbookDetail extends Component {
                      </p>
                      <div className="BookInfo__Info__Btn">
                         {this.props.token && (
-                           <button className="BookInfo__Info__Btn__Delete">
-                              <i class="fas fa-trash"></i>Delete
+                           <button
+                              className="BookInfo__Info__Btn__Delete"
+                              onClick={() =>
+                                 this.props.onDeleteEbook(
+                                    this.props.detail_of_ebook._id,
+                                    this.props
+                                 )
+                              }
+                           >
+                              <i className="fas fa-trash"></i>Delete
                            </button>
                         )}
                         <a
@@ -128,6 +136,7 @@ class EbookDetail extends Component {
                </div>
             );
 
+            // Suggestion
             const suggestions = this.props.suggestionBooks.map(
                (suggestionBook) => {
                   return (
@@ -139,6 +148,7 @@ class EbookDetail extends Component {
                }
             );
 
+            // comment
             const showComment = this.props.comments.map((commentObj) => {
                const emailArr = commentObj.email.split("@");
                return (
@@ -217,6 +227,8 @@ const dispatchToProps = (dispatch) => {
          dispatch(actions.onFetchDetailOfEbook(book_id)),
       onAddComment: (book_id, data) =>
          dispatch(actions.onAddComment(book_id, data)),
+      onDeleteEbook: (book_id, props) =>
+         dispatch(actions.onDeleteEbook(book_id, props)),
    };
 };
 
