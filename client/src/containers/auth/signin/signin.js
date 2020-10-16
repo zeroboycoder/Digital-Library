@@ -84,6 +84,10 @@ class SignUp extends Component {
    };
 
    render() {
+      if (this.props.token) {
+         this.props.history.push("/");
+         this.props.onFlash("You already signed in", "success");
+      }
       let input = [];
       for (let key in this.state.signInForm) {
          input.push(
@@ -159,13 +163,15 @@ const stateToProps = (state) => {
    return {
       loading: state.auth.authLoading,
       authErrMsg: state.auth.authErrMsg,
+      token: state.auth.token,
    };
 };
 
 const dispatchtoProps = (dispatch) => {
    return {
       onSignIn: (data, props) => dispatch(actions.onSignIn(data, props)),
-      onFlash: (msg) => dispatch(actions.onFlash(msg)),
+      onFlash: (flashMsg, flashType) =>
+         dispatch(actions.onFlash(flashMsg, flashType)),
    };
 };
 
