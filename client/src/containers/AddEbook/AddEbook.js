@@ -216,6 +216,10 @@ class AddEbook extends Component {
    };
 
    render() {
+      if (!this.props.token) {
+         this.props.history.push("/auth/signin");
+         this.props.onFlash("You have no privilege. Please sign in.", "fail");
+      }
       let inputs = [];
       for (let key in this.state.uploadedForm) {
          inputs.push(
@@ -274,6 +278,7 @@ class AddEbook extends Component {
 const stateToProps = (state) => {
    return {
       loading: state.ebook.loading,
+      token: state.auth.token,
    };
 };
 
@@ -281,6 +286,8 @@ const dispatchToProps = (dispatch) => {
    return {
       onAddEbook: (data, bookName) =>
          dispatch(actions.onAddEbook(data, bookName)),
+      onFlash: (flashMsg, flashType) =>
+         dispatch(actions.onFlash(flashMsg, flashType)),
    };
 };
 

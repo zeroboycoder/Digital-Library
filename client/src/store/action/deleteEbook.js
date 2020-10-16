@@ -1,5 +1,4 @@
 import axios from "axios";
-import * as actionTypes from "./actionTypes";
 import * as actions from "./rootActions";
 
 export const onDeleteEbook = (bookId, props) => (dispatch) => {

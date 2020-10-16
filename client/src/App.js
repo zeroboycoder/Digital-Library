@@ -43,7 +43,7 @@ class App extends Component {
                />
                <Route path="/setting" component={Setting} />
                <Route path="/" exact component={Home} />
-               Page Not Found
+               {/* Page Not Found */}
                <Route component={PageNotFound} />
             </Switch>
          </Layout>
