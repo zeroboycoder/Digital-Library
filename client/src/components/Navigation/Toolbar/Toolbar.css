@@ -23,16 +23,10 @@ header nav {
    width: 100px;
 }
 
-.Brand a {
-   padding: 0;
-}
-
-.Brand a.NavItem:hover {
-   border: none;
-}
-
 .Logo {
+   cursor: pointer;
    width: 100%;
+   height: 40px;
 }
 
 .ToogleBtn {

@@ -27,7 +27,7 @@ const Layout = (props) => {
 
    return (
       <Aux>
-         <Toolbar clicked={openSlideDraw} />
+         <Toolbar clicked={openSlideDraw} history={props.history} />
          <SlideDraw showed={isShow} clicked={closeSlideDraw} />
          {flashMessage}
          {/* App */}
