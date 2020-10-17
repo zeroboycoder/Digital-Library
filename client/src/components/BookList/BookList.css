@@ -11,14 +11,26 @@
    transition: all 0.3s;
 }
 
+.BookList:hover {
+   margin: 0px 40px 50px 40px;
+}
+
+/* .BookList:hover .BookList__BookImage img { */
+/* opacity: 1; */
+/* background-image: linear-gradient(red, yellow, blue); */
+/* } */
+
 .BookList__BookImage {
    align-self: center;
    width: 100%;
+   /* background-color: #000; */
 }
 
 .BookList__BookImage img {
+   /* opacity: 0.7; */
    width: 100%;
    cursor: pointer;
+   transition: all 0.3s;
 }
 
 .BookList__Body {
