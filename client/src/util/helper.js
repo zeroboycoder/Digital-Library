@@ -36,7 +36,7 @@ export const canClickBtn = (form) => {
 
 // Check form validation
 // return boolean
-export const checkValidation = (value, rules, state) => {
+export const checkValidation = (value, rules, form) => {
    let validResult = false;
    if (value) {
       // if rule has isRequired
@@ -54,7 +54,7 @@ export const checkValidation = (value, rules, state) => {
       }
       // if rule has isMatch
       if (rules.isMatch) {
-         const password = state.signUpForm.password.value;
+         const password = form.password.value;
          validResult = password === value;
       }
       // if rule has isNumber

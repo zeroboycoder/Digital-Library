@@ -72,7 +72,7 @@ class SignUp extends Component {
             label: "Password",
             value: "",
             isValid: false,
-            errMsg: "Password have minimun 6 characters",
+            errMsg: "Password has minimun 6 characters",
          },
          c_password: {
             elementtype: "input",
@@ -100,7 +100,7 @@ class SignUp extends Component {
       updateSignupForm[key].isValid = checkValidation(
          value,
          updateSignupForm[key].validation,
-         this.state
+         this.state.signUpForm
       );
       this.setState({ signUpForm: updateSignupForm });
    };

@@ -1,190 +1,195 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./Setting.css";
-import settingBg from "../../assets/setting_bg.svg";
 import * as actions from "../../store/action/rootActions";
+import { checkValidation, reviewPassword } from "../../util/helper";
+import settingBg from "../../assets/setting_bg.svg";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 class Setting extends Component {
    state = {
-      chgUsername: false,
-      chgEmail: false,
-      chgPw: false,
-      username: "",
-      email: "",
-      password: "",
-      c_password: "",
+      userInfos: {
+         username: {
+            elementtype: "input",
+            elementconfig: {
+               type: "text",
+               placeholder: "Username",
+            },
+            validation: {
+               isRequired: true,
+            },
+            label: "Username",
+            value: "",
+            isValid: false,
+            errMessage: "Please set a username",
+            editCondition: false,
+         },
+         email: {
+            elementtype: "input",
+            elementconfig: {
+               type: "email",
+               placeholder: "Email Address",
+            },
+            validation: {
+               isRequired: true,
+               isEmail: true,
+            },
+            label: "Email",
+            value: "",
+            isValid: false,
+            errMessage: "Please set an email address",
+            editCondition: false,
+         },
+         password: {
+            elementtype: "input",
+            elementconfig: {
+               type: "password",
+               placeholder: "Password",
+            },
+            validation: {
+               isRequired: true,
+               minLength: 6,
+            },
+            label: "Password",
+            value: "",
+            isValid: false,
+            reviewPwIcon: <i className="far fa-eye"></i>,
+            errMessage: "Password has minimum 6 characters",
+            editCondition: false,
+         },
+         c_password: {
+            elementtype: "input",
+            elementconfig: {
+               type: "password",
+               placeholder: "Password",
+            },
+            validation: {
+               isRequired: true,
+               isMatch: true,
+            },
+            label: "Confirm Password",
+            value: "",
+            isValid: false,
+            reviewPwIcon: <i className="far fa-eye"></i>,
+            errMessage: "Password doesn't match",
+         },
+      },
    };
 
-   showInput = (label) => {
-      if (label === "username") {
-         this.setState({ chgUsername: true, chgEmail: false, chgPw: false });
-      }
-      if (label === "email") {
-         this.setState({ chgEmail: true, chgUsername: false, chgPw: false });
-      }
-      if (label === "password") {
-         this.setState({ chgPw: true, chgUsername: false, chgEmail: false });
-      }
-   };
-
-   inputChangeHandler = (event, label) => {
+   inputChangeHandler = (event, key) => {
       const value = event.target.value;
-      this.setState({ [label]: value });
+      const updateInfos = { ...this.state.userInfos };
+      updateInfos[key].value = value;
+      updateInfos[key].isTouch = true;
+      updateInfos[key].isValid = checkValidation(
+         value,
+         updateInfos[key].validation,
+         this.state.userInfos
+      );
+      this.setState({ userInfos: updateInfos });
    };
 
-   cancelInput = (label) => {
-      this.setState({ [label]: false });
+   toogleInput = (key) => {
+      const updateInfos = { ...this.state.userInfos };
+      // Must have one edit condition
+      // Incoming key's edit condition is true
+      // Others are false
+      for (let label in this.state.userInfos) {
+         key === label
+            ? (updateInfos[label].editCondition = !updateInfos[label]
+                 .editCondition)
+            : (updateInfos[label].editCondition = false);
+      }
+      key === "password"
+         ? (updateInfos.c_password.editCondition = true)
+         : (updateInfos.c_password.editCondition = false);
+      this.setState({ userInfos: updateInfos });
    };
 
-   saveInput = (label, value, chgLabel) => {
-      // Argument as object
+   saveInput = (key) => {
+      // Sent user_id and value
       const data = {
          userId: this.props.userId,
-         [label]: value,
+         key: this.state.userInfos[key].value,
       };
-      this.props.onEditAuth(data, label);
-      this.setState({ [chgLabel]: false });
+      // this.props.onEditAuth(data, key);
+      this.state.userInfos[key].editCondition = false;
    };
 
-   canClick = (label) => {
-      let click = false;
-      if (label !== "password") {
-         click = this.state[label].trim() !== "";
-      }
-      if (label === "password") {
-         click =
-            this.state.password.trim() !== "" &&
-            this.state.c_password.trim() !== "" &&
-            this.state.password === this.state.c_password;
-      }
-      return click;
+   reviewPasswordHandler = (key) => {
+      const updateInfos = reviewPassword(key, this.state.userInfos);
+      this.setState({ userInfos: updateInfos });
+   };
+
+   canClick = (key) => {
+      // If input is value
+      // return true
+      return this.state.userInfos[key].isValid;
    };
 
    render() {
-      // Show Username or Input box
-      const username = this.state.chgUsername ? (
-         <div className="Setting__UserInfo__ChgInput">
-            <p className="Setting__UserInfo__Label">Username:</p>
-            <input
-               type="text"
-               value={this.state.username}
-               onChange={(e) => this.inputChangeHandler(e, "username")}
-            />
-            <div className="Setting__UserInfor__ChgInput__Btns">
-               <button onClick={() => this.cancelInput("chgUsername")}>
-                  Cancel
-               </button>
-               <button
-                  onClick={() =>
-                     this.saveInput(
-                        "username",
-                        this.state.username,
-                        "chgUsername"
-                     )
-                  }
-                  disabled={!this.canClick("username")}
-               >
-                  Save
-               </button>
-            </div>
-         </div>
-      ) : (
-         <div>
-            <p className="Setting__UserInfo__Label">Username:</p>
-            <div className="Setting__UserInfo__Data">
-               <p>{this.props.username}</p>
-               <i
-                  className="fas fa-pen"
-                  onClick={() => this.showInput("username")}
-               ></i>
-            </div>
-         </div>
-      );
-
-      // Show Email or Input box
-      const email = this.state.chgEmail ? (
-         <div className="Setting__UserInfo__ChgInput">
-            <p className="Setting__UserInfo__Label">Email:</p>
-            <input
-               type="text"
-               value={this.state.email}
-               onChange={(e) => this.inputChangeHandler(e, "email")}
-            />
-            <div className="Setting__UserInfor__ChgInput__Btns">
-               <button onClick={() => this.cancelInput("chgEmail")}>
-                  Cancel
-               </button>
-               <button
-                  onClick={() =>
-                     this.saveInput("email", this.state.email, "chgEmail")
-                  }
-                  disabled={!this.canClick("email")}
-               >
-                  Save
-               </button>
-            </div>
-         </div>
-      ) : (
-         <div>
-            <p className="Setting__UserInfo__Label">Email:</p>
-            <div className="Setting__UserInfo__Data">
-               <p>{this.props.email}</p>
-               <i
-                  className="fas fa-pen"
-                  onClick={() => this.showInput("email")}
-               ></i>
-            </div>
-         </div>
-      );
-
-      // Show Password or Input box
-      const password = this.state.chgPw ? (
-         <div>
-            <div className="Setting__UserInfo__ChgInput">
-               <p className="Setting__UserInfo__Label">Password:</p>
-               <input
-                  type="password"
-                  value={this.state.password}
-                  onChange={(e) => this.inputChangeHandler(e, "password")}
-               />
-            </div>
-            <div className="Setting__UserInfo__ChgInput">
-               <p className="Setting__UserInfo__Label__CPw">
-                  Confirm Password:
-               </p>
-               <input
-                  type="password"
-                  value={this.state.c_password}
-                  onChange={(e) => this.inputChangeHandler(e, "c_password")}
-               />
-               <div className="Setting__UserInfor__ChgInput__Btns">
-                  <button onClick={() => this.cancelInput("chgPw")}>
-                     Cancel
-                  </button>
-                  <button
-                     onClick={() =>
-                        this.saveInput("password", this.state.password, "chgPw")
-                     }
-                     disabled={!this.canClick("password")}
-                  >
-                     Save
-                  </button>
+      let infoGroup = [];
+      let labelsForShow = ["username", "email", "password"];
+      for (let key in this.state.userInfos) {
+         // If Edit Condition is false
+         // Show user info (Username, Email, Password)
+         if (!this.state.userInfos[key].editCondition) {
+            if (labelsForShow.includes(key)) {
+               infoGroup.push(
+                  <div key={key}>
+                     <p className="Setting__UserInfo__Label">
+                        {this.state.userInfos[key].label}:
+                     </p>
+                     <div className="Setting__UserInfo__Data">
+                        <p>{this.props[key]}</p>
+                        <i
+                           className="fas fa-pen"
+                           onClick={() => this.toogleInput(key)}
+                        ></i>
+                     </div>
+                  </div>
+               );
+            }
+         } else {
+            // Else Edit Condition is true
+            // Show input to edit
+            infoGroup.push(
+               <div className="Setting__UserInfo__ChgInput" key={key}>
+                  <p className="Setting__UserInfo__Label">
+                     {this.state.userInfos[key].label}:
+                  </p>
+                  <div className="Setting__UerInfo__InputGroup">
+                     <input
+                        {...this.state.userInfos[key].elementconfig}
+                        value={this.state.userInfos[key].value}
+                        onChange={(e) => this.inputChangeHandler(e, key)}
+                     />
+                     {this.state.userInfos[key].reviewPwIcon ? (
+                        <div
+                           className="Setting__UerInfo__InputGroup__ReviewPw"
+                           onClick={() => this.reviewPasswordHandler(key)}
+                        >
+                           {this.state.userInfos[key].reviewPwIcon}
+                        </div>
+                     ) : null}
+                  </div>
+                  {key !== "password" ? (
+                     <div className="Setting__UserInfor__ChgInput__Btns">
+                        <button onClick={() => this.toogleInput(key)}>
+                           Cancel
+                        </button>
+                        <button
+                           onClick={() => this.saveInput(key)}
+                           disabled={!this.canClick(key)}
+                        >
+                           Save
+                        </button>
+                     </div>
+                  ) : null}
                </div>
-            </div>
-         </div>
-      ) : (
-         <div>
-            <p className="Setting__UserInfo__Label">Password:</p>
-            <div className="Setting__UserInfo__Data">
-               <p>*******</p>
-               <i
-                  className="fas fa-pen"
-                  onClick={() => this.showInput("password")}
-               ></i>
-            </div>
-         </div>
-      );
+            );
+         }
+      }
 
       let setting;
       if (this.props.authLoading || this.props.loading) {
@@ -201,11 +206,7 @@ class Setting extends Component {
                </div>
                {/* Right Columm */}
                <div className="col col-md-6">
-                  <div className="Setting__UserInfo">
-                     <div className="Setting__UserInfo__Group">{username}</div>
-                     <div className="Setting__UserInfo__Group">{email}</div>
-                     <div className="Setting__UserInfo__Group">{password}</div>
-                  </div>
+                  <div className="Setting__UserInfo__Group">{infoGroup}</div>
                </div>
             </div>
          );
@@ -220,6 +221,7 @@ const stateToProps = (state) => {
       userId: state.auth.userId,
       username: state.auth.username,
       email: state.auth.email,
+      password: "******",
       authLoading: state.auth.authLoading,
       loading: state.ebook.loading,
    };

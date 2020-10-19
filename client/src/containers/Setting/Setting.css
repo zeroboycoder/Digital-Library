@@ -56,10 +56,15 @@ p.Setting__UserInfo__Label__CPw {
 }
 
 /* Change UserInfo */
-.Setting__UserInfo__ChgInput input {
+.Setting__UerInfo__InputGroup {
+   position: relative;
+   width: 90%;
+}
+
+.Setting__UerInfo__InputGroup input {
    outline: none;
    border: none;
-   width: 90%;
+   width: 100%;
    padding: 5px 10px 5px 0;
    font: 500 18px var(--font_family);
    letter-spacing: 0.5px;
@@ -67,10 +72,18 @@ p.Setting__UserInfo__Label__CPw {
    transition: all 0.3s;
 }
 
-.Setting__UserInfo__ChgInput input:hover,
-.Setting__UserInfo__ChgInput input:active,
-.Setting__UserInfo__ChgInput input:focus {
+.Setting__UerInfo__InputGroup input:hover,
+.Setting__UerInfo__InputGroup input:active,
+.Setting__UerInfo__InputGroup input:focus {
    border-bottom-color: var(--black);
+}
+
+.Setting__UerInfo__InputGroup__ReviewPw {
+   position: absolute;
+   top: 50%;
+   right: 10px;
+   transform: translate(0, -50%);
+   cursor: pointer;
 }
 
 .Setting__UserInfor__ChgInput__Btns {

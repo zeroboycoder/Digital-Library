@@ -79,7 +79,7 @@ class AddEbook extends Component {
                isRequired: true,
                isNumber: true,
             },
-            label: "Number of Page",
+            label: "Number of Page", 
             value: "",
             isValid: false,
             errMsg: "Only numbers are allowed.",
