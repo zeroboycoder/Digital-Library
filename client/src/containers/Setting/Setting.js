@@ -113,16 +113,17 @@ class Setting extends Component {
    };
 
    saveInput = (key) => {
+      // If key is conform password
+      // Check Is Match Password and Confirm Password?
       if (key === "c_password") {
-         this.state.userInfos.password.editCondition = false;
-         this.state.userInfos.c_password.editCondition = false;
-         this.state.userInfos.password.value = "";
-         this.state.userInfos.c_password.value = "";
-         key === "c_password" ? (key = "password") : (key = key);
-      } else {
-         this.state.userInfos[key].editCondition = false;
-         this.state.userInfos[key].isTouch = false;
-         this.state.userInfos[key].value = "";
+         const pw = this.state.userInfos.password.value;
+         const c_pw = this.state.userInfos.c_password.value;
+         if (pw === c_pw) {
+            key = "password";
+         } else {
+            this.props.onFlash("Password does not match.", "fail");
+            return;
+         }
       }
       // Sent user_id and value
       const data = {
@@ -130,6 +131,13 @@ class Setting extends Component {
          [key]: this.state.userInfos[key].value,
       };
       this.props.onEditAuth(data, key);
+      // Exchange all values and editCondition
+      const updateInfos = { ...this.state.userInfos };
+      for (let key in updateInfos) {
+         updateInfos[key].editCondition = false;
+         updateInfos[key].value = "";
+      }
+      this.setState({ userInfos: updateInfos });
    };
 
    reviewPasswordHandler = (key) => {
@@ -254,6 +262,8 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
    return {
       onEditAuth: (data, label) => dispatch(actions.onEditAuth(data, label)),
+      onFlash: (flashMsg, flashType) =>
+         dispatch(actions.onFlash(flashMsg, flashType)),
    };
 };
 
