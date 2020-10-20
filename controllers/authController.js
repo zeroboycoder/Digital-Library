@@ -94,6 +94,7 @@ exports.signInUser = (req, res) => {
 // Edit Credentails
 exports.editCredentials = (req, res, next) => {
    const { userId, username, email, password } = req.body;
+   console.log(req.body);
    authModel.findById(userId).then((user) => {
       if (password) {
          return bcrypt.genSalt(10, (err, salt) => {

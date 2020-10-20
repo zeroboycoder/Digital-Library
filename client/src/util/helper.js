@@ -52,6 +52,7 @@ export const checkValidation = (value, rules, form) => {
       if (rules.minLength) {
          validResult = value.length >= rules.minLength;
       }
+
       // if rule has isMatch
       if (rules.isMatch) {
          const password = form.password.value;

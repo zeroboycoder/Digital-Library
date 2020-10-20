@@ -107,13 +107,22 @@ class Setting extends Component {
    };
 
    saveInput = (key) => {
+      if (key === "c_password") {
+         this.state.userInfos.password.editCondition = false;
+         this.state.userInfos.c_password.editCondition = false;
+         this.state.userInfos.password.value = "";
+         this.state.userInfos.c_password.value = "";
+         key === "c_password" ? (key = "password") : (key = key);
+      } else {
+         this.state.userInfos[key].editCondition = false;
+         this.state.userInfos[key].value = "";
+      }
       // Sent user_id and value
       const data = {
          userId: this.props.userId,
-         key: this.state.userInfos[key].value,
+         [key]: this.state.userInfos[key].value,
       };
-      // this.props.onEditAuth(data, key);
-      this.state.userInfos[key].editCondition = false;
+      this.props.onEditAuth(data, key);
    };
 
    reviewPasswordHandler = (key) => {
@@ -136,7 +145,7 @@ class Setting extends Component {
          if (!this.state.userInfos[key].editCondition) {
             if (labelsForShow.includes(key)) {
                infoGroup.push(
-                  <div key={key}>
+                  <div key={key} className="Setting__UserInfo__Group">
                      <p className="Setting__UserInfo__Label">
                         {this.state.userInfos[key].label}:
                      </p>
@@ -158,12 +167,14 @@ class Setting extends Component {
                   <p className="Setting__UserInfo__Label">
                      {this.state.userInfos[key].label}:
                   </p>
+                  {/* Show Input */}
                   <div className="Setting__UerInfo__InputGroup">
                      <input
                         {...this.state.userInfos[key].elementconfig}
                         value={this.state.userInfos[key].value}
                         onChange={(e) => this.inputChangeHandler(e, key)}
                      />
+                     {/* Show review password icon if has */}
                      {this.state.userInfos[key].reviewPwIcon ? (
                         <div
                            className="Setting__UerInfo__InputGroup__ReviewPw"
@@ -173,6 +184,13 @@ class Setting extends Component {
                         </div>
                      ) : null}
                   </div>
+                  {/* Show err message */}
+                  {this.state.userInfos[key].isTouch &&
+                  !this.state.userInfos[key].isValid ? (
+                     <label className="Input__ErrorMessage">
+                        {this.state.userInfos[key].errMessage}
+                     </label>
+                  ) : null}
                   {key !== "password" ? (
                      <div className="Setting__UserInfor__ChgInput__Btns">
                         <button onClick={() => this.toogleInput(key)}>
@@ -206,7 +224,7 @@ class Setting extends Component {
                </div>
                {/* Right Columm */}
                <div className="col col-md-6">
-                  <div className="Setting__UserInfo__Group">{infoGroup}</div>
+                  <div className="Setting__UserInfo">{infoGroup}</div>
                </div>
             </div>
          );

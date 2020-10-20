@@ -29,7 +29,9 @@ export const onEditAuth = (data, label) => (dispatch) => {
       .post("/api/auth/edit", data)
       .then((response) => {
          dispatch(editAuthSuccess(response.data.user));
-         dispatch(actions.onFlash(`${labelName} changed successfully`));
+         dispatch(
+            actions.onFlash(`${labelName} changed successfully`, "success")
+         );
       })
       .catch((err) => dispatch(editAuthFail(err)));
 };

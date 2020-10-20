@@ -25,14 +25,14 @@
    margin: 30px auto 0 auto;
 }
 
-.Setting__UserInfo__Group {
-   margin-bottom: 40px;
-}
-
-.Setting__UserInfo__Group p {
+.Setting__UserInfo p {
    font: 500 22px var(--font_family);
    margin: 10px 0;
    letter-spacing: 0.5px;
+}
+
+.Setting__UserInfo__Group {
+   margin-bottom: 40px;
 }
 
 .Setting__UserInfo__Label {
@@ -56,6 +56,10 @@ p.Setting__UserInfo__Label__CPw {
 }
 
 /* Change UserInfo */
+.Setting__UserInfo__ChgInput {
+   margin-top: 15px;
+}
+
 .Setting__UerInfo__InputGroup {
    position: relative;
    width: 90%;
@@ -66,6 +70,7 @@ p.Setting__UserInfo__Label__CPw {
    border: none;
    width: 100%;
    padding: 5px 10px 5px 0;
+   margin: 10px 0 5px 0;
    font: 500 18px var(--font_family);
    letter-spacing: 0.5px;
    border-bottom: 1px solid var(--pink-gray);
