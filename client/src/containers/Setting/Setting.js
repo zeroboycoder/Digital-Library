@@ -229,7 +229,6 @@ class Setting extends Component {
             </div>
          );
       }
-
       return setting;
    }
 }
