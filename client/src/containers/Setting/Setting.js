@@ -37,7 +37,7 @@ class Setting extends Component {
             label: "Email",
             value: "",
             isValid: false,
-            errMessage: "Please set an email address",
+            errMessage: "Email is not valid",
             editCondition: false,
          },
          password: {
@@ -95,10 +95,16 @@ class Setting extends Component {
       // Incoming key's edit condition is true
       // Others are false
       for (let label in this.state.userInfos) {
-         key === label
-            ? (updateInfos[label].editCondition = !updateInfos[label]
-                 .editCondition)
-            : (updateInfos[label].editCondition = false);
+         if (key === label) {
+            updateInfos[label].editCondition = !updateInfos[label]
+               .editCondition;
+            updateInfos[label].isTouch = false;
+            updateInfos[label].value = "";
+         } else {
+            updateInfos[label].editCondition = false;
+            updateInfos[label].isTouch = false;
+            updateInfos[label].value = "";
+         }
       }
       key === "password"
          ? (updateInfos.c_password.editCondition = true)
@@ -115,6 +121,7 @@ class Setting extends Component {
          key === "c_password" ? (key = "password") : (key = key);
       } else {
          this.state.userInfos[key].editCondition = false;
+         this.state.userInfos[key].isTouch = false;
          this.state.userInfos[key].value = "";
       }
       // Sent user_id and value
