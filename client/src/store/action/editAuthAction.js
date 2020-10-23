@@ -33,5 +33,7 @@ export const onEditAuth = (data, label) => (dispatch) => {
             actions.onFlash(`${labelName} changed successfully`, "success")
          );
       })
-      .catch((err) => dispatch(editAuthFail(err)));
+      .catch((err) => {
+         dispatch(editAuthFail(err));
+      });
 };

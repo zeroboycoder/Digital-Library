@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import BookList from "../../components/BookList/BookList";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import SearchEbooksByInputNameBox from "../../components/SearchEbookByInputName/SearchEbookByInputName";
+import NoEbookFound from "../../components/NoEbookFound/NoEbookFound";
 import { clickedLink } from "../../util/helper";
 import * as actions from "../../store/action/rootActions";
 
@@ -42,13 +43,17 @@ class SearchEbooksByInputName extends Component {
             /* ["for", "beginner"] => for beginner */
             finalQueryValue = splitQuery.join(" ");
          }
-         const searchDataArr = this.props.ebook_datas.map((ebook) => (
+         console.log(finalQueryValue);
+         let searchDataArr = this.props.ebook_datas.map((ebook) => (
             <BookList
                key={ebook._id}
                {...ebook}
                clicked={() => clickedLink(ebook._id, this.props)}
             />
          ));
+         if (this.props.ebook_datas.length <= 0) {
+            searchDataArr = <NoEbookFound />;
+         }
          searchedEbooks = (
             <div className="SearchEbookByCategory">
                <div className="SearchEbookByInputNameBox">

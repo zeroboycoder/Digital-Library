@@ -94,31 +94,44 @@ exports.signInUser = (req, res) => {
 // Edit Credentails
 exports.editCredentials = (req, res, next) => {
    const { userId, username, email, password } = req.body;
-   authModel.findById(userId).then((user) => {
-      if (password) {
-         return bcrypt.genSalt(10, (err, salt) => {
-            if (err) {
-               return res.status(500).json({ errMsg: "Something went wrong" });
+   authModel
+      .findById(userId)
+      .then((user) => {
+         if (user) {
+            if (password) {
+               bcrypt.genSalt(10, (err, salt) => {
+                  if (err) {
+                     console.log("err in 103", err);
+                     return res
+                        .status(500)
+                        .json({ errMsg: "Something went wrong" });
+                  }
+                  bcrypt.hash(password, salt, (err, hashPassword) => {
+                     user.password = hashPassword;
+                     user.save().then((newUser) => {
+                        return res.status(200).json({
+                           user: {
+                              userId: newUser._id,
+                              username: newUser.username,
+                              email: newUser.email,
+                           },
+                        });
+                     });
+                  });
+               });
             }
-            bcrypt.hash(password, salt, (err, hashPassword) => {
-               user.password = hashPassword;
-               user.save();
-               return res
-                  .status(200)
-                  .json({ msg: "Password changed successfully" });
+            username ? (user.username = username) : null;
+            email ? (user.email = email) : null;
+            user.save().then((newUser) => {
+               return res.status(200).json({
+                  user: {
+                     userId: newUser._id,
+                     username: newUser.username,
+                     email: newUser.email,
+                  },
+               });
             });
-         });
-      }
-      username ? (user.username = username) : null;
-      email ? (user.email = email) : null;
-      user.save().then((newUser) => {
-         return res.status(200).json({
-            user: {
-               userId: newUser._id,
-               username: newUser.username,
-               email: newUser.email,
-            },
-         });
-      });
-   });
+         }
+      })
+      .catch((err) => console.log(err));
 };

@@ -3,7 +3,7 @@ import "./BookRequest.css";
 
 const BookRequest = (props) => {
    return (
-      <div className="BookRequest">
+      <div className="BookRequest" id="requestBook">
          <form onSubmit={props.formSubmit}>
             <div className="form-group">
                <input
