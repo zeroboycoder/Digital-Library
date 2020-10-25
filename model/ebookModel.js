@@ -37,9 +37,9 @@ const ebookSchema = new mongoose.Schema({
       type: String,
       required: true,
    },
-   comments : {
-      type : Array
-   }
+   comments: {
+      type: Array,
+   },
 });
 
 module.exports = mongoose.model("ebook_datas", ebookSchema);

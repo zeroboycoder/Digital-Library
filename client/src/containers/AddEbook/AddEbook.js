@@ -49,7 +49,7 @@ class AddEbook extends Component {
             },
             label: "Tags",
             guideLine:
-               "You meed to attach minimun 3 tags. Use space between tags.",
+               "You need to attach minimun 3 tags. Use space between tags.",
             value: "",
             isValid: false,
             errMsg: "Please attach minimun 3 tags.",

@@ -78,6 +78,7 @@ class EbookDetail extends Component {
    };
 
    render() {
+      console.log(this.props);
       let ebookDetail = null;
       // Whether Show Spinner or Result page by checking loading
       if (this.props.loading) {
@@ -101,7 +102,7 @@ class EbookDetail extends Component {
                         Release Year: {this.props.detail_of_ebook.releasedYear}
                      </p>
                      <p>Author: {this.props.detail_of_ebook.author}</p>
-                     <p>File Size: {this.props.detail_of_ebook.fileSide} MB</p>
+                     <p>File Size: {this.props.detail_of_ebook.fileSize} MB</p>
                      <p>
                         Page Number: {this.props.detail_of_ebook.pages} Pages
                      </p>
@@ -128,7 +129,7 @@ class EbookDetail extends Component {
                            rel="noopener noreferrer"
                         >
                            <button className="BookInfo__Info__Btn__Download">
-                              <i class="fas fa-download"></i>Download
+                              <i className="fas fa-download"></i>Download
                            </button>
                         </a>
                      </div>

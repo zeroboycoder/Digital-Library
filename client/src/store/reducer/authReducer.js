@@ -5,6 +5,7 @@ const initState = {
    userId: null,
    username: null,
    email: null,
+   major: null,
    authErrMsg: null,
    authLoading: false,
 };
@@ -28,6 +29,7 @@ const reducer = (state = initState, action) => {
             userId: action.user.userId,
             username: action.user.username,
             email: action.user.email,
+            major: action.user.major,
             authLoading: false,
          };
       case actionTypes.SIGN_UP_FAIL:
@@ -58,6 +60,7 @@ const reducer = (state = initState, action) => {
             userId: action.user._id,
             username: action.user.username,
             email: action.user.email,
+            major: action.user.major,
             authLoading: false,
          };
       }
@@ -75,6 +78,7 @@ const reducer = (state = initState, action) => {
             userId: null,
             username: null,
             email: null,
+            major: null,
          };
       }
       default:
