@@ -42,8 +42,8 @@ p.BookInfo__Info__Desc {
 }
 
 .BookInfo__Info__Btn i {
-   font-size: 20px;
-   margin-right: 8px;
+   font-size: 19px;
+   margin-right: 9px;
 }
 
 .BookInfo__Info__Btn button {
@@ -110,6 +110,13 @@ p.BookInfo__Info__Desc {
 
 .EbookDetail__Suggestions__Books:first-of-type {
    margin-left: -2%;
+}
+
+/* No suggestion book */
+.EbookDetail__Suggestions__Books h2 {
+   width: 100%;
+   margin: 10px 0 0 30px;
+   font: 400 24px var(--font_family);
 }
 
 /* =============== */

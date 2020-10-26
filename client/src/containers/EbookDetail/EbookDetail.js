@@ -129,7 +129,8 @@ class EbookDetail extends Component {
                            rel="noopener noreferrer"
                         >
                            <button className="BookInfo__Info__Btn__Download">
-                              <i className="fas fa-download"></i>Download
+                              <i className="fas fa-book-open"></i>
+                              Read
                            </button>
                         </a>
                      </div>
@@ -138,16 +139,21 @@ class EbookDetail extends Component {
             );
 
             // Suggestion
-            const suggestions = this.props.suggestionBooks.map(
-               (suggestionBook) => {
-                  return (
-                     <SuggestionBook
-                        key={suggestionBook._id}
-                        {...suggestionBook}
-                     />
-                  );
-               }
-            );
+            let suggestions = [];
+            if (this.props.suggestionBooks.length <= 0) {
+               suggestions.push(<h2>No suggestion books yet.</h2>);
+            } else {
+               suggestions.push(
+                  this.props.suggestionBooks.map((suggestionBook) => {
+                     return (
+                        <SuggestionBook
+                           key={suggestionBook._id}
+                           {...suggestionBook}
+                        />
+                     );
+                  })
+               );
+            }
 
             // comment
             const showComment = this.props.comments.map((commentObj) => {
