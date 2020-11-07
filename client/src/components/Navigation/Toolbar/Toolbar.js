@@ -22,7 +22,7 @@ const Toolbar = (props) => {
                <NavItems className="Toolbar__NavItems" />
                {/* Toogle Button */}
                <div className="ToogleBtn">
-                  <img src={ToogleBtn} alt="Logo" onClick={props.clicked} />
+                  <i className="fas fa-bars" onClick={props.clicked}></i>
                </div>
             </div>
          </nav>

@@ -32,15 +32,17 @@ header nav {
 .ToogleBtn {
    display: none;
    margin-left: auto;
-   width: 30px;
 }
 
-.ToogleBtn img {
-   width: 100%;
+.ToogleBtn i {
+   font-size: 22px;
 }
 
 @media (max-width: 900px) {
    .ToogleBtn {
       display: block;
    }
+}
+
+@media (max-width: 480px) {
 }

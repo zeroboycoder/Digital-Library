@@ -1,5 +1,6 @@
 .Home {
    max-width: 100%;
+   width: 100%;
    margin: 57px auto 0 auto;
 }
 
@@ -16,4 +17,34 @@
    padding: 5px 20px;
    border: 1px solid var(--gray);
    border-radius: 30px;
+}
+
+/* CSS for tablet */
+@media (max-width: 768px) {
+   .ImageSlide {
+      margin-bottom: 10px;
+      height: 210px;
+   }
+
+   .Home__Body {
+      width: 95%;
+      margin: auto;
+   }
+
+   .Home__BookLists__Title {
+      font: 400 20px var(--font_family);
+      margin: 10px auto;
+   }
+}
+
+/* CSS for mobile phone */
+@media (max-width: 480px) {
+   .ImageSlide {
+      margin-bottom: 5px;
+      height: 150px;
+   }
+
+   .Home__BookLists__Title {
+      font: 400 17px var(--font_family);
+   }
 }

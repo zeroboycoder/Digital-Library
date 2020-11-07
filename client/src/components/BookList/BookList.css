@@ -51,54 +51,50 @@
    opacity: 0.9;
 }
 
-/* For tablet */
+/* CSS For tablet */
 @media (max-width: 768px) {
    .BookList {
-      align-items: unset;
-      padding: 15px 5px;
-      margin-bottom: 25px;
+      width: 29%;
+      margin: 18px 2%;
+      padding: 12px;
    }
 
-   .BookList__BookImage {
-      width: 20%;
-   }
-   .BookList__Body {
-      width: 80%;
+   .BookList:hover {
+      margin: 5px 2% 31px 2%;
    }
 
    .BookList__Body__BookTitle {
-      font: 400 28px "Roboto", "sans-serif";
+      margin: 5px 0;
+      font: 500 18px var(--font_family);
    }
 
    .BookList__Body p {
-      font: 400 15px/20px "Roboto", "sans-serif";
+      margin-top: 5px;
+      font: 500 15px/18px var(--font_family);
+      letter-spacing: 0.3px;
+      word-spacing: 1px;
    }
 }
 
-/* For moblie phone */
+/* CSS for moblie phone */
 @media (max-width: 480px) {
    .BookList {
-      align-items: unset;
-      padding: 12px 5px;
-      margin-bottom: 20px;
+      width: 40%;
+      margin: 15px 5%;
+      padding: 10px;
    }
 
-   .BookList__BookImage {
-      width: 22%;
-   }
-   .BookList__Body {
-      width: 78%;
+   .BookList:hover {
+      margin: 5px 5% 25px 5%;
    }
 
    .BookList__Body__BookTitle {
-      font: 400 22px "Roboto", "sans-serif";
-   }
-
-   .BookList__Body small {
-      letter-spacing: 0.2px;
+      margin: 5px 0;
+      font: 500 17px var(--font_family);
    }
 
    .BookList__Body p {
-      display: none;
+      margin-top: 3px;
+      font: 400 14px/18px var(--font_family);
    }
 }

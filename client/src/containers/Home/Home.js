@@ -56,13 +56,15 @@ class Home extends Component {
                <div className="ImageSlide">
                   <Carosal />
                </div>
-               <div className="SearchEbookByInputNameBox">
-                  <SearchEbookByInputName history={this.props.history} />
+               <div className="Home__Body">
+                  <div className="SearchEbookByInputNameBox">
+                     <SearchEbookByInputName history={this.props.history} />
+                  </div>
+                  {/* BookList */}
+                  <h1 className="Home__BookLists__Title">New Books</h1>
+                  <div className="BookLists">{bookLists}</div>
+                  <Pagination />
                </div>
-               {/* BookList */}
-               <h1 className="Home__BookLists__Title">New Books</h1>
-               <div className="BookLists">{bookLists}</div>
-               <Pagination />
             </div>
          );
       }

@@ -43,6 +43,7 @@
 .Contact_Group a:link,
 .Contact_Group a:visited,
 .Contact_Group span {
+   font: 400 17px var(--font_family);
    text-decoration: none;
    color: white;
    transition: all 0.3s;
@@ -94,4 +95,16 @@
 /* Third Column */
 .Footer__Row .Third_Column {
    padding: 35px 20px;
+}
+
+/* CSS for table */
+@media (max-width: 768px) {
+   /* .Footer .Footer__Row {
+      flex-flow: column;
+   } */
+   .Contact_Group a:link,
+   .Contact_Group a:visited,
+   .Contact_Group span {
+      font: 400 16px var(--font_family);
+   }
 }

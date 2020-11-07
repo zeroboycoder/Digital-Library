@@ -72,12 +72,29 @@
    display: none;
 }
 
-@media (max-width: 786px) {
+/* CSS for tablet */
+@media (max-width: 768px) {
    .Pagination__PaginationNumber > div {
-      margin: 0 5px;
+      margin: 0 6px;
    }
 
    .Pagination__PaginationBtn {
-      width: 50px;
+      width: 40px;
+   }
+}
+
+/* CSS for mobile phone */
+@media (max-width: 480px) {
+   .Pagination__PaginationNumber > div {
+      width: 30px;
+      height: 30px;
+   }
+
+   .Pagination__PaginationNumber div > a {
+      font: 400 14px var(--font_family);
+   }
+
+   .Pagination__PaginationBtn {
+      width: 30px;
    }
 }
