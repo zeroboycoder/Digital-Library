@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import "./SlideDraw.css";
 import NavItem from "../NavItems/NavItem/NavItem";
 import Logo from "../../../assets/logo.png";
 import Backdrop from "../../UI/Backdrop/Backdrop";
+import * as actions from "../../../store/action/rootActions";
 
 let haveDisplay = false;
 const SlideDraw = (props) => {
@@ -16,6 +18,11 @@ const SlideDraw = (props) => {
          haveDisplay = true;
          setShowSubMenu({ display: "block" });
       }
+   };
+
+   const LogoutFun = () => {
+      props.clicked();
+      props.onLogout(props);
    };
 
    return (
@@ -51,40 +58,47 @@ const SlideDraw = (props) => {
                      onClick={props.clicked}
                   >
                      <li onClick={showSubMenuFun}>
-                        <NavItem link="/categories/web-development">
-                           Web Development
+                        <NavItem link="/categories/civil">Civil</NavItem>
+                     </li>
+                     <li onClick={showSubMenuFun}>
+                        <NavItem link="/categories/electronic">
+                           Electronic
                         </NavItem>
                      </li>
                      <li onClick={showSubMenuFun}>
-                        <NavItem link="/categories/web-design">
-                           Web Design
+                        <NavItem link="/categories/electrical-power">
+                           Electrical Power
                         </NavItem>
                      </li>
                      <li onClick={showSubMenuFun}>
-                        <NavItem link="/categories/database">Database</NavItem>
+                        <NavItem link="/categories/mechnical">
+                           Mechnical
+                        </NavItem>
                      </li>
                      <li onClick={showSubMenuFun}>
-                        <NavItem link="/categories/programming">
-                           Programming
+                        <NavItem link="/categories/information-technology">
+                           Information Technology
                         </NavItem>
                      </li>
                   </ul>
                </li>
                <li onClick={props.clicked}>
-                  <NavItem link="/contact">Contact Us</NavItem>
+                  <NavItem hash="#contact">Contact Us</NavItem>
                </li>
                {props.username ? (
                   <React.Fragment>
                      <li onClick={props.clicked}>
                         <NavItem link="/add-ebook">Add Ebook</NavItem>
                      </li>
-                     <li onClick={props.clicked} className="Danger__Link">
-                        <NavItem link="/api/auth/logout">Logout</NavItem>
+                     <li onClick={LogoutFun}>
+                        <NavItem link="#">
+                           <span className="text-danger">Logout</span>
+                        </NavItem>
                      </li>
                   </React.Fragment>
                ) : (
                   <li onClick={props.clicked} className="Success__Link">
-                     <NavItem link="/auth/signup">Register</NavItem>
+                     <NavItem link="/auth/signin">Sign in</NavItem>
                   </li>
                )}
             </ul>
@@ -99,4 +113,10 @@ const stateToProps = (state) => {
    };
 };
 
-export default connect(stateToProps)(SlideDraw);
+const dispatchToProps = (dispatch) => {
+   return {
+      onLogout: (props) => dispatch(actions.onLogOut(props)),
+   };
+};
+
+export default connect(stateToProps, dispatchToProps)(withRouter(SlideDraw));

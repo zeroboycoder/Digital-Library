@@ -118,7 +118,7 @@ class SignUp extends Component {
                <div className="row">
                   <div className="col col-12 col-md-6">
                      <div className="AuthForm">
-                        <h1>Login</h1>
+                        <h1>SIGN IN</h1>
                         <form onSubmit={(e) => this.submitHandler(e)}>
                            {input}
                            <div className="authBtn">
