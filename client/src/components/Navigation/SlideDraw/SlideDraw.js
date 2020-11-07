@@ -26,7 +26,7 @@ const SlideDraw = (props) => {
             style={
                props.showed
                   ? { transform: "translateX(0)" }
-                  : { transform: "translateX(-100%)" }
+                  : { transform: "translateX(100%)" }
             }
          >
             <div className="SlideDraw__Brand">

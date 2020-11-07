@@ -1,8 +1,9 @@
 .SlideDraw {
    position: fixed;
    top: 0;
+   right: 0;
    z-index: 1000;
-   width: 280px;
+   width: 250px;
    height: 100vh;
    padding: 20px 30px;
    background-color: var(--white);
@@ -39,7 +40,7 @@
    font: 400 17px var(--font_family);
    display: inline-block;
    text-decoration: none;
-   color: var(--primary-color);
+   color: var(--black);
    padding: 0;
    line-height: 45px;
    cursor: pointer;
@@ -60,8 +61,8 @@
 .SlideDraw__Nav li.Danger__Link a:active,
 .SlideDraw__Nav__WithUl span:hover,
 .SlideDraw__Nav__WithUl span:active {
-   color: var(--text-black);
-   background-color: var(--text-white);
+   color: var(--black);
+   background-color: var(--white);
 }
 
 .SlideDraw__Nav__WithUl {
