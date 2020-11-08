@@ -46,11 +46,8 @@
    cursor: pointer;
 }
 
-.SlideDraw__Nav li.Danger__Link a {
-   color: var(--danger);
-}
-
-.SlideDraw__Nav li.Success__Link a {
+.SlideDraw__Nav li.Success__Link a:link,
+.SlideDraw__Nav li.Success__Link a:visited {
    color: var(--success);
 }
 

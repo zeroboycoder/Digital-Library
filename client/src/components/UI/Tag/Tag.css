@@ -9,3 +9,34 @@ button.Tag {
    border: 1px solid var(--gray);
    box-shadow: 1px 2px 6px var(--gray);
 }
+
+button.Tag * {
+   font: 400 17px var(--font_family);
+}
+
+/* CSS for tablet */
+@media (max-width: 768px) {
+   button.Tag {
+      min-width: 150px;
+      margin: 15px;
+      padding: 0 15px;
+   }
+
+   button.Tag * {
+      font: 400 16px var(--font_family);
+   }
+}
+
+/* CSS for tablet */
+@media (max-width: 480px) {
+   button.Tag {
+      height: 30px;
+      min-width: 100px;
+      margin: 10px;
+      padding: 0 10px;
+   }
+
+   button.Tag * {
+      font: 400 14px var(--font_family);
+   }
+}

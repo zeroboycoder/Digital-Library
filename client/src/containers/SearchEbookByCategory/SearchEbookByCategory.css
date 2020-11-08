@@ -1,6 +1,6 @@
 .SearchEbookByCategory {
    max-width: 100%;
-   margin: 70px 0 40px 0;
+   margin: 70px auto 40px auto;
 }
 
 .SearchEbookByCategory h1 {
@@ -10,4 +10,23 @@
    margin: 0;
    padding: 15px 30px;
    letter-spacing: 0.5px;
+}
+
+/* CSS for tablet */
+@media (max-width: 786px) {
+   .SearchEbookByCategory {
+      max-width: 95%;
+   }
+
+   .SearchEbookByCategory h1 {
+      font: 500 30px var(--font_family);
+      padding: 15px 20px;
+   }
+}
+
+/* CSS for mobile phone */
+@media (max-width: 480px) {
+   .SearchEbookByCategory h1 {
+      font: 500 20px var(--font_family);
+   }
 }

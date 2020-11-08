@@ -29,7 +29,7 @@ body {
 /* FlashMessage */
 .FlashMessage {
    position: absolute;
-   width: 60%;
+   width: 70%;
    margin: 0 auto;
    top: 70px;
 }
@@ -45,6 +45,10 @@ body {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
+}
+
+.BookLists:last-child {
+   justify-content: unset;
 }
 
 .Tags {

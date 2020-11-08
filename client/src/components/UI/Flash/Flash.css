@@ -5,7 +5,7 @@
    left: 50%;
    transform: translate(-50%, 0);
    width: 60%;
-   height: 50px;
+   height: 45px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -28,4 +28,26 @@
    margin: 0;
    font: 400 17px var(--font_family);
    letter-spacing: 0.5px;
+}
+
+/* CSS for tablet */
+@media (max-width: 480px) {
+   .Flash {
+      height: 40px;
+   }
+
+   .Flash p {
+      font: 400 16px var(--font_family);
+   }
+}
+
+/* CSS for mobile phone */
+@media (max-width: 480px) {
+   .Flash {
+      height: 35px;
+   }
+
+   .Flash p {
+      font: 400 14px var(--font_family);
+   }
 }

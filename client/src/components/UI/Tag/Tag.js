@@ -8,7 +8,7 @@ const Tag = (props) => {
          className="Tag"
          onClick={() => clickTag(props.name, props.categoryName, props.props)}
       >
-         {props.name}
+         <span>{props.name}</span>
       </button>
    );
 };
