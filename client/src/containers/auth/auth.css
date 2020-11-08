@@ -53,6 +53,10 @@
    cursor: pointer;
 }
 
+.authBtn button:not(:disabled) {
+   animation: notDisable 0.3s linear;
+}
+
 .authBtn button:disabled {
    cursor: not-allowed;
    color: var(--pink-gray);
@@ -109,26 +113,50 @@
    background-size: cover;
 }
 
-/* For small laptop */
-@media (max-width: 900px) {
+/* CSS for small laptop */
+@media (max-width: 990px) {
    .AuthForm {
-      width: 310px;
+      width: 500px;
       margin: 0 auto;
-   }
-   .Signup_right .signup_bg {
-      width: 100%;
-      height: 60%;
-   }
-   .Signup_right .signin_bg {
-      width: 100%;
-      height: 60%;
    }
 }
 
-/* For small tablet */
+/* CSS for tablet */
 @media (max-width: 786px) {
+   .AuthForm {
+      width: 450px;
+      margin: 0 auto;
+   }
+
+   .AuthForm h1 {
+      font: 400 30px var(--font_family);
+   }
+
+   .Signup_right {
+      display: none;
+   }
+
+   .authBtn button {
+      width: 120px;
+   }
+}
+
+/* CSS for mobile phone */
+@media (max-width: 480px) {
    .AuthForm {
       width: 300px;
       margin: 0 auto;
+   }
+
+   .AuthForm h1 {
+      font: 400 28px var(--font_family);
+   }
+
+   .Signup_right {
+      display: none;
+   }
+
+   .authBtn button {
+      width: 120px;
    }
 }
