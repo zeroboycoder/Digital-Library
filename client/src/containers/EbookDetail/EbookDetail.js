@@ -78,7 +78,6 @@ class EbookDetail extends Component {
    };
 
    render() {
-      console.log(this.props);
       let ebookDetail = null;
       // Whether Show Spinner or Result page by checking loading
       if (this.props.loading) {
@@ -90,13 +89,13 @@ class EbookDetail extends Component {
          if (this.props.detail_of_ebook) {
             const bookInfo = (
                <div className="row BookInfo">
-                  <div className="col col-md-4 BookInfo__BookCover">
+                  <div className="col col-12 col-md-4 BookInfo__BookCover">
                      <img
                         src={this.props.detail_of_ebook.bookCoverLocation}
                         alt={this.props.detail_of_ebook.bookName}
                      />
                   </div>
-                  <div className="col col-md-8 BookInfo__Info">
+                  <div className="col col-12 col-md-8 BookInfo__Info">
                      <h1>{this.props.detail_of_ebook.bookName}</h1>
                      <p className="BookInfo__Info__ReleasedYear">
                         Release Year: {this.props.detail_of_ebook.releasedYear}

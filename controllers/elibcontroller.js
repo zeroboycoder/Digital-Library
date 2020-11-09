@@ -286,7 +286,7 @@ exports.getDetailOfEbook = (req, res) => {
          ebookDatas
             .find({ tags: { $in: remainTags } })
             .sort({ _id: -1 })
-            .limit(5)
+            .limit(6)
             .then((resultBooks) => {
                suggestionBooks = resultBooks.filter(
                   (resultBook) => resultBook._id.toString() !== book_id

@@ -13,6 +13,14 @@
    box-shadow: 2px 2px 10px var(--gray);
 }
 
+.SuggestionBook:first-of-type {
+   margin-left: 0;
+}
+
+.SuggestionBook:last-of-type {
+   margin-right: 0;
+}
+
 .SuggestionBook__BookCover {
    width: 100%;
    margin: 0 auto;
@@ -36,4 +44,38 @@
 .SuggestionBook__Body__Author {
    font: 400 15px var(--font_family);
    color: var(--gray);
+}
+
+/* CSS for tablet */
+@media (max-width: 768px) {
+   .SuggestionBook {
+      min-width: 20%;
+      margin: 20px 2%;
+      padding: 10px;
+   }
+
+   .SuggestionBook__Body__BookName {
+      font: 500 15px var(--font_family);
+   }
+
+   .SuggestionBook__Body__Author {
+      font: 400 15px var(--font_family);
+   }
+}
+
+/* CSS for mobile-phone */
+@media (max-width: 480px) {
+   .SuggestionBook {
+      min-width: 30%;
+      margin: 20px 3%;
+      padding: 6px;
+   }
+
+   .SuggestionBook__Body__BookName {
+      font: 500 14px var(--font_family);
+   }
+
+   .SuggestionBook__Body__Author {
+      font: 400 13px var(--font_family);
+   }
 }

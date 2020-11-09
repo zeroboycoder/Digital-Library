@@ -6,7 +6,8 @@
 
 .BookInfo {
    margin: 30px auto 50px auto;
-   width: 1040px;
+   max-width: 1040px;
+   width: 95%;
 }
 
 .BookInfo__BookCover img {
@@ -25,6 +26,7 @@
 .BookInfo__Info > p {
    font: 500 20px var(--font_family);
    margin: 12px 0;
+   letter-spacing: 0.5px;
 }
 
 p.BookInfo__Info__ReleasedYear {
@@ -37,7 +39,7 @@ p.BookInfo__Info__Desc {
 
 .BookInfo__Info__Btn {
    position: absolute;
-   right: 0;
+   right: 10px;
    bottom: 0;
 }
 
@@ -84,7 +86,8 @@ p.BookInfo__Info__Desc {
 }
 
 .EbookDetail__Suggestions {
-   width: 1040px;
+   max-width: 1040px;
+   width: 90%;
    margin: 0 auto;
 }
 
@@ -105,11 +108,7 @@ p.BookInfo__Info__Desc {
 
 .EbookDetail__Suggestions__Books {
    display: flex;
-   margin-top: 10px;
-}
-
-.EbookDetail__Suggestions__Books:first-of-type {
-   margin-left: -2%;
+   overflow: auto;
 }
 
 /* No suggestion book */
@@ -123,13 +122,9 @@ p.BookInfo__Info__Desc {
 /* Comment Section */
 /* =============== */
 .EbookDetail__Comment {
-   width: 100%;
-   margin-top: 30px;
-}
-
-.EbookDetail__Comment__Title {
-   width: 1040px;
-   margin: 0 auto;
+   max-width: 1040px;
+   width: 95%;
+   margin: 30px auto;
 }
 
 .EbookDetail__Comment__Title h1 {
@@ -144,7 +139,8 @@ p.BookInfo__Info__Desc {
 
 .EbookDetail__Comment__CommentBox,
 .EbookDetail__Comment__ShowComment {
-   width: 750px;
+   max-width: 750px;
+   width: 85%;
    margin: 30px auto 0 auto;
    display: flex;
 }
@@ -228,16 +224,177 @@ p.BookInfo__Info__Desc {
    font: 400 17px var(--font_family);
 }
 
-/* For Tablet */
+/* CSS for Tablet */
 @media (max-width: 786px) {
-   .EbookDetail__Heading {
-      font: 500 32px var(--font_family);
+   .BookInfo__BookCover {
+      text-align: center;
+   }
+   .BookInfo__BookCover img {
+      width: 90%;
+   }
+
+   .BookInfo__Info > h1 {
+      font: 500 28px var(--font_family);
+   }
+
+   .BookInfo__Info > p {
+      font: 500 16px/20px var(--font_family);
+      margin: 8px 0;
+      letter-spacing: 0.5px;
+      word-spacing: 2px;
+   }
+
+   p.BookInfo__Info__Desc {
+      margin-bottom: 50px;
+   }
+
+   .BookInfo__Info__Btn i {
+      font-size: 17px;
+   }
+
+   .BookInfo__Info__Btn button {
+      padding: 6px 25px;
+      font: 500 17px var(--font_family);
+   }
+
+   /* Suggestion for tablet */
+   .EbookDetail__Suggestion__Section {
+      padding: 30px 0;
+   }
+
+   .EbookDetail__Suggestions h1 {
+      font: 500 24px var(--font_family);
+   }
+
+   .EbookDetail__Suggestions h1::after {
+      width: 140px;
+   }
+
+   .EbookDetail__Suggestions__Books h2 {
+      font: 400 20px var(--font_family);
+   }
+
+   /* Cmt for tablet */
+   .EbookDetail__Comment__Title h1 {
+      font: 400 24px var(--font_family);
+   }
+
+   .EbookDetail__Comment__ShowComment {
+      margin: 20px auto 0 auto;
+   }
+
+   .EbookDetail__Comment i {
+      font-size: 30px;
+   }
+
+   .EbookDetail__Comment__CommentBox__Text {
+      font: 400 20px var(--font_family);
    }
 }
 
-/* For Mobile */
+/* CSS for mobile phone*/
 @media (max-width: 480px) {
-   .EbookDetail__Heading {
-      font-size: 28px;
+   .BookInfo {
+      width: 90%;
+   }
+
+   .BookInfo__BookCover {
+      text-align: center;
+      margin-bottom: 20px;
+   }
+   .BookInfo__BookCover img {
+      width: 55%;
+   }
+
+   .BookInfo__Info > h1 {
+      font: 500 20px var(--font_family);
+   }
+
+   .BookInfo__Info > p {
+      font: 400 14px/18px var(--font_family);
+      margin: 5px 0;
+      text-align: justify;
+   }
+
+   p.BookInfo__Info__Desc {
+      margin-bottom: 50px;
+   }
+
+   .BookInfo__Info__Btn i {
+      font-size: 15px;
+   }
+
+   .BookInfo__Info__Btn button {
+      padding: 6px 20px;
+      font: 400 15px var(--font_family);
+   }
+
+   /* Suggestion for mobile phone */
+   .EbookDetail__Suggestions h1 {
+      font: 500 20px var(--font_family);
+   }
+
+   .EbookDetail__Suggestions h1::after {
+      width: 115px;
+   }
+
+   .EbookDetail__Suggestions__Books h2 {
+      font: 400 18px var(--font_family);
+   }
+
+   /* Cmt for mobile phone */
+   .EbookDetail__Comment__Title h1 {
+      font: 400 20px var(--font_family);
+   }
+
+   .EbookDetail__Comment__CommentBox__Text {
+      font: 400 17px var(--font_family);
+   }
+
+   .EbookDetail__Comment__CommentBox form .form-group {
+      display: flex;
+      flex-flow: column;
+   }
+
+   .EbookDetail__Comment__CommentBox input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 7px 10px;
+      font: 400 14px var(--font_family);
+      border: 1px solid var(--pink-gray);
+      border-radius: 5px;
+   }
+
+   .EbookDetail__Comment__CommentBox textarea {
+      height: 90px;
+      font: 400 14px var(--font_family);
+   }
+
+   .EbookDetail__Comment__CommentBox {
+      margin-bottom: 20px;
+   }
+
+   .EbookDetail__Comment__ShowComment {
+      margin: 15px auto 0 auto;
+   }
+
+   .EbookDetail__Comment i {
+      font-size: 24px;
+      margin-right: 15px;
+   }
+
+   /* Show Comment */
+   .EbookDetail__Comment__ShowComment div p {
+      margin: 0 0 5px 0;
+   }
+
+   .EbookDetail__Comment__ShowComment__Email,
+   .EbookDetail__Comment__ShowComment__Email span {
+      color: var(--pink-gray);
+      font: 400 14px var(--font_family);
+   }
+
+   .EbookDetail__Comment__ShowComment__Comment {
+      font: 400 14px var(--font_family);
    }
 }
