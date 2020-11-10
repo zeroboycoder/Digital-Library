@@ -90,6 +90,9 @@ const SlideDraw = (props) => {
                      <li onClick={props.clicked}>
                         <NavItem link="/add-ebook">Add Ebook</NavItem>
                      </li>
+                     <li onClick={props.clicked}>
+                        <NavItem link="/setting">Setting</NavItem>
+                     </li>
                      <li onClick={LogoutFun}>
                         <NavItem link="#">
                            <span className="text-danger">Logout</span>

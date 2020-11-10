@@ -84,7 +84,7 @@ class SignUp extends Component {
    };
 
    render() {
-      if (this.props.token) {
+      if (this.props.token && this.props.token !== "null") {
          this.props.history.push("/");
          this.props.onFlash("You already signed in", "success");
       }

@@ -79,7 +79,7 @@ class AddEbook extends Component {
                isRequired: true,
                isNumber: true,
             },
-            label: "Number of Page", 
+            label: "Number of Page",
             value: "",
             isValid: false,
             errMsg: "Only numbers are allowed.",
@@ -216,7 +216,7 @@ class AddEbook extends Component {
    };
 
    render() {
-      if (!this.props.token) {
+      if (!this.props.token || this.props.token === "null") {
          this.props.history.push("/auth/signin");
          this.props.onFlash("You have no privilege. Please sign in.", "fail");
       }
