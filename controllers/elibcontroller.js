@@ -219,6 +219,7 @@ exports.addEbooks = (req, res) => {
       const pages = req.body.pages;
       const fileSize = (req.files[1].size / 1000000).toFixed(1);
       const description = req.body.description;
+      const paid = req.body.paid;
       const filesArr = req.files;
       let fileLocation = [];
       for (let i = 0; i < filesArr.length; i++) {
@@ -231,6 +232,7 @@ exports.addEbooks = (req, res) => {
          releasedYear,
          pages,
          fileSize,
+         paid,
          description,
          bookCoverLocation: fileLocation[0],
          pdfLocation: fileLocation[1],
