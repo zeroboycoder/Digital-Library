@@ -121,6 +121,16 @@ class AddEbook extends Component {
             isValid: false,
             errMsg: "Please write any descriptions you want.",
          },
+         paid: {
+            elementtype: "checkbox",
+            elementconfig: {
+               name: "paid",
+               type: "checkbox",
+            },
+            label: "This is paid book",
+            value: false,
+            isValid: true,
+         },
       },
       selectedImage: null,
       selectedPdf: null,
@@ -175,6 +185,11 @@ class AddEbook extends Component {
                selectedPdf: file,
             });
          }
+      } else if (type === "checkbox") {
+         const value = event.target.checked;
+         const updateUploadedForm = { ...this.state.uploadedForm };
+         updateUploadedForm[key].value = value;
+         this.setState({ uploadedForm: updateUploadedForm });
       }
       // if not file
       // if the input is normal text input
@@ -203,6 +218,7 @@ class AddEbook extends Component {
       form.append("description", this.state.uploadedForm.description.value);
       form.append("files", this.state.selectedImage);
       form.append("files", this.state.selectedPdf);
+      form.append("paid", this.state.uploadedForm.paid.value);
       this.props.onAddEbook(
          form,
          this.state.uploadedForm.bookName.value,

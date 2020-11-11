@@ -52,6 +52,31 @@ const Input = (props) => {
       );
    }
 
+   // If element type will checkbox
+   if (props.elementtype === "checkbox") {
+      input = (
+         <div className="Input">
+            <div className="Input__Label">
+               <div className="Input__Label"></div>
+            </div>
+            <div className="Input__InputBox">
+               <input
+                  type="checkbox"
+                  {...props.elementconfig}
+                  id={props.elementconfig.name}
+                  onChange={props.changed}
+               />
+               <label
+                  className="ml-3 text-danger checkboxLabel"
+                  htmlFor={props.elementconfig.name}
+               >
+                  {props.label}
+               </label>
+            </div>
+         </div>
+      );
+   }
+
    // If element type will textarea
    if (props.elementtype === "textarea") {
       input = (

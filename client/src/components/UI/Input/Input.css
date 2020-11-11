@@ -13,7 +13,8 @@
    position: relative;
 }
 
-.Input__Label label {
+.Input__Label label,
+label.checkboxLabel {
    color: var(--black);
    font: 500 16px var(--font_family);
    margin-bottom: 15px;
