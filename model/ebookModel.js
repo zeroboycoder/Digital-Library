@@ -29,6 +29,10 @@ const ebookSchema = new mongoose.Schema({
       type: Boolean,
       required: true,
    },
+   caregory: {
+      type: String,
+      required: true,
+   },
    description: {
       type: String,
       required: true,

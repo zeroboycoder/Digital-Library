@@ -108,31 +108,41 @@ class EbookDetail extends Component {
                      <p className="BookInfo__Info__Desc">
                         {this.props.detail_of_ebook.description}
                      </p>
-                     <div className="BookInfo__Info__Btn">
-                        {this.props.token && (
-                           <button
-                              className="BookInfo__Info__Btn__Delete"
-                              onClick={() =>
-                                 this.props.onDeleteEbook(
-                                    this.props.detail_of_ebook._id,
-                                    this.props
-                                 )
-                              }
+                     {this.props.token ? (
+                        <div className="BookInfo__Info__Btn">
+                           {this.props.token && (
+                              <button
+                                 className="BookInfo__Info__Btn__Delete"
+                                 onClick={() =>
+                                    this.props.onDeleteEbook(
+                                       this.props.detail_of_ebook._id,
+                                       this.props
+                                    )
+                                 }
+                              >
+                                 <i className="fas fa-trash"></i>Delete
+                              </button>
+                           )}
+                           <a
+                              href={this.props.detail_of_ebook.pdfLocation}
+                              target="_blank"
+                              rel="noopener noreferrer"
                            >
-                              <i className="fas fa-trash"></i>Delete
-                           </button>
-                        )}
-                        <a
-                           href={this.props.detail_of_ebook.pdfLocation}
-                           target="_blank"
-                           rel="noopener noreferrer"
+                              <button className="BookInfo__Info__Btn__Download">
+                                 <i className="fas fa-book-open"></i>
+                                 Read
+                              </button>
+                           </a>
+                        </div>
+                     ) : (
+                        <p
+                           className="text-danger text-center"
+                           style={{ textDecoration: "underline" }}
                         >
-                           <button className="BookInfo__Info__Btn__Download">
-                              <i className="fas fa-book-open"></i>
-                              Read
-                           </button>
-                        </a>
-                     </div>
+                           This book is paid book. You have to log in as TUMLM
+                           student to read.
+                        </p>
+                     )}
                   </div>
                </div>
             );
@@ -180,11 +190,14 @@ class EbookDetail extends Component {
 
             ebookDetail = (
                <div className="EbookDetail">
+                  {/* Search Bar */}
                   <div className="SearchEbookByInputNameBox">
                      <SearchEbookByInputName history={this.props.history} />
                   </div>
                   <hr className="Tag__hr" />
+                  {/* Book info */}
                   {bookInfo}
+                  {/* Suggestion book */}
                   <div className="EbookDetail__Suggestion__Section">
                      <div className="EbookDetail__Suggestions">
                         <h1>Suggestions</h1>
@@ -193,6 +206,7 @@ class EbookDetail extends Component {
                         </div>
                      </div>
                   </div>
+                  {/* Comment */}
                   <div className="EbookDetail__Comment">
                      <div className="EbookDetail__Comment__Title">
                         <h1>Comments</h1>
@@ -224,6 +238,7 @@ const stateToProps = (state) => {
       loading: state.ebook.loading,
       comments: state.ebook.comments,
       token: state.auth.token,
+      role: state.auth.role,
    };
 };
 
