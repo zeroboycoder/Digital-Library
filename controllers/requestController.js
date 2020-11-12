@@ -52,7 +52,7 @@ exports.bookRequest = (req, res) => {
 // Website Feedback
 exports.feedback = (req, res) => {
    const { feedbackMsg } = req.body;
-   authModel.findOne({ major: "web-admin" }).then((user) => {
+   authModel.findOne({ role: "web-admin" }).then((user) => {
       const address = user.email;
       const subject = "Website feedback";
       const content = `Hey guy, User send this feedback. <br /> <strong>"${feedbackMsg}"</strong>`;

@@ -6,7 +6,7 @@ const authModel = require("../model/authModel");
 
 // Sign Up User
 exports.signUpUser = (req, res) => {
-   const { username, email, password, major } = req.body;
+   const { username, email, password, major, role } = req.body;
    authModel.findOne({ email: email }).then((user) => {
       if (user) {
          console.log(user);
@@ -19,6 +19,7 @@ exports.signUpUser = (req, res) => {
                username: username,
                email: email,
                major: major,
+               role: role,
                password: hashPassword,
             })
                .save()
@@ -34,6 +35,8 @@ exports.signUpUser = (req, res) => {
                               userId: newUser._id,
                               username: newUser.username,
                               email: newUser.email,
+                              major: newUser.major,
+                              role: newUser.role,
                            },
                         });
                      }
@@ -76,6 +79,8 @@ exports.signInUser = (req, res) => {
                            userId: user._id,
                            username: user.username,
                            email: user.email,
+                           major: user.major,
+                           role: user.role,
                         },
                      });
                   }

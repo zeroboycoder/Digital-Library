@@ -43,8 +43,7 @@ class SignUp extends Component {
          major: {
             elementtype: "select",
             options: [
-               { name: "Select a role or major", value: "" },
-               { name: "Web Admin", value: "web-admin" },
+               { name: "Select a major", value: "" },
                { name: "Civil Engineering", value: "civil" },
                { name: "Electronic Engineering", value: "ec" },
                { name: "Electrical Power Engineering", value: "ep" },
@@ -54,10 +53,26 @@ class SignUp extends Component {
             validation: {
                isRequired: true,
             },
-            label: "Role/Major",
+            label: "Major",
             value: "",
             isValid: false,
-            errMsg: "Please select the major or role",
+            errMsg: "Please select a major",
+         },
+         role: {
+            elementtype: "select",
+            options: [
+               { name: "Select a role", value: "" },
+               { name: "Admin", value: "admin" },
+               { name: "Web Admin", value: "web-admin" },
+               { name: "Student", value: "student" },
+            ],
+            validation: {
+               isRequired: true,
+            },
+            label: "Role",
+            value: "",
+            isValid: false,
+            errMsg: "Please select a role",
          },
          password: {
             elementtype: "input",
