@@ -241,7 +241,7 @@ p.BookInfo__Info__Desc {
       font: 500 16px/20px var(--font_family);
       margin: 8px 0;
       letter-spacing: 0.5px;
-      word-spacing: 2px;
+      word-spacing: 1px;
    }
 
    p.BookInfo__Info__Desc {

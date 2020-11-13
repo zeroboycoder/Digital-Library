@@ -5,6 +5,19 @@ const multers3 = require("multer-s3");
 
 const ebookDatas = require("../model/ebookModel");
 
+// // Add book category to book databse
+// const categories = ["civil", "ec", "ep", "mech", "it"];
+// ebookDatas.find().then((ebooks) => {
+//    ebooks.forEach((ebook) => {
+//       ebook.tags.forEach((tag) => {
+//          if (categories.includes(tag)) {
+//             ebook.category = tag;
+//             ebook.save().then(() => console.log(`Add category : ${tag}`));
+//          }
+//       });
+//    });
+// });
+
 // // Configrue the aws s3
 const s3 = new aws.S3({
    accessKeyId: process.env.ACCESS_KEY_ID,
@@ -218,13 +231,20 @@ exports.addEbooks = (req, res) => {
       const releasedYear = req.body.releasedYear;
       const pages = req.body.pages;
       const fileSize = (req.files[1].size / 1000000).toFixed(1);
-      const description = req.body.description;
       const paid = req.body.paid;
+      let category;
+      const description = req.body.description;
       const filesArr = req.files;
       let fileLocation = [];
       for (let i = 0; i < filesArr.length; i++) {
          fileLocation.push(filesArr[i].location);
       }
+      // Check the category of book
+      const categories = ["civil", "ec", "ep", "mp", "it"];
+      tags.forEach((tag) => {
+         categories.includes(tag) ? (category = tag) : null;
+      });
+
       const dataSummary = {
          bookName,
          author,
@@ -233,6 +253,7 @@ exports.addEbooks = (req, res) => {
          pages,
          fileSize,
          paid,
+         category,
          description,
          bookCoverLocation: fileLocation[0],
          pdfLocation: fileLocation[1],

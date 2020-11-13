@@ -81,7 +81,6 @@ class EbookDetail extends Component {
       let ebookDetail = null;
       // Whether Show Spinner or Result page by checking loading
       if (this.props.loading) {
-         console.log("Loading");
          ebookDetail = <Spinner />;
       } else {
          // if not loading
@@ -150,7 +149,9 @@ class EbookDetail extends Component {
             // Suggestion
             let suggestions = [];
             if (this.props.suggestionBooks.length <= 0) {
-               suggestions.push(<h2>No suggestion books yet.</h2>);
+               suggestions.push(
+                  <h2 key="NoSugBook">No suggestion books yet.</h2>
+               );
             } else {
                suggestions.push(
                   this.props.suggestionBooks.map((suggestionBook) => {
