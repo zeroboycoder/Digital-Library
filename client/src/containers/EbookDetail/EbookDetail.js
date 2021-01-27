@@ -90,7 +90,7 @@ class EbookDetail extends Component {
                <div className="row BookInfo">
                   <div className="col col-12 col-md-4 BookInfo__BookCover">
                      <img
-                        src={this.props.detail_of_ebook.bookCoverLocation}
+                        src={require(`../../assets/data/${this.props.detail_of_ebook.bookCoverName}`)}
                         alt={this.props.detail_of_ebook.bookName}
                      />
                   </div>
@@ -115,6 +115,8 @@ class EbookDetail extends Component {
                                  onClick={() =>
                                     this.props.onDeleteEbook(
                                        this.props.detail_of_ebook._id,
+                                       this.props.detail_of_ebook.bookCoverName,
+                                       this.props.detail_of_ebook.pdfName,
                                        this.props
                                     )
                                  }
@@ -123,7 +125,7 @@ class EbookDetail extends Component {
                               </button>
                            )}
                            <a
-                              href={this.props.detail_of_ebook.pdfLocation}
+                              href={require(`../../assets/data/${this.props.detail_of_ebook.pdfName}`)}
                               target="_blank"
                               rel="noopener noreferrer"
                            >
@@ -249,8 +251,10 @@ const dispatchToProps = (dispatch) => {
          dispatch(actions.onFetchDetailOfEbook(book_id)),
       onAddComment: (book_id, data) =>
          dispatch(actions.onAddComment(book_id, data)),
-      onDeleteEbook: (book_id, props) =>
-         dispatch(actions.onDeleteEbook(book_id, props)),
+      onDeleteEbook: (book_id, bookCoverName, pdfName, props) =>
+         dispatch(
+            actions.onDeleteEbook(book_id, bookCoverName, pdfName, props)
+         ),
    };
 };
 

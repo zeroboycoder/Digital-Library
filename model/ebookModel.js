@@ -37,11 +37,11 @@ const ebookSchema = new mongoose.Schema({
       type: String,
       required: true,
    },
-   bookCoverLocation: {
+   bookCoverName: {
       type: String,
       required: true,
    },
-   pdfLocation: {
+   pdfName: {
       type: String,
       required: true,
    },

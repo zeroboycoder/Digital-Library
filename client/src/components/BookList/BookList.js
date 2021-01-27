@@ -14,7 +14,7 @@ const BookList = (props) => {
       <div className="BookList">
          <div className="BookList__BookImage">
             <img
-               src={props.bookCoverLocation}
+               src={require(`../../assets/data/${props.bookCoverName}`)}
                alt={bookName}
                onClick={props.clicked}
             />

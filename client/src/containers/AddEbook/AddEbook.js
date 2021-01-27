@@ -228,6 +228,7 @@ class AddEbook extends Component {
       for (const key in updateForm) {
          updateForm[key].value = "";
       }
+      updateForm.paid.value = false;
       this.setState({ uploadedForm: updateForm, previewImage: "" });
    };
 

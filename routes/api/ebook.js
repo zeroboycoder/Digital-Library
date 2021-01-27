@@ -21,7 +21,10 @@ route.get("/ebooks/:book_id", E_Lib_Controller.getDetailOfEbook);
 route.post("/api/ebooks/add", E_Lib_Controller.addEbooks);
 
 // Delete Ebooks
-route.delete("/api/ebooks/delete/:bookId", E_Lib_Controller.deleteEbook);
+route.delete(
+   "/api/ebooks/delete/:bookId/:bookCoverName/:pdfName",
+   E_Lib_Controller.deleteEbook
+);
 
 // Book Request
 route.post("/api/ebooks/request", requestController.bookRequest);

@@ -10,7 +10,10 @@ const SuggestionBook = (props) => {
             className="SuggestionBook__BookCover"
             onClick={() => clickedLink(props._id, props)}
          >
-            <img src={props.bookCoverLocation} alt={props.bookName} />
+            <img
+               src={require(`../../assets/data/${props.bookCoverName}`)}
+               alt={props.bookName}
+            />
          </div>
          <div className="SuggestionBook__Body">
             <p

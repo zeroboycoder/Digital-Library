@@ -1,48 +1,17 @@
 require("dotenv").config();
-const aws = require("aws-sdk");
+const fs = require("fs");
 const multer = require("multer");
-const multers3 = require("multer-s3");
+const path = require("path");
 
 const ebookDatas = require("../model/ebookModel");
 
-// // Add book category to book databse
-// const categories = ["civil", "ec", "ep", "mech", "it"];
-// ebookDatas.find().then((ebooks) => {
-//    ebooks.forEach((ebook) => {
-//       ebook.tags.forEach((tag) => {
-//          if (categories.includes(tag)) {
-//             ebook.category = tag;
-//             ebook.save().then(() => console.log(`Add category : ${tag}`));
-//          }
-//       });
-//    });
-// });
-
-// // Configrue the aws s3
-const s3 = new aws.S3({
-   accessKeyId: process.env.ACCESS_KEY_ID,
-   secretAccessKey: process.env.SECRET_ACCESS_KEY,
-});
-
-// Storing the data in s3 cloud
-const storage = multers3({
-   s3: s3,
-   bucket: process.env.BUCKET_NAME,
-   acl: "public-read",
-   contentType: (req, file, cb) => {
-      cb(null, file.mimetype);
+// Storing the data in web server
+const storage = multer.diskStorage({
+   destination: (req, file, cb) => {
+      cb(null, path.resolve(__dirname, "../client", "src", "assets", "data"));
    },
-   key: (req, file, cb) => {
-      const fileArr = file.originalname.split(
-         ".pdf" || ".png" || ".jpg" || ".jpeg"
-      ); // ["example", "pdf"]
-      const fileName = fileArr[0]; // filename "example"
-      const ext = file.mimetype.split("/")[1]; // extension "pdf"
-
-      const dateArr = new Date().toLocaleDateString().split("/"); // [1,1,2021]
-      const date = dateArr.join("."); // "1.1.2021"
-
-      cb(null, fileName + "-" + date + "." + ext); //example-1.1.2021.pdf
+   filename: (req, file, cb) => {
+      cb(null, file.originalname);
    },
 });
 
@@ -225,20 +194,15 @@ exports.addEbooks = (req, res) => {
          return res.status(err.statusCode).json({ errMsg: err.message });
       }
       const bookName = req.body.bookName;
+      const author = req.body.author;
       const reqTags = req.body.tags.split(" ");
       const tags = reqTags.map((tag) => tag.toLowerCase());
-      const author = req.body.author;
       const releasedYear = req.body.releasedYear;
       const pages = req.body.pages;
-      const fileSize = (req.files[1].size / 1000000).toFixed(1);
-      const paid = req.body.paid;
-      let category;
       const description = req.body.description;
-      const filesArr = req.files;
-      let fileLocation = [];
-      for (let i = 0; i < filesArr.length; i++) {
-         fileLocation.push(filesArr[i].location);
-      }
+      const paid = req.body.paid;
+      const fileSize = (req.files[1].size / 1000000).toFixed(1);
+      let category;
       // Check the category of book
       const categories = ["civil", "ec", "ep", "mp", "it"];
       tags.forEach((tag) => {
@@ -255,8 +219,8 @@ exports.addEbooks = (req, res) => {
          paid,
          category,
          description,
-         bookCoverLocation: fileLocation[0],
-         pdfLocation: fileLocation[1],
+         bookCoverName: req.files[0].filename,
+         pdfName: req.files[1].filename,
       };
       new ebookDatas(dataSummary)
          .save()
@@ -264,7 +228,7 @@ exports.addEbooks = (req, res) => {
             return res.status(200).json({ data: ebookData });
          })
          .catch((err) => {
-            console.log("err");
+            console.log(err);
             return res
                .status(500)
                .json({ msg: "Can't add data to DB", errMsg: err });
@@ -277,9 +241,26 @@ exports.addEbooks = (req, res) => {
 // ============
 exports.deleteEbook = (req, res) => {
    const bookId = req.params.bookId;
+   const bookCoverName = req.params.bookCoverName;
+   const pdfName = req.params.pdfName;
+   const filePath = path.resolve(
+      __dirname,
+      "../client",
+      "src",
+      "assets",
+      "data"
+   );
    ebookDatas
       .deleteOne({ _id: bookId })
-      .then((success) => res.status(200).json({ message: "success" }))
+      .then(() => {
+         try {
+            fs.unlinkSync(`${filePath}/${bookCoverName}`);
+            fs.unlinkSync(`${filePath}/${pdfName}`);
+         } catch (error) {
+            console.log(error);
+         }
+         res.status(200).json({ message: "success" });
+      })
       .catch((err) => res.status(400).json({ errMsg: err }));
 };
 

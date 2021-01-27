@@ -38,7 +38,7 @@ export const onFetchEbook = (query) => (dispatch) => {
          );
       })
       .catch((err) => {
-         dispatch(fetchEbookFail(err.response.data.errMsg));
+         dispatch(fetchEbookFail("Fetch Ebook fail"));
       });
 };
 
